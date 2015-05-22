@@ -113,16 +113,16 @@ namespace ConquestPlugin
 
 			_processHandlers = new List<ProcessHandlerBase>
 			{
-				new ProcessFactionPoints(),
-				new ProcessConquest()
+				new ProcessFactionPoints( ),
+				new ProcessConquest( )
 			};
 
 			_chatHandlers = new List<ChatHandlerBase>
 			{
-				new HandleAdminDebug(),
-				new HandleShop(),
-				new HandleLeaderboardConquest(),
-				new HandleLeaderboardFaction()
+				new HandleAdminDebug( ),
+				new HandleShop( ),
+				new HandleLeaderboardConquest( ),
+				new HandleLeaderboardFaction( )
 			};
 
 			_processThreads = new List<Thread>();
