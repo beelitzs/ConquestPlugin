@@ -86,8 +86,9 @@
     <Compile Include="ProcessHandlers\ProcessFactionPoints.cs" />
     <Compile Include="ProcessHandlers\ProcessHandlerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\Economy\DynPrices.cs" />
     <Compile Include="Utility\Faction.cs" />
-    <Compile Include="Utility\Shop.cs" />
+    <Compile Include="Utility\Economy\Shop.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
