@@ -28,7 +28,7 @@ namespace ConquestPlugin.GameModes
 	public class GMConquest
 	{
 		private static readonly Logger Log = LogManager.GetLogger( "PluginLog" );
-		private SerializableDictionary<long, long> m_ownershipCache = new SerializableDictionary<long, long>( );
+		private static SerializableDictionary<long, long> m_ownershipCache = new SerializableDictionary<long, long>( );
 		private static GMConquest m_instance = null;
 
 		public SerializableDictionary<long, long> Leaderboard
@@ -111,6 +111,7 @@ namespace ConquestPlugin.GameModes
 	
 		private static Dictionary<long, long> ProcessAsteroidOwnership()
 		{
+			m_ownershipCache.Clear();
 			Dictionary<long, long> result = new Dictionary<long, long>();
 			HashSet<IMyEntity> entities = new HashSet<IMyEntity>();
 			MyAPIGateway.Entities.GetEntities(entities);
