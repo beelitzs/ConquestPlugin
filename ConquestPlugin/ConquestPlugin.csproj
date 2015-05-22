@@ -42,6 +42,9 @@
     <Reference Include="Sandbox.Game">
       <HintPath>..\libraries\Sandbox.Game.dll</HintPath>
     </Reference>
+    <Reference Include="SEComm">
+      <HintPath>..\libraries\SEComm.dll</HintPath>
+    </Reference>
     <Reference Include="SEModAPI">
       <HintPath>..\libraries\SEModAPI.dll</HintPath>
     </Reference>
