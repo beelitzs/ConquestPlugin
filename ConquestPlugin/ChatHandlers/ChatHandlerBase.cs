@@ -2,7 +2,7 @@
 using System.Linq;
 using SEModAPIInternal.API.Common;
 
-namespace EssentialsPlugin.ChatHandlers
+namespace ConquestPlugin.ChatHandlers
 {
 	using System.IO;
 	using NLog;

@@ -23,7 +23,7 @@ using SEModAPIInternal.API.Entity.Sector.SectorObject;
 using SEModAPIInternal.API.Entity.Sector.SectorObject.CubeGrid.CubeBlock;
 using SEModAPIInternal.API.Common;
 
-namespace EssentialsPlugin.ChatHandlers.Leaderboard
+namespace ConquestPlugin.ChatHandlers
 {
 	public class HandleLeaderboardConquest : ChatHandlerBase
 	{
