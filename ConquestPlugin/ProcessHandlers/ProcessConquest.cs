@@ -1,6 +1,6 @@
 ﻿namespace ConquestPlugin.ProcessHandlers
 {
-	using ConquestPlugin.GameMode;
+	using ConquestPlugin.GameModes;
 	using ConquestPlugin.Utility;
 
 	class ProcessConquest : ProcessHandlerBase
@@ -12,9 +12,7 @@
 
 		public override void Handle()
 		{
-			if (!PluginSettings.Instance.GameModeConquestEnabled)
-				return;
-			Conquest.Process();
+			GMConquest.Process();
 			base.Handle();
 		}
 	}
