@@ -73,15 +73,42 @@ namespace ConquestPlugin.GameModes
 
 		}
 
-		public static Boolean RemoveFP(long factionID, long amount) // Remove Faction Points. Return False if balance is lower than amount to remove.
+		public static Boolean RemoveFP(ulong factionID, int amount) // Remove Faction Points. Return False if balance is lower than amount to remove.
 		{
-
-			return false;
+			CheckFP();
+			if (getFP(factionID) < amount) { return false; }
+			
+			XmlDocument xmlDoc = new XmlDocument();
+			xmlDoc.Load(filename);
+			XmlNode selectedFaction = xmlDoc.SelectSingleNode("//Faction[@FactionID='" + factionID + "']");
+			XmlAttributeCollection attributeList = selectedFaction.Attributes;
+			XmlNode attributeCurrentPoints = attributeList.Item(1);
+			int currentPoints = Convert.ToInt32(attributeCurrentPoints.Value);
+			int newPoints = currentPoints - amount;
+			attributeCurrentPoints.Value = Convert.ToString(newPoints);
+			xmlDoc.Save(filename);
+			return true;
 		}
 
 		public static int getFP(ulong factionID) // Return the amount of FactionPoints the user's faction has.
 		{
-			return 0;
+			int currentFP;
+			XmlDocument xmlDoc = new XmlDocument();
+			xmlDoc.Load(filename);
+			XmlNode selectedFaction = xmlDoc.SelectSingleNode("//Faction[@FactionID='" + factionID + "']");
+			try
+			{
+				XmlAttributeCollection factionCheck = selectedFaction.Attributes;
+			}
+			catch (NullReferenceException)
+			{
+				// Faction has no entry.
+				return 0;
+			}
+			XmlAttributeCollection attributeList = selectedFaction.Attributes;
+			XmlNode attributeCurrentPoints = attributeList.Item(1);
+			currentFP = Convert.ToInt32(attributeCurrentPoints.Value);
+			return currentFP;
 		}
 	}
 }
