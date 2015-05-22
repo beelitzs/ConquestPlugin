@@ -75,15 +75,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatHandlers\ChatHandlerBase.cs" />
+    <Compile Include="ChatHandlers\HandleAdminDebug.cs" />
+    <Compile Include="ChatHandlers\HandleLeaderboardConquest.cs" />
+    <Compile Include="ChatHandlers\HandleShop.cs" />
     <Compile Include="Conquest.cs" />
+    <Compile Include="ConquestMode\Conquest.cs" />
+    <Compile Include="ConquestMode\FactionPoints.cs" />
+    <Compile Include="ProcessHandlers\ProcessConquest.cs" />
+    <Compile Include="ProcessHandlers\ProcessFactionPoints.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\Faction.cs" />
+    <Compile Include="Utility\Shop.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ChatHandlers\" />
-    <Folder Include="ConquestMode\" />
-    <Folder Include="ProcessHandlers\" />
-    <Folder Include="Utility\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
