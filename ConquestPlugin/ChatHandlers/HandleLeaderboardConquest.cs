@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.IO;
 
-using EssentialsPlugin.Utility;
-using EssentialsPlugin.GameModes;
+using ConquestPlugin.Utility;
+using ConquestPlugin.GameModes;
 
 using Sandbox.ModAPI;
 using Sandbox.ModAPI.Interfaces;
@@ -27,6 +27,7 @@ namespace ConquestPlugin.ChatHandlers
 {
 	public class HandleLeaderboardConquest : ChatHandlerBase
 	{
+		
 		public override string GetHelp()
 		{
 			return "This displays the leaderboard for the conquest game mode.  Usage: /leaderboard conquest";
@@ -47,9 +48,14 @@ namespace ConquestPlugin.ChatHandlers
 			return true;
 		}
 
+		public override bool IsClientOnly()
+		{
+			return true;
+		}
+
 		public override bool HandleCommand(ulong userId, string[] words)
 		{
-			var board = Conquest.Instance.Leaderboard;
+			var board = GMConquest.Instance.Leaderboard;
 
 			string leaderResult = "";
 			
@@ -59,7 +65,7 @@ namespace ConquestPlugin.ChatHandlers
 			}
 			// leaderResult += "\r\n";
 			
-			var leaders = Conquest.Instance.Leaderboard.GroupBy(x => x.Value).Select(group => new { group.Key, Total = group.Count() }).OrderByDescending(x => x.Total);
+			var leaders = GMConquest.Instance.Leaderboard.GroupBy(x => x.Value).Select(group => new { group.Key, Total = group.Count() }).OrderByDescending(x => x.Total);
 			int position = 1;
 			foreach (var p in leaders)
 			{
@@ -83,8 +89,8 @@ namespace ConquestPlugin.ChatHandlers
 
 			leaderResult += string.Format("You currently have {0} owned asteroids.", playerCount);
 
-			// Communication.SendPrivateInformation(userId, leaderResult); // Bulky and unecessary?
-			Communication.DisplayDialog(userId, "Conquest Leaderboard", "Current Leaders", leaderResult);
+			ChatUtil.SendPrivateChat(userId, leaderResult);
+			ChatUtil.DisplayDialog(userId, "Conquest Leaderboard", "Current Leaders", leaderResult);
 
 			return true;
 		}
@@ -133,7 +139,7 @@ namespace ConquestPlugin.ChatHandlers
                 List<MyObjectBuilder_FactionMember> currentfaction = faction.Members;
                 foreach (MyObjectBuilder_FactionMember currentmember in currentfaction)
                 {
-                    var leaders = Conquest.Instance.Leaderboard.GroupBy(x => x.Value).Select(group => new { group.Key, Total = group.Count() }).OrderByDescending(x => x.Total);
+                    var leaders = GMConquest.Instance.Leaderboard.GroupBy(x => x.Value).Select(group => new { group.Key, Total = group.Count() }).OrderByDescending(x => x.Total);
                     foreach(var p in leaders)
                     {
 
@@ -152,7 +158,7 @@ namespace ConquestPlugin.ChatHandlers
 
                 
             }
-            Communication.DisplayDialog(userId, "Faction Leaderbored", "Current Leader", flstring);
+            ChatUtil.DisplayDialog(userId, "Faction Leaderbored", "Current Leader", flstring);
 			return true;
 		}
 			
