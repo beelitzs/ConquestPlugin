@@ -19,6 +19,7 @@ using SEModAPIInternal.API.Common;
 
 using ConquestPlugin.ProcessHandlers;
 using ConquestPlugin.ChatHandlers;
+using ConquestPlugin.Utility;
 
 namespace ConquestPlugin
 {
@@ -268,7 +269,7 @@ namespace ConquestPlugin
 
 				string commandList = string.Join(", ", commands);
 				string info = string.Format("Dedicated Server Essentials v{0}.  Available Commands: {1}", Version, commandList);
-				Communication.SendPrivateInformation(remoteUserId, info);
+				ChatUtil.SendPrivateChat(remoteUserId, info);
 			}
 			else
 			{
@@ -281,7 +282,7 @@ namespace ConquestPlugin
 					{
 						if (String.Equals(handler.GetCommandText(), helpTarget, StringComparison.CurrentCultureIgnoreCase))
 						{
-							Communication.SendPrivateInformation(remoteUserId, handler.GetHelp());
+							ChatUtil.SendPrivateChat(remoteUserId, handler.GetHelp());
 							found = true;
 						}
 					}
@@ -291,7 +292,7 @@ namespace ConquestPlugin
 						{
 							if (String.Equals(cmd, helpTarget, StringComparison.CurrentCultureIgnoreCase))
 							{
-								Communication.SendPrivateInformation(remoteUserId, handler.GetHelp());
+								ChatUtil.SendPrivateChat(remoteUserId, handler.GetHelp());
 								found = true;
 							}
 						}
@@ -327,13 +328,13 @@ namespace ConquestPlugin
 
 					if (helpTopics.Any())
 					{
-						Communication.SendPrivateInformation(remoteUserId, string.Format("Help topics for command '{0}': {1}", helpTarget.ToLower(), string.Join(",", helpTopics.ToArray())));
+						ChatUtil.SendPrivateChat(remoteUserId, string.Format("Help topics for command '{0}': {1}", helpTarget.ToLower(), string.Join(",", helpTopics.ToArray())));
 						found = true;
 					}
 				}
 
 				if (!found)
-					Communication.SendPrivateInformation(remoteUserId, "Unknown command");
+					ChatUtil.SendPrivateChat(remoteUserId, "Unknown command");
 			}
 		}
 
@@ -377,7 +378,7 @@ namespace ConquestPlugin
 
 			if (availableCommands.Any())
 			{
-				Communication.SendPrivateInformation(remoteUserId, string.Format("Available subcommands for '{0}' command: {1}", message, string.Join(", ", availableCommands.ToArray())));
+				ChatUtil.SendPrivateChat(remoteUserId, string.Format("Available subcommands for '{0}' command: {1}", message, string.Join(", ", availableCommands.ToArray())));
 			}
 		}
 

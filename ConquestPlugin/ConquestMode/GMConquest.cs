@@ -9,21 +9,19 @@ using System.Xml;
 using System.Xml.Serialization;
 
 using ConquestPlugin;
-
+using ConquestPlugin.Utility;
 using Sandbox.ModAPI;
 using Sandbox.ModAPI.Interfaces;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Voxels;
 using Sandbox.Common.ObjectBuilders.Definitions;
-
 using VRageMath;
-
 using SEModAPIInternal.API.Entity;
 using SEModAPIInternal.API.Entity.Sector.SectorObject;
 using SEModAPIInternal.API.Entity.Sector.SectorObject.CubeGrid.CubeBlock;
 using SEModAPIInternal.API.Common;
 
-namespace EssentialsPlugin.GameModes
+namespace ConquestPlugin.GameModes
 {
 	using NLog;
 
@@ -83,12 +81,12 @@ namespace EssentialsPlugin.GameModes
 					name = item.Name;
 
 				if(!reload)
-					Communication.SendPublicInformation(string.Format("[CONQUEST]: {0} has conquered an asteroid.", name));
+					ChatUtil.SendPublicChat(string.Format("[CONQUEST]: {0} has conquered an asteroid.", name));
 			}
 			else if(count > 1)
 			{
 				if(!reload)
-					Communication.SendPublicInformation(string.Format("[CONQUEST]: Multiple asteroids have been conquered.  {0} asteroids have been claimed or changed ownership.", count));
+					ChatUtil.SendPublicChat(string.Format("[CONQUEST]: Multiple asteroids have been conquered.  {0} asteroids have been claimed or changed ownership.", count));
 			}
 
 			bool change = false;

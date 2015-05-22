@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
-using EssentialsPlugin.Utility;
+using ConquestPlugin.Utility;
 
-namespace EssentialsPlugin.GameModes
+namespace ConquestPlugin.GameModes
 {
 	public class FactionPoints
 	{
@@ -60,7 +60,7 @@ namespace EssentialsPlugin.GameModes
 				Faction.Attributes.Append(CurrentPoints);
 				rootNode.AppendChild(Faction);
 				xmlDoc.Save(filename);
-				Communication.SendPublicInformation(string.Format("[DEBUG]: Faction#{0} now has {1} FactionPoints!", factionID, addPoints));
+				ChatUtil.SendPublicChat(string.Format("[DEBUG]: Faction#{0} now has {1} FactionPoints!", factionID, addPoints));
 				return;
 			}
 			XmlAttributeCollection attributeList = selectedFaction.Attributes;
@@ -69,7 +69,7 @@ namespace EssentialsPlugin.GameModes
 			int newPoints = currentPoints + addPoints;
 			attributeCurrentPoints.Value = Convert.ToString(newPoints);
 			xmlDoc.Save(filename);
-			Communication.SendPublicInformation(string.Format("[DEBUG]: Faction#{0} now has {1} FactionPoints!", factionID, newPoints));
+			ChatUtil.SendPublicChat(string.Format("[DEBUG]: Faction#{0} now has {1} FactionPoints!", factionID, newPoints));
 
 		}
 
@@ -77,6 +77,11 @@ namespace EssentialsPlugin.GameModes
 		{
 
 			return false;
+		}
+
+		public static int getFP() // Return the amount of FactionPoints the user's faction has.
+		{
+			return 0;
 		}
 	}
 }

@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace ConquestPlugin.ProcessHandlers
 {
-	using ConquestPlugin.GameMode;
+	using ConquestPlugin.GameModes;
 	using ConquestPlugin.Utility;
 
 	class ProcessFactionPoints : ProcessHandlerBase
@@ -22,8 +22,6 @@ namespace ConquestPlugin.ProcessHandlers
 
 		public override void Handle()
 		{
-			if (!PluginSettings.Instance.GameModeConquestEnabled)
-				return;
 			// * Faction Points System: Every 60 minutes, Give each faction (owned asteroids) number of credits. Save faction balances to file.
 			// ----------------------
 
@@ -36,7 +34,7 @@ namespace ConquestPlugin.ProcessHandlers
 				List<MyObjectBuilder_FactionMember> currentfaction = faction.Members;
 				foreach (MyObjectBuilder_FactionMember currentmember in currentfaction)
 				{
-					var leaders = Conquest.Instance.Leaderboard.GroupBy(x => x.Value).Select(group => new { group.Key, Total = group.Count() }).OrderByDescending(x => x.Total);
+					var leaders = GMConquest.Instance.Leaderboard.GroupBy(x => x.Value).Select(group => new { group.Key, Total = group.Count() }).OrderByDescending(x => x.Total);
 					foreach (var p in leaders)
 					{
 
@@ -47,7 +45,7 @@ namespace ConquestPlugin.ProcessHandlers
 					}
 				}
 				// Add faction_score to factions current credits.
-				Communication.SendPublicInformation(string.Format("[DEBUG]: Adding {0} points to {1}.", faction_score, faction.FactionId));
+				ChatUtil.SendPublicChat(string.Format("[DEBUG]: Adding {0} points to {1}.", faction_score, faction.FactionId));
 				FactionPoints.AddFP(faction.FactionId,faction_score);
 			}
 			// ----------------------
