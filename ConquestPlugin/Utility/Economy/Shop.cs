@@ -41,6 +41,8 @@ namespace   ConquestPlugin.Utility.Shop
                   
             };
 
+            var floatingObject = MyAPIGateway.Entities.CreateFromObjectBuilderAndAdd(floatingBuilder);
+
             return true;
         }
     }

@@ -7,6 +7,7 @@ using Sandbox.Common;
 using Sandbox.ModAPI;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
+
 namespace ConquestPlugin.ChatHandlers
 {
     class HandleShop : ChatHandlerBase
@@ -46,11 +47,11 @@ namespace ConquestPlugin.ChatHandlers
                 {
                     string output;
                     output = Utility.Shop.Shop.getShopList();
-                    Communication.DisplayDialog(userId, "materials shop", "", output);
+                    ChatUtil.DisplayDialog(userId, "materials shop", "", output);
                 }
                 else
                 {
-                    Communication.SendPrivateInformation(userId, "you do not have premition to use this command");
+                    ChatUtil.SendPrivateChat(userId, "you do not have premition to use this command");
                 }
             }
             return true;
