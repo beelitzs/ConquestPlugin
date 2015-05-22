@@ -7,7 +7,7 @@ using System.Threading;
 using System.IO;
 
 using ConquestPlugin.Utility;
-using ConqusetPlugin.GameModes;
+using ConquestPlugin.GameModes;
 
 using Sandbox.ModAPI;
 using Sandbox.ModAPI.Interfaces;
@@ -83,8 +83,8 @@ namespace ConquestPlugin.ChatHandlers
 
 			leaderResult += string.Format("You currently have {0} owned asteroids.", playerCount);
 
-			// Communication.SendPrivateInformation(userId, leaderResult); // Bulky and unecessary?
-			Communication.DisplayDialog(userId, "Conquest Leaderboard", "Current Leaders", leaderResult);
+			ChatUtil.SendPrivateChat(userId, leaderResult);
+			ChatUtil.DisplayDialog(userId, "Conquest Leaderboard", "Current Leaders", leaderResult);
 
 			return true;
 		}
@@ -152,7 +152,7 @@ namespace ConquestPlugin.ChatHandlers
 
                 
             }
-            Communication.DisplayDialog(userId, "Faction Leaderbored", "Current Leader", flstring);
+            ChatUtil.DisplayDialog(userId, "Faction Leaderbored", "Current Leader", flstring);
 			return true;
 		}
 			

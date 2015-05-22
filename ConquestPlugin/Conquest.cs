@@ -27,7 +27,6 @@ namespace ConquestPlugin
     {
 		public static Logger Log;
 		internal static Conquest Instance;
-		private static Conquest _instance;
 		private static string _pluginPath;
 		private Thread _processThread;
 		private List<Thread> _processThreads;
