@@ -95,7 +95,7 @@ namespace ConquestPlugin.Utility.Shop
 
         private static long GetValue(long capturedastroids , float relitivevalue)
         {
-            if (capturedastroids == 0)
+            if (capturedastroids != 0)
             {
                 return (long)((long)(relitivevalue) / 100);
             }
