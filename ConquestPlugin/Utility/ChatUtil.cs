@@ -60,6 +60,7 @@ namespace ConquestPlugin.Utility
 			}
 
 			SectorObjectManager.Instance.AddEntity(entity);
+			SectorObjectManager.Instance.DeleteEntry(entityId);
 		}
 	}
 }

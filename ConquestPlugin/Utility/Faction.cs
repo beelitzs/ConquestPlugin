@@ -18,15 +18,12 @@ namespace ConquestPlugin.Utility
 				List<MyObjectBuilder_FactionMember> currentfaction = faction.Members;
 				foreach (MyObjectBuilder_FactionMember currentmember in currentfaction)
 				{
-					ChatUtil.SendPublicChat(string.Format("[DEBUG]: CurrentMember.PlayerId = {0}.", currentmember.PlayerId));
 					if (currentmember.PlayerId == playerID)
 					{
-						ChatUtil.SendPublicChat(string.Format("[DEBUG]: Faction Found." + faction.FactionId));
 						return faction.FactionId;   
 					}
 				}
 			}
-			ChatUtil.SendPublicChat(string.Format("[DEBUG]: Faction Find Fail."));
 			return 0;
 		}
         public static MyObjectBuilder_Faction getFaction(long factionID)
