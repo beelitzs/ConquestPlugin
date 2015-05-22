@@ -48,10 +48,12 @@ namespace ConquestPlugin.ChatHandlers
                     string output;
                     output = Utility.Shop.Shop.getShopList();
                     ChatUtil.DisplayDialog(userId, "materials shop", "", output);
+                    break;
                 }
                 else
                 {
                     ChatUtil.SendPrivateChat(userId, "you do not have premition to use this command");
+                    break;
                 }
             }
             return true;

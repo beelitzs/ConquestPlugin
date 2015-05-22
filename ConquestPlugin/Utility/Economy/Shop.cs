@@ -25,7 +25,7 @@ namespace   ConquestPlugin.Utility.Shop
             DynShopPrices.DynPrices(ShopItems);
             foreach(ShopItem item in ShopItems)
             {
-               output += item.ToString();
+               output += item.ToString() + "\r\n";
             }
             return output;
         }
@@ -34,15 +34,14 @@ namespace   ConquestPlugin.Utility.Shop
         {
             //need finishing 
             
-         
-            //MyObjectBuilder_FloatingObject floatingBuilder = new MyObjectBuilder_FloatingObject();
-            //floatingBuilder.Item = new MyObjectBuilder_InventoryItem() { Amount = (VRage.MyFixedPoint)(float)buyamount, Content = new MyObjectBuilder_Ingot() { SubtypeName = "itemname" } };
-            //floatingBuilder.PositionAndOrientation = new MyPositionAndOrientation()
-            //{
-                  
-            //};
+            MyObjectBuilder_FloatingObject floatingBuilder = new MyObjectBuilder_FloatingObject();
+            floatingBuilder.Item = new MyObjectBuilder_InventoryItem() { Amount = (VRage.MyFixedPoint)(float)buyamount, Content = new MyObjectBuilder_Ingot() { SubtypeName = "itemname" } };
+            floatingBuilder.PositionAndOrientation = new MyPositionAndOrientation()
+            {
 
-            //var floatingObject = MyAPIGateway.Entities.CreateFromObjectBuilderAndAdd(floatingBuilder);
+            };
+
+            var floatingObject = MyAPIGateway.Entities.CreateFromObjectBuilderAndAdd(floatingBuilder);
 
             return true;
         }
@@ -70,7 +69,7 @@ namespace   ConquestPlugin.Utility.Shop
         public ShopItem(string itemname)
         {
             ItemName = itemname;
-            ItemPrice = 0;
+            ItemPrice = 9999999;
         }
 
         public override string ToString()
