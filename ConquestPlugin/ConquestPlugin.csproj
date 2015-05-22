@@ -78,7 +78,8 @@
     <Compile Include="ChatHandlers\ChatHandlerBase.cs" />
     <Compile Include="ChatHandlers\HandleAdminDebug.cs" />
     <Compile Include="ChatHandlers\HandleLeaderboardConquest.cs" />
-    <Compile Include="ChatHandlers\HandleShop.cs" />
+    <Compile Include="ChatHandlers\ShopHandles\HandleShop.cs" />
+    <Compile Include="ChatHandlers\ShopHandles\HandleShopBuy.cs" />
     <Compile Include="Conquest.cs" />
     <Compile Include="ConquestMode\GMConquest.cs" />
     <Compile Include="ConquestMode\FactionPoints.cs" />
