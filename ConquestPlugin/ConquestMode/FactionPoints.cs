@@ -79,7 +79,7 @@ namespace ConquestPlugin.GameModes
 			return false;
 		}
 
-		public static int getFP() // Return the amount of FactionPoints the user's faction has.
+		public static int getFP(ulong factionID) // Return the amount of FactionPoints the user's faction has.
 		{
 			return 0;
 		}
