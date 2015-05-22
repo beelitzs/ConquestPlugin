@@ -123,7 +123,7 @@ namespace ConquestPlugin.GameModes
 				if (!entity.Save)
 					continue;
 				IMyVoxelMap voxel = (IMyVoxelMap)entity;
-				BoundingSphereD sphere = new BoundingSphereD(entity.GetPosition(), 256); // Size of sphere around Roid
+				BoundingSphereD sphere = new BoundingSphereD(entity.GetPosition(), 500); // Size of sphere around Roid
 				List<IMyEntity> blocks = MyAPIGateway.Entities.GetEntitiesInSphere(ref sphere);
 				Dictionary<long, int> asteroidScore = new Dictionary<long, int>();
 
