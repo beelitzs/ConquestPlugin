@@ -169,17 +169,17 @@ namespace ConquestPlugin.GameModes
 		{
 			try
 			{
-				String fileName = Conquest.PluginPath + "Settings-Conquest.xml";
-				if (File.Exists(fileName))
-				{
-					using (StreamReader reader = new StreamReader(fileName))
-					{
-						XmlSerializer x = new XmlSerializer(typeof(Conquest));
-						m_instance = (GMConquest)x.Deserialize(reader);
-						reader.Close();
-					}
-				}
-				else
+				//String fileName = Conquest.PluginPath + "Settings-Conquest.xml";
+				//if (File.Exists(fileName))
+				//{
+				//	using (StreamReader reader = new StreamReader(fileName))
+				//	{
+				//		XmlSerializer x = new XmlSerializer(typeof(Conquest));
+				//		m_instance = (GMConquest)x.Deserialize(reader);
+				//		reader.Close();
+				//	}
+				//}
+				//else
 					m_instance = new GMConquest();
 			}
 			catch (Exception ex)

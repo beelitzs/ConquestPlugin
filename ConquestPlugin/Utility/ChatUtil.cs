@@ -58,9 +58,9 @@ namespace ConquestPlugin.Utility
 					beacon.CustomName = message;
 				}
 			}
-
+			
 			SectorObjectManager.Instance.AddEntity(entity);
-			SectorObjectManager.Instance.DeleteEntry(entityId);
+			
 		}
 	}
 }
