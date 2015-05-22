@@ -83,7 +83,7 @@ namespace ConquestPlugin.ChatHandlers
 
 			leaderResult += string.Format("You currently have {0} owned asteroids.", playerCount);
 
-			ChatUtil.SendPrivateChat(userId, leaderResult);
+			// ChatUtil.SendPrivateChat(userId, leaderResult);
 			ChatUtil.DisplayDialog(userId, "Conquest Leaderboard", "Current Leaders", leaderResult);
 
 			return true;
