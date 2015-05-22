@@ -121,7 +121,8 @@ namespace ConquestPlugin
 				new HandleAdminDebug(),
 				new HandleShop(),
 				new HandleLeaderboardConquest(),
-				new HandleLeaderboardFaction()
+				new HandleLeaderboardFaction(),
+                new HandleGetFP()
 			};
 
 			_processThreads = new List<Thread>();

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using ConquestPlugin.GameModes;
+
 using Sandbox.Common;
 using Sandbox.Common.Components;
 using Sandbox.Common.ObjectBuilders;
@@ -14,13 +16,14 @@ using Sandbox.ModAPI.Interfaces;
 namespace   ConquestPlugin.Utility.Shop
 {
     class Shop
-    {
+    {           
+        public static List<ShopItem> ShopItems = new List<ShopItem>();
         public static string getShopList()
         {
             string output = "";
             if (output != "")
                 output += "\r\n";
-            List<ShopItem> ShopItems = new List<ShopItem>();
+
             ShopItems = getshoppinglist(ShopItems);
             DynShopPrices.DynPrices(ShopItems);
             foreach(ShopItem item in ShopItems)
@@ -30,10 +33,19 @@ namespace   ConquestPlugin.Utility.Shop
             return output;
         }
 
-        public static bool buyItem(string itemname, long buyamount, long userID)
+        public static bool buyItem(string itemname, long buyamount, ulong userID)
         {
             //need finishing 
-            
+            long amount = 0;
+            foreach (ShopItem item in ShopItems)
+            {
+                if (item.ItemName == itemname)
+                {
+                    amount = item.ItemPrice * buyamount;
+                }
+            }
+            FactionPoints.RemoveFP(Faction.getFactionID(userID),amount );
+
             MyObjectBuilder_FloatingObject floatingBuilder = new MyObjectBuilder_FloatingObject();
             floatingBuilder.Item = new MyObjectBuilder_InventoryItem() { Amount = (VRage.MyFixedPoint)(float)buyamount, Content = new MyObjectBuilder_Ingot() { SubtypeName = "itemname" } };
             floatingBuilder.PositionAndOrientation = new MyPositionAndOrientation()
