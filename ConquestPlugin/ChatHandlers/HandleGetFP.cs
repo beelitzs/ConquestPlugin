@@ -4,6 +4,7 @@ using System.Linq;
 
 using ConquestPlugin.GameModes;
 using ConquestPlugin.Utility;
+using Sandbox.Common.ObjectBuilders.Definitions;
 namespace ConquestPlugin.ChatHandlers
 {
     class HandleGetFP : ChatHandlerBase
@@ -30,7 +31,15 @@ namespace ConquestPlugin.ChatHandlers
         }
         public override bool HandleCommand(ulong userId, string[] words)
         {
-       //    ChatUtil.SendPrivateChat(userId, FactionPoints.getFP(Faction.getFactionID(userId)));
+            MyObjectBuilder_Faction currentfaction;
+            currentfaction = Faction.getFaction(Faction.getFactionID(userId));
+            foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
+            {
+                if (currentmember.IsLeader == true)//currentmember.isleader(currentfaction)
+                {
+                    ChatUtil.SendPrivateChat(userId, FactionPoints.getFP((ulong)Faction.getFactionID(userId)).ToString());
+                }
+            }
             return true;
         }
     }

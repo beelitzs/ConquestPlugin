@@ -120,12 +120,9 @@ namespace ConquestPlugin.ChatHandlers
 			// Display Faction Leaderboard
             
             string flstring = "";
-            #region mytestvars
- 
+           
             MyObjectBuilder_FactionCollection factionlist = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
-            int num_factions = 50;//get number of factions
-            ulong[,] fcleaderboard = new ulong[num_factions, 2];
-            #endregion
+           
             int position = 1;
             foreach (MyObjectBuilder_Faction faction in factionlist.Factions)
             {

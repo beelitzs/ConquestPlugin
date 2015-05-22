@@ -73,7 +73,7 @@ namespace ConquestPlugin.GameModes
 
 		}
 
-		public static Boolean RemoveFP() // Remove Faction Points. Return False if balance is lower than amount to remove.
+		public static Boolean RemoveFP(long factionID, long amount) // Remove Faction Points. Return False if balance is lower than amount to remove.
 		{
 
 			return false;

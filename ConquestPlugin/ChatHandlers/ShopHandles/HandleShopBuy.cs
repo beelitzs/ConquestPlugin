@@ -30,18 +30,29 @@ namespace ConquestPlugin.ChatHandlers.ShopHandles
         }
         public override bool HandleCommand(ulong userId, string[] words)
         {
-            long amount = Convert.ToInt64(words[3]);
-           if(Shop.buyItem(words[2],amount,(long)userId))
-           {
-               ChatUtil.SendPrivateChat(userId, "your purchase has been successful");
-           }
-           else
-           {
-               ChatUtil.SendPrivateChat(userId, "you have insificent funds to by this material");
-           }
-            ChatUtil.SendPrivateChat(userId, "player: " + userId + " bought: " + words[2] + " amount: " + words[3]);
+            MyObjectBuilder_Faction currentfaction;
+            currentfaction = Faction.getFaction(Faction.getFactionID(userId));
+            foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
+            {
+                if (currentmember.IsLeader == true)//currentmember.isleader(currentfaction)
+                {
+                    long amount = Convert.ToInt64(words[3]);
+                    if (Shop.buyItem(words[2], amount, userId))
+                    {
+                        ChatUtil.SendPrivateChat(userId, "your purchase has been successful");
+                        break;
+                    }
+                    else
+                    {
+                        ChatUtil.SendPrivateChat(userId, "you have insificent funds to by this material");
+                        break;
+                    }
+                    ChatUtil.SendPrivateChat(userId, "player: " + userId + " bought: " + words[2] + " amount: " + words[3]);
+                   
+                }
+            }
             return true;
-        }
+        } 
 
     }
 }
