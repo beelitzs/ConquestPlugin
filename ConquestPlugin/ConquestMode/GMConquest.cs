@@ -8,7 +8,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-using EssentialsPlugin.Utility;
+using ConquestPlugin;
 
 using Sandbox.ModAPI;
 using Sandbox.ModAPI.Interfaces;
@@ -23,24 +23,22 @@ using SEModAPIInternal.API.Entity.Sector.SectorObject;
 using SEModAPIInternal.API.Entity.Sector.SectorObject.CubeGrid.CubeBlock;
 using SEModAPIInternal.API.Common;
 
-using EssentialsPlugin.UtilityClasses;
-
 namespace EssentialsPlugin.GameModes
 {
 	using NLog;
 
-	public class Conquest
+	public class GMConquest
 	{
 		private static readonly Logger Log = LogManager.GetLogger( "PluginLog" );
 		private SerializableDictionary<long, long> m_ownershipCache = new SerializableDictionary<long, long>( );
-		private static Conquest m_instance = null;
+		private static GMConquest m_instance = null;
 
 		public SerializableDictionary<long, long> Leaderboard
 		{
 			get { return m_ownershipCache; }
 		}
 
-		public static Conquest Instance
+		public static GMConquest Instance
 		{
 			get 
 			{
@@ -172,22 +170,22 @@ namespace EssentialsPlugin.GameModes
 		{
 			try
 			{
-				String fileName = Essentials.PluginPath + "Essentials-Conquest.xml";
+				String fileName = Conquest.PluginPath + "Settings-Conquest.xml";
 				if (File.Exists(fileName))
 				{
 					using (StreamReader reader = new StreamReader(fileName))
 					{
 						XmlSerializer x = new XmlSerializer(typeof(Conquest));
-						m_instance = (Conquest)x.Deserialize(reader);
+						m_instance = (GMConquest)x.Deserialize(reader);
 						reader.Close();
 					}
 				}
 				else
-					m_instance = new Conquest();
+					m_instance = new GMConquest();
 			}
 			catch (Exception ex)
 			{
-				m_instance = new Conquest();
+				m_instance = new GMConquest();
 				Log.Info(string.Format("Conquest Load Error: {0}", ex.ToString()));
 			}
 		}
@@ -198,10 +196,10 @@ namespace EssentialsPlugin.GameModes
 			{
 				lock (Instance)
 				{
-					String fileName = Essentials.PluginPath + "Essentials-Conquest.xml";
+					String fileName = Conquest.PluginPath + "Settings-Conquest.xml";
 					using (StreamWriter writer = new StreamWriter(fileName))
 					{
-						XmlSerializer x = new XmlSerializer(typeof(Conquest));
+						XmlSerializer x = new XmlSerializer(typeof(GMConquest));
 						x.Serialize(writer, Instance);
 						writer.Close();
 					}

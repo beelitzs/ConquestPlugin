@@ -1,7 +1,7 @@
-﻿namespace EssentialsPlugin.ProcessHandlers
+﻿namespace ConquestPlugin.ProcessHandlers
 {
-	using EssentialsPlugin.GameModes;
-	using EssentialsPlugin.Utility;
+	using ConquestPlugin.GameMode;
+	using ConquestPlugin.Utility;
 
 	class ProcessConquest : ProcessHandlerBase
 	{

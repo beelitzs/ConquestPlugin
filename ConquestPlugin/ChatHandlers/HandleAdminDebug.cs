@@ -2,7 +2,7 @@
 using EssentialsPlugin.Utility;
 using EssentialsPlugin.GameModes;
 
-namespace EssentialsPlugin.ChatHandlers.Admin
+namespace ConquestPlugin.ChatHandlers
 {
 
 	public class HandleAdminDebug : ChatHandlerBase

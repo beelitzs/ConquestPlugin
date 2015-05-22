@@ -8,10 +8,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace EssentialsPlugin.ProcessHandlers
+namespace ConquestPlugin.ProcessHandlers
 {
-	using EssentialsPlugin.GameModes;
-	using EssentialsPlugin.Utility;
+	using ConquestPlugin.GameMode;
+	using ConquestPlugin.Utility;
 
 	class ProcessFactionPoints : ProcessHandlerBase
 	{
