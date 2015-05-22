@@ -5,6 +5,7 @@ using System.Linq;
 using ConquestPlugin.GameModes;
 using ConquestPlugin.Utility;
 using Sandbox.Common.ObjectBuilders.Definitions;
+
 namespace ConquestPlugin.ChatHandlers
 {
     class HandleGetFP : ChatHandlerBase
@@ -15,7 +16,7 @@ namespace ConquestPlugin.ChatHandlers
         }
         public override string GetCommandText()
         {
-            return "/GetFP";
+            return "/getfp";
         }
         public override bool IsAdminCommand()
         {
@@ -31,15 +32,20 @@ namespace ConquestPlugin.ChatHandlers
         }
         public override bool HandleCommand(ulong userId, string[] words)
         {
-            MyObjectBuilder_Faction currentfaction;
+			ChatUtil.SendPublicChat("[DEBUG]: Marker A.");
+			MyObjectBuilder_Faction currentfaction;
             currentfaction = Faction.getFaction(Faction.getFactionID(userId));
             foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
             {
+				ChatUtil.SendPublicChat("[DEBUG]: Marker B.");
                 if (currentmember.IsLeader == true)//currentmember.isleader(currentfaction)
                 {
-                    ChatUtil.SendPrivateChat(userId, FactionPoints.getFP((ulong)Faction.getFactionID(userId)).ToString());
+					ChatUtil.SendPublicChat("[DEBUG]: Marker C.");
+					int currentFP = FactionPoints.getFP(Convert.ToUInt64( Faction.getFactionID(userId)));
+                    ChatUtil.SendPrivateChat(userId,"Faction Currently has "+currentFP+" FactionPoints.");
                 }
             }
+			ChatUtil.SendPublicChat("[DEBUG]: Marker D.");
             return true;
         }
     }

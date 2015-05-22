@@ -85,6 +85,7 @@
     <Compile Include="ConquestMode\GMConquest.cs" />
     <Compile Include="ConquestMode\FactionPoints.cs" />
     <Compile Include="ProcessHandlers\ProcessConquest.cs" />
+    <Compile Include="ProcessHandlers\ProcessDestroyRelays.cs" />
     <Compile Include="ProcessHandlers\ProcessFactionPoints.cs" />
     <Compile Include="ProcessHandlers\ProcessHandlerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

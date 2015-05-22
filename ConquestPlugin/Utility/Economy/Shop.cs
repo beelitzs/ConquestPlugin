@@ -44,7 +44,9 @@ namespace   ConquestPlugin.Utility.Shop
                     amount = item.ItemPrice * buyamount;
                 }
             }
-            FactionPoints.RemoveFP(Faction.getFactionID(userID),amount );
+			long facID = Faction.getFactionID(userID);
+			int intAmount = Convert.ToInt32(amount);
+            FactionPoints.RemoveFP(Convert.ToUInt64(facID),intAmount);
 
             MyObjectBuilder_FloatingObject floatingBuilder = new MyObjectBuilder_FloatingObject();
             floatingBuilder.Item = new MyObjectBuilder_InventoryItem() { Amount = (VRage.MyFixedPoint)(float)buyamount, Content = new MyObjectBuilder_Ingot() { SubtypeName = "itemname" } };

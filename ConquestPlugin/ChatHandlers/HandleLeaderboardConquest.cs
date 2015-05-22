@@ -173,13 +173,18 @@ namespace ConquestPlugin.ChatHandlers
                 //position++;
 
             }
-            factionleaderboard.Sort(delegate(FactionScores x, FactionScores y)
-            {
-                if (x.FactionScore == null && y.FactionScore == null) return 0;
-                else if (x.FactionScore == null) return -1;
-                else if (y.FactionScore == null) return 1;
-                else return x.FactionScore.CompareTo(y.FactionScore);
-            });
+			// ROBS SORT
+			//factionleaderboard.Sort(delegate(FactionScores x, FactionScores y)
+			//{
+			//	if (x.FactionScore == null && y.FactionScore == null) return 0;
+			//	else if (x.FactionScore == null) return -1;
+			//	else if (y.FactionScore == null) return 1;
+			//	else return x.FactionScore.CompareTo(y.FactionScore);
+			//});
+
+			// SHADOWS SORT
+			factionleaderboard = factionleaderboard.OrderByDescending(x => x.FactionScore).ToList();
+
             foreach(FactionScores score in factionleaderboard)
             {
                 flstring += "\r\n #"+position+": " + score.ToString();
@@ -195,7 +200,7 @@ namespace ConquestPlugin.ChatHandlers
         }
 	}
 
-    class FactionScores : IEquatable<FactionScores> , IComparable<FactionPoints>
+    class FactionScores : IEquatable<FactionScores>// , IComparable<FactionPoints>
     {
        
         public string FactionName {get;set;}

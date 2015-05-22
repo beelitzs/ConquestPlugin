@@ -45,14 +45,14 @@ namespace ConquestPlugin.ChatHandlers
             {
                 if (currentmember.IsLeader == true)//currentmember.isleader(currentfaction)
                 {
-                    string output;
+                    string output = "";
                     output = Utility.Shop.Shop.getShopList();
-                    ChatUtil.DisplayDialog(userId, "materials shop", "", output);
+                    ChatUtil.DisplayDialog(userId, "Faction Store", "Spend FP Here!", output);
                     break;
                 }
                 else
                 {
-                    ChatUtil.SendPrivateChat(userId, "you do not have premition to use this command");
+                    ChatUtil.SendPrivateChat(userId,"You do not have Permission to use this command.");
                     break;
                 }
             }
