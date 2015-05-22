@@ -4,6 +4,7 @@ using System.Linq;
 
 using ConquestPlugin.Utility;
 using ConquestPlugin.Utility.Shop;
+using ConquestPlugin.GameModes;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
 using Sandbox.ModAPI;
@@ -14,16 +15,16 @@ namespace ConquestPlugin.Utility.Shop
     {
         private enum itemvalues
         {
-            Gravel = .90,
-            IronIngots = .70,
-            SiliconWafers = .70,
-            NickelIngots = .40,
-            CobaltIngots = .30,
-            SilverIngots = .10,
-            GoldIngots = .01,
-            UraniumIngots = .007,
-            MagnesiumPowder = .007,
-            PlatinumIngots = .005
+            Gravel = 90,
+            IronIngots = 70,
+            SiliconWafers = 70,
+            NickelIngots = 40,
+            CobaltIngots = 30,
+            SilverIngots = 10,
+            GoldIngots = 01,
+            UraniumIngots = 007,
+            MagnesiumPowder = 007,
+            PlatinumIngots = 005
         }
         public static List<ShopItem> DynPrices(List<ShopItem> shopitems)
         {
@@ -94,8 +95,14 @@ namespace ConquestPlugin.Utility.Shop
 
         private static long GetValue(long capturedastroids , float relitivevalue)
         {
-
-            return capturedastroids * ((long)(relitivevalue*1000)/100);
+            if (capturedastroids == 0)
+            {
+                return (long)((long)(relitivevalue) / 100);
+            }
+            else
+            {
+                return (long)(capturedastroids * ((long)(relitivevalue) / 100));
+            }
         }
 
         public static long GetCapturedAstroids()
