@@ -123,6 +123,32 @@ namespace ConquestPlugin.ChatHandlers
            
             MyObjectBuilder_FactionCollection factionlist = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
            
+            //int position = 1;
+            //foreach (MyObjectBuilder_Faction faction in factionlist.Factions)
+            //{
+            //    long faction_score = 0;
+            //    List<MyObjectBuilder_FactionMember> currentfaction = faction.Members;
+            //    foreach (MyObjectBuilder_FactionMember currentmember in currentfaction)
+            //    {
+            //        var leaders = GMConquest.Instance.Leaderboard.GroupBy(x => x.Value).Select(group => new { group.Key, Total = group.Count() }).OrderByDescending(x => x.Total);
+            //        foreach(var p in leaders)
+            //        {
+
+            //            if (p.Key == currentmember.PlayerId)
+            //            {
+            //                faction_score += p.Total;
+            //            }
+            //        }
+            //    }
+            //    if (flstring != "")
+            //       flstring += "\r\n";
+
+                
+            //    flstring += string.Format("#{0}: {1} with {2} asteroids", position, faction.Name, faction_score);
+            //    position++;
+ 
+            //}
+            List<FactionScores> factionleaderboard = new List<FactionScores>();
             int position = 1;
             foreach (MyObjectBuilder_Faction faction in factionlist.Factions)
             {
@@ -131,7 +157,7 @@ namespace ConquestPlugin.ChatHandlers
                 foreach (MyObjectBuilder_FactionMember currentmember in currentfaction)
                 {
                     var leaders = GMConquest.Instance.Leaderboard.GroupBy(x => x.Value).Select(group => new { group.Key, Total = group.Count() }).OrderByDescending(x => x.Total);
-                    foreach(var p in leaders)
+                    foreach (var p in leaders)
                     {
 
                         if (p.Key == currentmember.PlayerId)
@@ -140,19 +166,77 @@ namespace ConquestPlugin.ChatHandlers
                         }
                     }
                 }
-                if (flstring != "")
-                   flstring += "\r\n";
-
+                factionleaderboard.Add(new FactionScores(faction.Name, faction_score));
                 
-                flstring += string.Format("#{0}: {1} with {2} asteroids", position, faction.Name, faction_score);
+
+                //flstring += string.Format("#{0}: {1} with {2} asteroids", position, faction.Name, faction_score);
+                //position++;
+
+            }
+            factionleaderboard.Sort(delegate(FactionScores x, FactionScores y)
+            {
+                if (x.FactionScore == null && y.FactionScore == null) return 0;
+                else if (x.FactionScore == null) return -1;
+                else if (y.FactionScore == null) return 1;
+                else return x.FactionScore.CompareTo(y.FactionScore);
+            });
+            foreach(FactionScores score in factionleaderboard)
+            {
+                flstring += "\r\n #"+position+": " + score.ToString();
                 position++;
-
-                
             }
             ChatUtil.DisplayDialog(userId, "Faction Leaderbored", "Current Leader", flstring);
 			return true;
 		}
-			
+	    private List<FactionScores> sortFactions(List<FactionScores> Factions)
+        {
+  
+            return Factions;
+        }
 	}
+
+    class FactionScores : IEquatable<FactionScores> , IComparable<FactionPoints>
+    {
+       
+        public string FactionName {get;set;}
+        public long FactionScore {get;set;}
+
+        public FactionScores(string _FactionName, long _FactionScore)
+        {
+
+            FactionName = _FactionName;
+            FactionScore = _FactionScore;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            FactionScores objaspart = obj as FactionScores;
+            if (objaspart == null) return false;
+            else return Equals(objaspart);
+        }
+
+        public int SortByNameAscending(long score1, long score2)
+        {
+            return score1.CompareTo(score2);
+        }
+
+        public long CompareTo(FactionScores CompareScore)
+        {
+            if (CompareScore == null)
+                return 1;
+            else
+                return this.FactionScore.CompareTo(CompareScore.FactionScore);
+        }
+        public bool Equals(FactionScores other)
+        {
+            if (other == null) return false;
+            return (this.FactionScore.Equals(other.FactionScore));
+        }
+        public override string ToString()
+        {
+            return string.Format(" {1} with {2} asteroids", FactionName, FactionScore);
+        }
+    }
 }
 
