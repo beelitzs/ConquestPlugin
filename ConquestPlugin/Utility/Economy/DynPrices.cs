@@ -95,13 +95,17 @@ namespace ConquestPlugin.Utility.Shop
 
         private static long GetValue(long capturedastroids , float relitivevalue)
         {
-            if (capturedastroids != 0)
+            if (capturedastroids == 0)
             {
-                return (long)((long)(relitivevalue) / 100);
+                ChatUtil.SendPublicChat("DEBEG: ITEM {0} SHOULD HAVE A VALUE OF 50");
+                return 50;
+                //return (long)((long)(relitivevalue) / 100);
             }
             else
-            {
-                return (long)(capturedastroids * ((long)(relitivevalue) / 100));
+            {  
+                ChatUtil.SendPublicChat("DEBEG: ITEM {0} SHOULD HAVE A VALUE OF 180");
+                return 180;
+                //return (long)(capturedastroids * ((long)(relitivevalue) / 100));
             }
         }
 
