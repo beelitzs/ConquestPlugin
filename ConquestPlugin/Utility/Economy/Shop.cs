@@ -25,6 +25,7 @@ namespace   ConquestPlugin.Utility.Shop
                 output += "\r\n";
             ShopItems.Clear();
             ShopItems = getshoppinglist(ShopItems);
+            ChatUtil.SendPublicChat("Getting shop prices");
             DynShopPrices.DynPrices(ShopItems);
             foreach(ShopItem item in ShopItems)
             {
@@ -61,6 +62,7 @@ namespace   ConquestPlugin.Utility.Shop
         }
         private static List<ShopItem> getshoppinglist(List<ShopItem> shopitems)
         {
+            
             shopitems.Add(new ShopItem("Gravel"));
             shopitems.Add(new ShopItem("IronIngots"));
             shopitems.Add(new ShopItem("SiliconWafers"));
