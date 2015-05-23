@@ -118,7 +118,7 @@ namespace ConquestPlugin.ChatHandlers
 		public override bool HandleCommand(ulong userId, string[] words)
 		{
 			// Display Faction Leaderboard
-            
+			ChatUtil.SendPublicChat("[DEBUG]: Marker 1.");
             string flstring = "";
            
             MyObjectBuilder_FactionCollection factionlist = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
@@ -152,21 +152,25 @@ namespace ConquestPlugin.ChatHandlers
             int position = 1;
             foreach (MyObjectBuilder_Faction faction in factionlist.Factions)
             {
+				ChatUtil.SendPublicChat("[DEBUG]: Marker 2.");
                 long faction_score = 0;
                 List<MyObjectBuilder_FactionMember> currentfaction = faction.Members;
                 foreach (MyObjectBuilder_FactionMember currentmember in currentfaction)
                 {
+					ChatUtil.SendPublicChat("[DEBUG]: Marker 3.");
                     var leaders = GMConquest.Instance.Leaderboard.GroupBy(x => x.Value).Select(group => new { group.Key, Total = group.Count() }).OrderByDescending(x => x.Total);
                     foreach (var p in leaders)
                     {
-
+						ChatUtil.SendPublicChat("[DEBUG]: Marker 4.");
                         if (p.Key == currentmember.PlayerId)
                         {
+							ChatUtil.SendPublicChat("[DEBUG]: Marker 5.");
                             faction_score += p.Total;
                         }
                     }
                 }
                 factionleaderboard.Add(new FactionScores(faction.Name, faction_score));
+				ChatUtil.SendPublicChat("[DEBUG]: Marker 6.");
                 
 
                 //flstring += string.Format("#{0}: {1} with {2} asteroids", position, faction.Name, faction_score);
@@ -184,15 +188,19 @@ namespace ConquestPlugin.ChatHandlers
 
 			// SHADOWS SORT
 			factionleaderboard = factionleaderboard.OrderByDescending(x => x.FactionScore).ToList();
-
+			ChatUtil.SendPublicChat("[DEBUG]: Marker 7.");
             foreach(FactionScores score in factionleaderboard)
             {
+				ChatUtil.SendPublicChat("[DEBUG]: Marker 8.");
                 flstring += "\r\n #"+position+": " + score.ToString();
                 position++;
             }
+			ChatUtil.SendPublicChat("[DEBUG]: Marker 9.");
             ChatUtil.DisplayDialog(userId, "Faction Leaderbored", "Current Leader", flstring);
+			ChatUtil.SendPublicChat("[DEBUG]: Marker 10.");
 			return true;
 		}
+
 	    private List<FactionScores> sortFactions(List<FactionScores> Factions)
         {
   
