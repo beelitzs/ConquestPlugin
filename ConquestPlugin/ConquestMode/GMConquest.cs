@@ -55,6 +55,8 @@ namespace ConquestPlugin.GameModes
 			long owner = 0;
 			int count = 0;
 
+       
+
 			foreach (KeyValuePair<long, long> p in ownership)
 			{
 				if(!Instance.Leaderboard.ContainsKey(p.Key))
@@ -103,7 +105,7 @@ namespace ConquestPlugin.GameModes
 					change = true;
 				}
 			}
-
+            
 			if (change)
 				Save();
 

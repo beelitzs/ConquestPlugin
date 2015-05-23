@@ -24,12 +24,12 @@ namespace ConquestPlugin.ChatHandlers
 
         public override bool IsAdminCommand()
         {
-            return base.IsAdminCommand();
+            return false;
         }
 
         public override bool AllowedInConsole()
         {
-            return base.AllowedInConsole();
+            return false;
         }
 
         public override bool IsClientOnly()
