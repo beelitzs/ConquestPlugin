@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sandbox.ModAPI;
 using ConquestPlugin.Utility;
+
 namespace ConquestPlugin.ProcessHandlers
 {
 	class ProcessDestroyRelays : ProcessHandlerBase
@@ -21,6 +22,9 @@ namespace ConquestPlugin.ProcessHandlers
 
 			foreach (IMyEntity oneEntity in entities)
 			{
+				if ((oneEntity is IMyVoxelMap)) // !
+					continue;
+				
 				if (!oneEntity.Save)
 					continue;
 
