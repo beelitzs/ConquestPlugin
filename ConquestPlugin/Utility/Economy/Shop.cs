@@ -23,7 +23,7 @@ namespace   ConquestPlugin.Utility.Shop
             string output = "";
             if (output != "")
                 output += "\r\n";
-
+            ShopItems.Clear();
             ShopItems = getshoppinglist(ShopItems);
             DynShopPrices.DynPrices(ShopItems);
             foreach(ShopItem item in ShopItems)
