@@ -13,6 +13,8 @@ using Sandbox.ModAPI;
 using Sandbox.ModAPI.Ingame;
 using Sandbox.ModAPI.Interfaces;
 
+using SEModAPIInternal.API.Common;
+
 namespace   ConquestPlugin.Utility.Shop
 {
     class Shop
@@ -45,18 +47,32 @@ namespace   ConquestPlugin.Utility.Shop
                     amount = item.ItemPrice * buyamount;
                 }
             }
+
 			long facID = Faction.getFactionID(userID);
 			int intAmount = Convert.ToInt32(amount);
             FactionPoints.RemoveFP(Convert.ToUInt64(facID),intAmount);
 
-            MyObjectBuilder_FloatingObject floatingBuilder = new MyObjectBuilder_FloatingObject();
-            floatingBuilder.Item = new MyObjectBuilder_InventoryItem() { Amount = (VRage.MyFixedPoint)(float)buyamount, Content = new MyObjectBuilder_Ingot() { SubtypeName = "itemname" } };
-            floatingBuilder.PositionAndOrientation = new MyPositionAndOrientation()
-            {
+            MyObjectBuilder_Checkpoint.PlayerItem player = PlayerMap.Instance.GetPlayerItemFromPlayerId(Convert.ToInt64(userID));
+            string CharacterName = player.Name;
 
-            };
+            IMyEntity character = MyAPIGateway.Entities.GetEntityByName(CharacterName);
+            MyObjectBuilder_EntityBase test = character.GetObjectBuilder();
+            MyObjectBuilder_Character playerObj = (MyObjectBuilder_Character)test;
 
-            var floatingObject = MyAPIGateway.Entities.CreateFromObjectBuilderAndAdd(floatingBuilder);
+            MyObjectBuilder_InventoryItem inventoryitem = new MyObjectBuilder_InventoryItem();
+            inventoryitem.Amount = (VRage.MyFixedPoint)(float)(amount);
+            inventoryitem.ItemId = 5;
+            playerObj.Inventory.Items.Add(inventoryitem);
+
+
+            //MyObjectBuilder_FloatingObject floatingBuilder = new MyObjectBuilder_FloatingObject();
+            //floatingBuilder.Item = new MyObjectBuilder_InventoryItem() { Amount = (VRage.MyFixedPoint)(float)buyamount, Content = new MyObjectBuilder_Ingot() { SubtypeName = "itemname" } };
+            //floatingBuilder.PositionAndOrientation = new MyPositionAndOrientation()
+            //{
+
+            //};
+
+            //var floatingObject = MyAPIGateway.Entities.CreateFromObjectBuilderAndAdd(floatingBuilder);
 
             return true;
         }

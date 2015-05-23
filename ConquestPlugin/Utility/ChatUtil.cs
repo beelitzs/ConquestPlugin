@@ -22,12 +22,14 @@ namespace ConquestPlugin.Utility
 		public static void SendPublicChat(string message)
 		{
 			if (message == "") { return; }
+
 			ChatManager.Instance.SendPublicChatMessage(message);
 		}
 
 		public static void SendPrivateChat(ulong steamID, string message)
 		{
 			if (message == "") { return; }
+
 			ChatManager.Instance.SendPrivateChatMessage(steamID, message);
 		}
 		
