@@ -12,7 +12,7 @@ namespace ConquestPlugin.ChatHandlers
     {
         public override string GetHelp()
         {
-            return "Usage /GetFP";
+            return "Usage /getfp";
         }
         public override string GetCommandText()
         {
@@ -32,20 +32,16 @@ namespace ConquestPlugin.ChatHandlers
         }
         public override bool HandleCommand(ulong userId, string[] words)
         {
-			ChatUtil.SendPublicChat("[DEBUG]: Marker A.");
 			MyObjectBuilder_Faction currentfaction;
             currentfaction = Faction.getFaction(Faction.getFactionID(userId));
             foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
             {
-				ChatUtil.SendPublicChat("[DEBUG]: Marker B.");
-                if (currentmember.IsLeader == true)//currentmember.isleader(currentfaction)
+                if (currentmember.IsLeader == true)
                 {
-					ChatUtil.SendPublicChat("[DEBUG]: Marker C.");
 					int currentFP = FactionPoints.getFP(Convert.ToUInt64( Faction.getFactionID(userId)));
                     ChatUtil.SendPrivateChat(userId,"Faction Currently has "+currentFP+" FactionPoints.");
                 }
             }
-			ChatUtil.SendPublicChat("[DEBUG]: Marker D.");
             return true;
         }
     }

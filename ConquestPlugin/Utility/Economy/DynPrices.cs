@@ -15,16 +15,16 @@ namespace ConquestPlugin.Utility.Shop
     {
         private enum itemvalues
         {
-            Gravel = 90,
-            IronIngots = 70,
-            SiliconWafers = 70,
-            NickelIngots = 40,
-            CobaltIngots = 30,
-            SilverIngots = 10,
-            GoldIngots = 01,
-            UraniumIngots = 007,
-            MagnesiumPowder = 007,
-            PlatinumIngots = 005
+            Gravel = 1,
+            IronIngots = 5,
+            SiliconWafers = 5,
+            NickelIngots = 7,
+            CobaltIngots = 8,
+            SilverIngots = 8,
+            GoldIngots = 9,
+            UraniumIngots = 12,
+            MagnesiumPowder = 8,
+            PlatinumIngots = 8
         }
         public static List<ShopItem> DynPrices(List<ShopItem> shopitems)
         {
@@ -95,13 +95,17 @@ namespace ConquestPlugin.Utility.Shop
 
         private static long GetValue(long capturedastroids , float relitivevalue)
         {
-            if (capturedastroids != 0)
+            if (capturedastroids == 0)
             {
-                return (long)((long)(relitivevalue) / 100);
+                ChatUtil.SendPublicChat("DEBEG: ITEM {0} SHOULD HAVE A VALUE OF 50");
+                //return 50;
+                return (long)((long)(relitivevalue));
             }
             else
-            {
-                return (long)(capturedastroids * ((long)(relitivevalue) / 100));
+            {  
+                ChatUtil.SendPublicChat("DEBEG: ITEM {0} SHOULD HAVE A VALUE OF 180");
+                //return 180;
+                return (long)(capturedastroids * ((long)(relitivevalue)));
             }
         }
 

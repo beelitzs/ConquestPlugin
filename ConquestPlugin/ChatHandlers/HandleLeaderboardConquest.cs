@@ -118,36 +118,9 @@ namespace ConquestPlugin.ChatHandlers
 		public override bool HandleCommand(ulong userId, string[] words)
 		{
 			// Display Faction Leaderboard
-            
             string flstring = "";
-           
+      
             MyObjectBuilder_FactionCollection factionlist = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
-           
-            //int position = 1;
-            //foreach (MyObjectBuilder_Faction faction in factionlist.Factions)
-            //{
-            //    long faction_score = 0;
-            //    List<MyObjectBuilder_FactionMember> currentfaction = faction.Members;
-            //    foreach (MyObjectBuilder_FactionMember currentmember in currentfaction)
-            //    {
-            //        var leaders = GMConquest.Instance.Leaderboard.GroupBy(x => x.Value).Select(group => new { group.Key, Total = group.Count() }).OrderByDescending(x => x.Total);
-            //        foreach(var p in leaders)
-            //        {
-
-            //            if (p.Key == currentmember.PlayerId)
-            //            {
-            //                faction_score += p.Total;
-            //            }
-            //        }
-            //    }
-            //    if (flstring != "")
-            //       flstring += "\r\n";
-
-                
-            //    flstring += string.Format("#{0}: {1} with {2} asteroids", position, faction.Name, faction_score);
-            //    position++;
- 
-            //}
             List<FactionScores> factionleaderboard = new List<FactionScores>();
             int position = 1;
             foreach (MyObjectBuilder_Faction faction in factionlist.Factions)
@@ -159,7 +132,6 @@ namespace ConquestPlugin.ChatHandlers
                     var leaders = GMConquest.Instance.Leaderboard.GroupBy(x => x.Value).Select(group => new { group.Key, Total = group.Count() }).OrderByDescending(x => x.Total);
                     foreach (var p in leaders)
                     {
-
                         if (p.Key == currentmember.PlayerId)
                         {
                             faction_score += p.Total;
@@ -167,32 +139,17 @@ namespace ConquestPlugin.ChatHandlers
                     }
                 }
                 factionleaderboard.Add(new FactionScores(faction.Name, faction_score));
-                
-
-                //flstring += string.Format("#{0}: {1} with {2} asteroids", position, faction.Name, faction_score);
-                //position++;
-
             }
-			// ROBS SORT
-			//factionleaderboard.Sort(delegate(FactionScores x, FactionScores y)
-			//{
-			//	if (x.FactionScore == null && y.FactionScore == null) return 0;
-			//	else if (x.FactionScore == null) return -1;
-			//	else if (y.FactionScore == null) return 1;
-			//	else return x.FactionScore.CompareTo(y.FactionScore);
-			//});
-
-			// SHADOWS SORT
 			factionleaderboard = factionleaderboard.OrderByDescending(x => x.FactionScore).ToList();
-
             foreach(FactionScores score in factionleaderboard)
             {
-                flstring += "\r\n #"+position+": " + score.ToString();
+				flstring += string.Format("#{0}: {1} with {2} asteroids.\r\n", position, score.FactionName, score.FactionScore);
                 position++;
             }
             ChatUtil.DisplayDialog(userId, "Faction Leaderbored", "Current Leader", flstring);
 			return true;
 		}
+
 	    private List<FactionScores> sortFactions(List<FactionScores> Factions)
         {
   

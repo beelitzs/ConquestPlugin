@@ -55,6 +55,8 @@ namespace ConquestPlugin.GameModes
 			long owner = 0;
 			int count = 0;
 
+       
+
 			foreach (KeyValuePair<long, long> p in ownership)
 			{
 				if(!Instance.Leaderboard.ContainsKey(p.Key))
@@ -99,11 +101,18 @@ namespace ConquestPlugin.GameModes
 				}
 				else if (Instance.Leaderboard.ContainsKey(p.Key) && Instance.Leaderboard[p.Key] != p.Value)
 				{
+					Instance.Leaderboard.Remove(p.Key);
+					MyObjectBuilder_Checkpoint.PlayerItem player = PlayerMap.Instance.GetPlayerItemFromPlayerId(p.Key);
+					ChatUtil.SendPublicChat(string.Format("[CONQUEST]: {0} has lost an asteroid.", player.Name));
+					change = false;
+				}
+				else if (Instance.Leaderboard.ContainsKey(p.Key) && Instance.Leaderboard[p.Key] != p.Value)
+				{
 					Instance.Leaderboard[p.Key] = p.Value;
 					change = true;
 				}
 			}
-
+            
 			if (change)
 				Save();
 
@@ -111,7 +120,6 @@ namespace ConquestPlugin.GameModes
 	
 		private static Dictionary<long, long> ProcessAsteroidOwnership()
 		{
-			m_ownershipCache.Clear();
 			Dictionary<long, long> result = new Dictionary<long, long>();
 			HashSet<IMyEntity> entities = new HashSet<IMyEntity>();
 			MyAPIGateway.Entities.GetEntities(entities);
