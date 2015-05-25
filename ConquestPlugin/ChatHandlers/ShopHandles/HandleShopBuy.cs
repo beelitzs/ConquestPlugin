@@ -8,7 +8,7 @@ using Sandbox.ModAPI;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
 
-namespace ConquestPlugin.ChatHandlers.ShopHandles
+namespace ConquestPlugin.ChatHandlers
 {
     class HandleShopBuy : ChatHandlerBase
     {

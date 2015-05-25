@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatHandlers\ChatHandlerBase.cs" />
+    <Compile Include="ChatHandlers\DebugHandles\GUITestHandle.cs" />
     <Compile Include="ChatHandlers\HandleAdminDebug.cs" />
     <Compile Include="ChatHandlers\HandleGetFP.cs" />
     <Compile Include="ChatHandlers\HandleLeaderboardConquest.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Utility\Economy\DynPrices.cs" />
     <Compile Include="Utility\Faction.cs" />
     <Compile Include="Utility\Economy\Shop.cs" />
+    <Compile Include="Utility\GUITestCode\GUITest1.cs" />
     <Compile Include="Utility\SerializableDictionary.cs" />
     <Compile Include="Utility\VRageMath.cs" />
   </ItemGroup>

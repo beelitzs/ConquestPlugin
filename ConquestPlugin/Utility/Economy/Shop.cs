@@ -52,13 +52,10 @@ namespace   ConquestPlugin.Utility.Shop
 
 			long facID = Faction.getFactionID(userID);
 			int intAmount = Convert.ToInt32(amount);
-            if(FactionPoints.RemoveFP(Convert.ToUInt64(facID),intAmount))
-            {
-
-            }
-            else
+            if(!FactionPoints.RemoveFP(Convert.ToUInt64(facID),intAmount))
             {
                ChatUtil.SendPrivateChat(userID,"You do not have sufficent points to complete your purchuse");
+               return false;
             }
 
             var inventoryowner = MyAPIGateway.Session.Player.Controller.ControlledEntity as Sandbox.ModAPI.Interfaces.IMyInventoryOwner;
@@ -83,7 +80,7 @@ namespace   ConquestPlugin.Utility.Shop
             inventoryitem.Content = content;
             iventory.AddItems(inventoryitem.Amount,(MyObjectBuilder_PhysicalObject)inventoryitem.Content,-1);
             ChatUtil.SendPrivateChat(userID, "player: " + userID + " bought: " + itemname + " amount: " +  buyamount + " for: "+ amount);
-
+            
             //MyObjectBuilder_FloatingObject floatingBuilder = new MyObjectBuilder_FloatingObject();
             //floatingBuilder.Item = new MyObjectBuilder_InventoryItem() { Amount = (VRage.MyFixedPoint)(float)buyamount, Content = new MyObjectBuilder_Ingot() { SubtypeName = "itemname" } };
             //floatingBuilder.PositionAndOrientation = new MyPositionAndOrientation()
