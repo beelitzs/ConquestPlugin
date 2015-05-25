@@ -42,12 +42,6 @@ namespace ConquestPlugin.ChatHandlers.ShopHandles
                         ChatUtil.SendPrivateChat(userId, "your purchase has been successful");
                         break;
                     }
-                    else
-                    {
-                        ChatUtil.SendPrivateChat(userId, "please enter a valid item");
-                        break;
-                    }
-                    ChatUtil.SendPrivateChat(userId, "player: " + userId + " bought: " + words[2] + " amount: " + words[3]);
                    
                 }
             }

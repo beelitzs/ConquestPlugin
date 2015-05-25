@@ -103,7 +103,7 @@ namespace ConquestPlugin.GameModes
 			catch (NullReferenceException)
 			{
 				// Faction has no entry.
-				return 0;
+				return -1;
 			}
 			XmlAttributeCollection attributeList = selectedFaction.Attributes;
 			XmlNode attributeCurrentPoints = attributeList.Item(1);
