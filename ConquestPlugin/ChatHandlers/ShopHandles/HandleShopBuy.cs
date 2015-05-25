@@ -44,7 +44,7 @@ namespace ConquestPlugin.ChatHandlers.ShopHandles
                     }
                     else
                     {
-                        ChatUtil.SendPrivateChat(userId, "you have insificent funds to by this material");
+                        ChatUtil.SendPrivateChat(userId, "please enter a valid item");
                         break;
                     }
                     ChatUtil.SendPrivateChat(userId, "player: " + userId + " bought: " + words[2] + " amount: " + words[3]);
