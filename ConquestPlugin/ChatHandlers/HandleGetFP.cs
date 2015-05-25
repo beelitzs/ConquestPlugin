@@ -33,7 +33,16 @@ namespace ConquestPlugin.ChatHandlers
         public override bool HandleCommand(ulong userId, string[] words)
         {
 			MyObjectBuilder_Faction currentfaction;
-            currentfaction = Faction.getFaction(Faction.getFactionID(userId));
+            try
+            {
+               currentfaction = Faction.getFaction(Faction.getFactionID(userId));
+            }
+            catch (NullReferenceException)
+            {
+                 ChatUtil.SendPrivateChat(userId, "Faction does not exist");
+                return false;
+            }
+           
             foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
             {
                 if (currentmember.IsLeader == true)
