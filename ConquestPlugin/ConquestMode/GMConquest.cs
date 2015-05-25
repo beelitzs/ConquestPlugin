@@ -161,7 +161,7 @@ namespace ConquestPlugin.GameModes
 					}
 				}
 
-				long asteroidOwner = asteroidScore.OrderBy(x => x.Value).Where(x => x.Value > 4).Select(x => x.Key).FirstOrDefault();
+				long asteroidOwner = asteroidScore.OrderBy(x => x.Value).Where(x => x.Value > 0).Select(x => x.Key).FirstOrDefault();
 				if (asteroidOwner != 0)
 				{
 					MyObjectBuilder_Checkpoint.PlayerItem item = PlayerMap.Instance.GetPlayerItemFromPlayerId(asteroidOwner);
@@ -175,22 +175,27 @@ namespace ConquestPlugin.GameModes
 
 		private static Boolean TestBeacon(IMyCubeBlock block)
 		{
-			ChatUtil.SendPublicChat("[DEBUG]: Starting Beacon Test.");
+			ChatUtil.SendPublicChat("[DEBUG]: Init Beacon Search.");
 			MyObjectBuilder_CubeBlock cube = block.GetObjectBuilderCubeBlock();
 			if (cube is MyObjectBuilder_Beacon)
 			{
 				ChatUtil.SendPublicChat("[DEBUG]: Cube is a Beacon.");
-				MyObjectBuilder_Beacon beacon = (MyObjectBuilder_Beacon)cube;
-				bool enabled = beacon.Enabled;
-				float radius = beacon.BroadcastRadius;
+				MyObjectBuilder_Beacon beacontest = (MyObjectBuilder_Beacon)cube;
+				bool enabled = block.IsWorking;
+				float radius = beacontest.BroadcastRadius;
 				ChatUtil.SendPublicChat(String.Format("[DEBUG]: Beacon Enabled={0}. Radius={1}",enabled,radius));
-				if (enabled == true && radius >= 5000)
+				if (radius > 4999 && enabled)
 				{
 					ChatUtil.SendPublicChat("[DEBUG]: Beacon is valid.");
 					return true;
 				}
+				else
+				{
+					ChatUtil.SendPublicChat("[DEBUG]: Beacon is NOT valid.");
+					return false;
+				}
 			}
-			ChatUtil.SendPublicChat("[DEBUG]: No valid Beacon found.");
+			ChatUtil.SendPublicChat("[DEBUG]: Not a Beacon.");
 			return false;
 		}
 
