@@ -7,6 +7,7 @@ using Sandbox.Common;
 using Sandbox.Common.Components;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
+using Sandbox.Definitions;
 using Sandbox.Engine;
 using Sandbox.Game;
 using Sandbox.ModAPI;
@@ -20,6 +21,7 @@ namespace   ConquestPlugin.Utility.Shop
     class Shop
     {           
         public static List<ShopItem> ShopItems = new List<ShopItem>();
+
         public static string getShopList()
         {
             string output = "";
@@ -50,20 +52,37 @@ namespace   ConquestPlugin.Utility.Shop
 
 			long facID = Faction.getFactionID(userID);
 			int intAmount = Convert.ToInt32(amount);
-            FactionPoints.RemoveFP(Convert.ToUInt64(facID),intAmount);
+            if(FactionPoints.RemoveFP(Convert.ToUInt64(facID),intAmount))
+            {
 
-            MyObjectBuilder_Checkpoint.PlayerItem player = PlayerMap.Instance.GetPlayerItemFromPlayerId(Convert.ToInt64(userID));
-            string CharacterName = player.Name;
+            }
+            else
+            {
+               ChatUtil.SendPrivateChat(userID,"You do not have sufficent points to complete your purchuse");
+            }
 
-            IMyEntity character = MyAPIGateway.Entities.GetEntityByName(CharacterName);
-            MyObjectBuilder_EntityBase test = character.GetObjectBuilder();
-            MyObjectBuilder_Character playerObj = (MyObjectBuilder_Character)test;
-
+            var inventoryowner = MyAPIGateway.Session.Player.Controller.ControlledEntity as Sandbox.ModAPI.Interfaces.IMyInventoryOwner;
+            var iventory = inventoryowner.GetInventory(0) as Sandbox.ModAPI.IMyInventory;
+            MyObjectBuilder_Base content = null;
             MyObjectBuilder_InventoryItem inventoryitem = new MyObjectBuilder_InventoryItem();
             inventoryitem.Amount = (VRage.MyFixedPoint)(float)(amount);
             inventoryitem.ItemId = 5;
-            playerObj.Inventory.Items.Add(inventoryitem);
-
+            foreach(ShopItem item in ShopItems)
+            {
+                if(item.ItemName == itemname)
+                {
+                    content = new MyObjectBuilder_Ingot() { SubtypeName = itemname };
+                }
+                else
+                {
+                    ChatUtil.SendPrivateChat(userID,"please enter a valid item name");
+                    return false;
+                }
+            }
+            
+            inventoryitem.Content = content;
+            iventory.AddItems(inventoryitem.Amount,(MyObjectBuilder_PhysicalObject)inventoryitem.Content,-1);
+            ChatUtil.SendPrivateChat(userID, "player: " + userID + " bought: " + itemname + " amount: " +  buyamount + " for: "+ amount);
 
             //MyObjectBuilder_FloatingObject floatingBuilder = new MyObjectBuilder_FloatingObject();
             //floatingBuilder.Item = new MyObjectBuilder_InventoryItem() { Amount = (VRage.MyFixedPoint)(float)buyamount, Content = new MyObjectBuilder_Ingot() { SubtypeName = "itemname" } };

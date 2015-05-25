@@ -39,7 +39,14 @@ namespace ConquestPlugin.ChatHandlers
                 if (currentmember.IsLeader == true)
                 {
 					int currentFP = FactionPoints.getFP(Convert.ToUInt64( Faction.getFactionID(userId)));
-                    ChatUtil.SendPrivateChat(userId,"Faction Currently has "+currentFP+" FactionPoints.");
+                    if (currentFP != 0)
+                    {
+                        ChatUtil.SendPrivateChat(userId, "Faction Currently has " + currentFP + " FactionPoints.");
+                    }
+                    else
+                    {
+                        ChatUtil.SendPrivateChat(userId, "Faction does not exist");
+                    }
                 }
             }
             return true;
