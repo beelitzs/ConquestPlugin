@@ -10,6 +10,8 @@ using SEModAPIInternal.API.Common;
 using SEModAPIInternal.API.Entity.Sector.SectorObject;
 using SEModAPIInternal.API.Entity;
 using Sandbox.Common.ObjectBuilders;
+using Sandbox.ModAPI;
+using Sandbox.Definitions;
 
 namespace ConquestPlugin.Utility
 {
@@ -36,6 +38,7 @@ namespace ConquestPlugin.Utility
 		public static void DisplayDialog(ulong steamId, string header, string subheader, string content, string buttonText = "OK")
 		{
 			SendClientMessage(steamId, string.Format("/dialog \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", header, subheader, " ", content.Replace("\r\n", "|"), buttonText));
+			//MyAPIGateway.Utilities.ShowMissionScreen("Message Of The Day", "", headLine, Content, null, "Close");
 		}
 		
 		public static void SendClientMessage(ulong steamId, string message)

@@ -92,6 +92,17 @@ namespace ConquestPlugin.GameModes
 			}
 
 			bool change = false;
+			foreach (KeyValuePair<long, long> L in Instance.Leaderboard) // Find if any asteroids are lost
+			{
+				if (!ownership.ContainsKey(L.Key))
+				{
+					Instance.Leaderboard.Remove(L.Key);
+					MyObjectBuilder_Checkpoint.PlayerItem player = PlayerMap.Instance.GetPlayerItemFromPlayerId(L.Value);
+					ChatUtil.SendPublicChat(string.Format("[CONQUEST]: {0} has lost an asteroid.", player.Name));
+					change = true;
+					return;
+				}
+			}
 			foreach (KeyValuePair<long, long> p in ownership)
 			{
 				if (!Instance.Leaderboard.ContainsKey(p.Key))
@@ -101,16 +112,10 @@ namespace ConquestPlugin.GameModes
 				}
 				else if (Instance.Leaderboard.ContainsKey(p.Key) && Instance.Leaderboard[p.Key] != p.Value)
 				{
-					Instance.Leaderboard.Remove(p.Key);
-					MyObjectBuilder_Checkpoint.PlayerItem player = PlayerMap.Instance.GetPlayerItemFromPlayerId(p.Key);
-					ChatUtil.SendPublicChat(string.Format("[CONQUEST]: {0} has lost an asteroid.", player.Name));
-					change = false;
-				}
-				else if (Instance.Leaderboard.ContainsKey(p.Key) && Instance.Leaderboard[p.Key] != p.Value)
-				{
 					Instance.Leaderboard[p.Key] = p.Value;
 					change = true;
 				}
+
 			}
             
 			if (change)
@@ -175,15 +180,13 @@ namespace ConquestPlugin.GameModes
 
 		private static Boolean TestBeacon(IMyCubeBlock block)
 		{
-			ChatUtil.SendPublicChat("[DEBUG]: Init Beacon Search.");
 			MyObjectBuilder_CubeBlock cube = block.GetObjectBuilderCubeBlock();
 			if (cube is MyObjectBuilder_Beacon)
 			{
-				ChatUtil.SendPublicChat("[DEBUG]: Cube is a Beacon.");
 				MyObjectBuilder_Beacon beacontest = (MyObjectBuilder_Beacon)cube;
 				bool enabled = block.IsWorking;
 				float radius = beacontest.BroadcastRadius;
-				ChatUtil.SendPublicChat(String.Format("[DEBUG]: Beacon Enabled={0}. Radius={1}",enabled,radius));
+				ChatUtil.SendPublicChat(String.Format("[DEBUG]: Beacon Found. Enabled&Powered={0}. Radius={1}",enabled,radius));
 				if (radius > 4999 && enabled)
 				{
 					ChatUtil.SendPublicChat("[DEBUG]: Beacon is valid.");
@@ -195,7 +198,6 @@ namespace ConquestPlugin.GameModes
 					return false;
 				}
 			}
-			ChatUtil.SendPublicChat("[DEBUG]: Not a Beacon.");
 			return false;
 		}
 
