@@ -125,7 +125,7 @@ namespace   ConquestPlugin.Utility.Shop
 
         public override string ToString()
         {
-            return "Material Name: " + ItemName + "\t Material Cost: " + ItemPrice;
+            return "Material Name: " + ItemName + "\t\t Material Cost: " + ItemPrice;
         }
     }
 }
