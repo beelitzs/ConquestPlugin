@@ -150,7 +150,7 @@ namespace ConquestPlugin.GameModes
 						IMyCubeGrid parent = (IMyCubeGrid)cube.GetTopMostParent();
 						if (!parent.IsStatic)
 							continue;			
-						if (cube.OwnerId != 0 && cube.IsFunctional)
+						if (cube.OwnerId != 0 && TestBeacon(cube)) // Test Valid Beacon.
 						{
 
 							if (!asteroidScore.ContainsKey(cube.OwnerId))
@@ -171,6 +171,27 @@ namespace ConquestPlugin.GameModes
 			}
 
 			return result;
+		}
+
+		private static Boolean TestBeacon(IMyCubeBlock block)
+		{
+			ChatUtil.SendPublicChat("[DEBUG]: Starting Beacon Test.");
+			MyObjectBuilder_CubeBlock cube = block.GetObjectBuilderCubeBlock();
+			if (cube is MyObjectBuilder_Beacon)
+			{
+				ChatUtil.SendPublicChat("[DEBUG]: Cube is a Beacon.");
+				MyObjectBuilder_Beacon beacon = (MyObjectBuilder_Beacon)cube;
+				bool enabled = beacon.Enabled;
+				float radius = beacon.BroadcastRadius;
+				ChatUtil.SendPublicChat(String.Format("[DEBUG]: Beacon Enabled={0}. Radius={1}",enabled,radius));
+				if (enabled == true && radius >= 5000)
+				{
+					ChatUtil.SendPublicChat("[DEBUG]: Beacon is valid.");
+					return true;
+				}
+			}
+			ChatUtil.SendPublicChat("[DEBUG]: No valid Beacon found.");
+			return false;
 		}
 
 		private static void Load()
