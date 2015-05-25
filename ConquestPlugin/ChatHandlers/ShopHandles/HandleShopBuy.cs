@@ -36,8 +36,8 @@ namespace ConquestPlugin.ChatHandlers
             {
                 if (currentmember.IsLeader == true)//currentmember.isleader(currentfaction)
                 {
-                    long amount = Convert.ToInt64(words[3]);
-                    if (Shop.buyItem(words[2], amount, userId))
+                    long amount = Convert.ToInt64(words[1]);
+                    if (Shop.buyItem(words[0], amount, userId))
                     {
                         ChatUtil.SendPrivateChat(userId, "your purchase has been successful");
                         break;
