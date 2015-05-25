@@ -9,7 +9,9 @@ using SEModAPIExtensions.API;
 using SEModAPIInternal.API.Common;
 using SEModAPIInternal.API.Entity.Sector.SectorObject;
 using SEModAPIInternal.API.Entity;
+using Sandbox.ModAPI;
 using Sandbox.Common.ObjectBuilders;
+using Sandbox.Common;
 
 namespace ConquestPlugin.Utility
 {
@@ -44,8 +46,7 @@ namespace ConquestPlugin.Utility
 			{
 				Log.Info(string.Format("Unable to locate playerId for user with steamId: {0}", steamId));
 				return;
-			}
-
+			}           
 			CubeGridEntity entity = new CubeGridEntity(new FileInfo(Conquest.PluginPath + "CommRelay.sbc"));
 			long entityId = BaseEntity.GenerateEntityId();
 			entity.EntityId = entityId;
@@ -57,10 +58,11 @@ namespace ConquestPlugin.Utility
 				MyObjectBuilder_Beacon beacon = block as MyObjectBuilder_Beacon;
 				if (beacon != null)
 				{
+                   
 					beacon.CustomName = message;
 				}
 			}
-			
+           
 			SectorObjectManager.Instance.AddEntity(entity);
 			
 		}

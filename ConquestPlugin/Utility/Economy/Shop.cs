@@ -40,7 +40,10 @@ namespace   ConquestPlugin.Utility.Shop
 
         public static bool buyItem(string itemname, long buyamount, ulong userID)
         {
+            ShopItems = getshoppinglist(ShopItems);
+            DynShopPrices.DynPrices(ShopItems);
             //need finishing 
+            ChatUtil.SendPrivateChat(userID, "buying item");
             long amount = 0;
             foreach (ShopItem item in ShopItems)
             {
@@ -117,7 +120,7 @@ namespace   ConquestPlugin.Utility.Shop
         public ShopItem(string itemname)
         {
             ItemName = itemname;
-            ItemPrice = 9999999;
+            ItemPrice = 0;
         }
 
         public override string ToString()

@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatHandlers\ChatHandlerBase.cs" />
+    <Compile Include="ChatHandlers\DebugHandles\addfpdebugHandle.cs" />
     <Compile Include="ChatHandlers\DebugHandles\GUITestHandle.cs" />
     <Compile Include="ChatHandlers\HandleAdminDebug.cs" />
     <Compile Include="ChatHandlers\HandleGetFP.cs" />
