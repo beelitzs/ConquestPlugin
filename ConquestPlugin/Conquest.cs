@@ -44,16 +44,54 @@ namespace ConquestPlugin
 		}
 		
 		[Category("Options")]
-		[Description("Test Option")]
+		[Description("Difficulty Modifier")]
 		[Browsable(true)]
-		[ReadOnly(false)]
-		public string TestOption
+		[ReadOnly(true)]
+		public int DifficultyMod
 		{
-			get { return "Get String"; }
+			get { return 1; }
 			set { /* Set Code */ }
 		}
 
+		[Category("Options")]
+		[Description("Faction Point Income Rate")]
+		[Browsable(true)]
+		[ReadOnly(true)]
+		public string FPIncomeRate
+		{
+			get { return "1 Hour"; }
+			set { /* Set Code */ }
+		}
 
+		[Category("Options")]
+		[Description("Required Beacon Distance")]
+		[Browsable(true)]
+		[ReadOnly(true)]
+		public float ReqBroadcastDistance
+		{
+			get { return 5000.0f; }
+			set { /* Set Code */ }
+		}
+
+		[Category("Options")]
+		[Description("Tier 2 Enabled")]
+		[Browsable(true)]
+		[ReadOnly(true)]
+		public bool T2Enabled
+		{
+			get { return false; }
+			set { /* Set Code */ }
+		}
+
+		[Category("Options")]
+		[Description("Tier 3 Enabled")]
+		[Browsable(true)]
+		[ReadOnly(true)]
+		public bool T3Enabled
+		{
+			get { return false; }
+			set { /* Set Code */ }
+		}
 		#endregion
 
 		#region IPlugin Members
