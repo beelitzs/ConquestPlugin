@@ -68,6 +68,7 @@ namespace DedicatedEssentials
 			ServerCommandHandlers.ServerCommands.Add(new ServerCommandMessage());
 			ServerCommandHandlers.ServerCommands.Add(new ServerCommandNotification());
 			ServerCommandHandlers.ServerCommands.Add(new ServerCommandDialog());
+			ServerCommandHandlers.ServerCommands.Add(new ServerCommandInventory());
 			ServerCommandHandlers.ServerCommands.Add(new ServerCommandConceal());
 			ServerCommandHandlers.ServerCommands.Add(new ServerCommandReveal());
 			ServerCommandHandlers.ServerCommands.Add(new ServerCommandWaypoint());
