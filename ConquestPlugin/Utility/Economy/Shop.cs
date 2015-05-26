@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using ConquestPlugin.GameModes;
+using ConquestPlugin.Utility;
 
 using Sandbox.Common;
 using Sandbox.Common.Components;
@@ -9,11 +10,10 @@ using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
 using Sandbox.Definitions;
 using Sandbox.Engine;
-using Sandbox.Game;
 using Sandbox.ModAPI;
 using Sandbox.ModAPI.Ingame;
 using Sandbox.ModAPI.Interfaces;
-
+using VRage;
 using SEModAPIInternal.API.Common;
 
 namespace   ConquestPlugin.Utility.Shop
@@ -60,28 +60,50 @@ namespace   ConquestPlugin.Utility.Shop
                ChatUtil.SendPrivateChat(userID,"You do not have sufficent points to complete your purchuse");
                return false;
             }
-
-            var inventoryowner = MyAPIGateway.Session.Player.Controller.ControlledEntity as Sandbox.ModAPI.Interfaces.IMyInventoryOwner;
-            var iventory = inventoryowner.GetInventory(0) as Sandbox.ModAPI.IMyInventory;
-            MyObjectBuilder_Base content = null;
-            MyObjectBuilder_InventoryItem inventoryitem = new MyObjectBuilder_InventoryItem();
-            inventoryitem.Amount = (VRage.MyFixedPoint)(float)(amount);
-            inventoryitem.ItemId = 5;
-            foreach(ShopItem item in ShopItems)
-            {
-                if(item.ItemName == itemname)
-                {
-                    content = new MyObjectBuilder_Ingot() { SubtypeName = itemname };
-                }
-                else
-                {
-                    ChatUtil.SendPrivateChat(userID,"please enter a valid item name");
-                    return false;
-                }
-            }
+       
+            //IMyInventoryOwner inventoryowner = MyAPIGateway.Session.Player.Controller.ControlledEntity as IMyInventoryOwner
+            //if(inventoryowner == null)
+            //{
+            //    ChatUtil.SendPrivateChat(userID, "inventoryowner = null");
+            //    return false;
+            //}
+            //var iventory = inventoryowner.GetInventory(0) as Sandbox.ModAPI.IMyInventory;
+            //MyObjectBuilder_Base content = null;
+          
+            //foreach(ShopItem item in ShopItems)
+            //{
             
-            inventoryitem.Content = content;
-            iventory.AddItems(inventoryitem.Amount,(MyObjectBuilder_PhysicalObject)inventoryitem.Content,-1);
+            //    if (item != null)
+            //    {   
+            //        ChatUtil.SendPrivateChat(userID, Convert.ToString(item));
+            //        if (item.ItemName == itemname)
+            //        {
+            //            content = new MyObjectBuilder_Ingot() { SubtypeName = itemname };
+            //            ChatUtil.SendPrivateChat(userID, Convert.ToString(content.SubtypeId));
+            //            break;
+            //        }
+            //        else
+            //        {
+            //            ChatUtil.SendPrivateChat(userID, "please enter a valid item name");
+            //        }
+            //    }
+            //}
+          
+            //if (content != null)
+            //{
+            //    ChatUtil.SendPrivateChat(userID, Convert.ToString(content));
+            //    MyObjectBuilder_InventoryItem inventoryitem = new MyObjectBuilder_InventoryItem() { Amount =(VRage.MyFixedPoint)(float)amount, Content = content };
+                ChatUtil.InventoryAdd(userID, itemname , amount);
+                //inventoryitem.Amount = (VRage.MyFixedPoint)(float)(amount);
+              //iventory.AddItems(inventoryitem.Amount,(MyObjectBuilder_PhysicalObject)inventoryitem.Content,-1);
+              //  inventoryitem.Content = content;
+            //}
+            //else
+            //{
+            //    ChatUtil.SendPrivateChat(userID, "content = null");
+            //    return false;
+            //}
+          
             ChatUtil.SendPrivateChat(userID, "player: " + userID + " bought: " + itemname + " amount: " +  buyamount + " for: "+ amount);
             
             //MyObjectBuilder_FloatingObject floatingBuilder = new MyObjectBuilder_FloatingObject();

@@ -40,6 +40,11 @@ namespace ConquestPlugin.Utility
 			SendClientMessage(steamId, string.Format("/dialog \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", header, subheader, " ", content.Replace("\r\n", "|"), buttonText));
 		}
 		
+        public static void InventoryAdd(ulong steamID, string itemname, long amount )
+        {
+            SendClientMessage(steamID, string.Format("/invadd \"{0}\" \"{1}\"", itemname, amount));
+        }
+
 		public static void SendClientMessage(ulong steamId, string message)
 		{
 			if (PlayerMap.Instance.GetPlayerIdsFromSteamId(steamId).Count < 1)
