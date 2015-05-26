@@ -15,7 +15,7 @@
       </Size>
       <Mass>6</Mass>
       <Volume>15</Volume>
-      <Model>Models\Components\***********.mwm</Model>
+      <Model>Models\Components\construction_components.mwm</Model>
       <MaxIntegrity>50</MaxIntegrity>
       <DropProbability>0.95</DropProbability>
     </Component>
@@ -33,7 +33,7 @@
       </Size>
       <Mass>6</Mass>
       <Volume>15</Volume>
-      <Model>Models\Components\***********.mwm</Model>
+      <Model>Models\Components\construction_components.mwm</Model>
       <MaxIntegrity>90</MaxIntegrity>
       <DropProbability>0.95</DropProbability>
     </Component>
