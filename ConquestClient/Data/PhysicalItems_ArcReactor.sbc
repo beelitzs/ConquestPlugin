@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PhysicalItems>
+    <PhysicalItem>
+      <Id>
+        <TypeId>Ingot</TypeId>
+        <SubtypeId>ArcReactorcomponent</SubtypeId>
+      </Id>
+      <DisplayName>Arc Reactor component</DisplayName>
+       <Icon>Textures\GUI\Icons\component\reactor_components_component.dds</Icon>
+      <Size>
+        <X>0.048</X>
+        <Y>0.048</Y>
+        <Z>0.1</Z>
+      </Size>
+      <Mass>625</Mass>
+      <Volume>200</Volume>
+      <Model>Models\Components\reactor_components_component.mwm</Model>
+    </PhysicalItem>
+    <PhysicalItem>
+      <Id>
+        <TypeId>Ingot</TypeId>
+        <SubtypeId>DenseSteelPlate</SubtypeId>
+      </Id>
+      <DisplayName>Advanced_Reactor_component</DisplayName>
+       <Icon>Textures\GUI\Icons\component\steel_plate_component.dds</Icon>
+      <Size>
+        <X>0.048</X>
+        <Y>0.048</Y>
+        <Z>0.1</Z>
+      </Size>
+      <Mass>400</Mass>
+      <Volume>60</Volume>
+      <Model>Models\Components\steel_plate_component.mwm</Model>
+    </PhysicalItem>
+    <PhysicalItem>
+      <Id>
+        <TypeId>Ingot</TypeId>
+        <SubtypeId>ArcFuel</SubtypeId>
+      </Id>
+      <DisplayName>Arc Fuel</DisplayName>
+      <Icon>Textures\GUI\Icons\component\ArcFuel.dds</Icon>
+      <Size>
+        <X>0.048</X>
+        <Y>0.048</Y>
+        <Z>0.1</Z>
+      </Size>
+      <Mass>200</Mass>
+      <Volume>30</Volume>
+      <Model>Models\Components\uranium_ingot.mwm</Model>
+    </PhysicalItem>
+  </PhysicalItems>
+</Definitions>
