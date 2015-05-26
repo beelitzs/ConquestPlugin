@@ -1,53 +1,112 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-	<PropertyGroup>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<ProjectGuid>6832a150-de7a-4992-96df-0824ce297b89</ProjectGuid>
-		<OutputType>Library</OutputType>
-		<AppDesignerFolder>Properties</AppDesignerFolder>
-		<RootNamespace>ConquestClient</RootNamespace>
-		<AssemblyName>ConquestClient</AssemblyName>
-		<TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-		<FileAlignment>512</FileAlignment>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<DebugSymbols>true</DebugSymbols>
-		<DebugType>full</DebugType>
-		<Optimize>false</Optimize>
-		<OutputPath>bin\Debug\</OutputPath>
-		<DefineConstants>DEBUG;TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<DebugType>pdbonly</DebugType>
- 		<Optimize>true</Optimize>
-		<OutputPath>bin\Release\</OutputPath>
-		<DefineConstants>TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="System"/>
-		
-		<Reference Include="System.Core"/>
-		<Reference Include="System.Xml.Linq"/>
-		<Reference Include="System.Data.DataSetExtensions"/>
-		
-		
-		<Reference Include="Microsoft.CSharp"/>
- 		
-		<Reference Include="System.Data"/>
-		<Reference Include="System.Xml"/>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="Class1.cs" />
-
-		<Compile Include="Properties\AssemblyInfo.cs" />
-	</ItemGroup>
-	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{55017D82-2181-4431-A053-BA8C0BF1DF1B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConquestClient</RootNamespace>
+    <AssemblyName>ConquestClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>..\..\libraries\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Sandbox.Common">
+      <HintPath>..\..\libraries\Sandbox.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Sandbox.Common.XmlSerializers">
+      <HintPath>..\..\libraries\Sandbox.Common.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="Sandbox.Game">
+      <HintPath>..\..\libraries\Sandbox.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="SEComm">
+      <HintPath>..\..\libraries\SEComm.dll</HintPath>
+    </Reference>
+    <Reference Include="SEModAPI">
+      <HintPath>..\..\libraries\SEModAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="SEModAPIExtensions">
+      <HintPath>..\..\libraries\SEModAPIExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SEModAPIInternal">
+      <HintPath>..\..\libraries\SEModAPIInternal.dll</HintPath>
+    </Reference>
+    <Reference Include="SpaceEngineers.Game">
+      <HintPath>..\..\libraries\SpaceEngineers.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VRage">
+      <HintPath>..\..\libraries\VRage.dll</HintPath>
+    </Reference>
+    <Reference Include="VRage.Library">
+      <HintPath>..\..\libraries\VRage.Library.dll</HintPath>
+    </Reference>
+    <Reference Include="VRage.Math">
+      <HintPath>..\..\libraries\VRage.Math.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommRelayHandler\CommandHandlerBase.cs" />
+    <Compile Include="CommRelayHandler\CommandPosition.cs" />
+    <Compile Include="CommRelayHandler\CommandTest.cs" />
+    <Compile Include="CommRelayHandler\Communication.cs" />
+    <Compile Include="CommRelayHandler\Core.cs" />
+    <Compile Include="CommRelayHandler\Grid.cs" />
+    <Compile Include="CommRelayHandler\Logging.cs" />
+    <Compile Include="CommRelayHandler\ProcessCommunication.cs" />
+    <Compile Include="CommRelayHandler\ProcessDetection.cs" />
+    <Compile Include="CommRelayHandler\ProcessPosition.cs" />
+    <Compile Include="CommRelayHandler\ServerCommandConceal.cs" />
+    <Compile Include="CommRelayHandler\ServerCommandDialog.cs" />
+    <Compile Include="CommRelayHandler\ServerCommandHandlerBase.cs" />
+    <Compile Include="CommRelayHandler\ServerCommandHandlers.cs" />
+    <Compile Include="CommRelayHandler\ServerCommandMessage.cs" />
+    <Compile Include="CommRelayHandler\ServerCommandMove.cs" />
+    <Compile Include="CommRelayHandler\ServerCommandNotification.cs" />
+    <Compile Include="CommRelayHandler\ServerCommandReveal.cs" />
+    <Compile Include="CommRelayHandler\ServerCommandTakeControl.cs" />
+    <Compile Include="CommRelayHandler\ServerCommandWaypoint.cs" />
+    <Compile Include="CommRelayHandler\ServerDataHandlerBase.cs" />
+    <Compile Include="CommRelayHandler\ServerDataMessage.cs" />
+    <Compile Include="CommRelayHandler\ServerDataTest.cs" />
+    <Compile Include="CommRelayHandler\ServerDataVoxel.cs" />
+    <Compile Include="CommRelayHandler\ServerDataVoxelPart.cs" />
+    <Compile Include="CommRelayHandler\Settings.cs" />
+    <Compile Include="CommRelayHandler\SimulationProcessBase.cs" />
+    <Compile Include="CommRelayHandler\Utility.cs" />
+    <Compile Include="GUITesting\GUITesting.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -55,5 +114,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
- </Project>
+</Project>
