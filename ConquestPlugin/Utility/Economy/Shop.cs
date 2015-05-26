@@ -99,15 +99,17 @@ namespace   ConquestPlugin.Utility.Shop
         {
             
             shopitems.Add(new ShopItem("Gravel"));
-            shopitems.Add(new ShopItem("IronIngots"));
-            shopitems.Add(new ShopItem("SiliconWafers"));
-            shopitems.Add(new ShopItem("NickelIngots"));
-            shopitems.Add(new ShopItem("CobaltIngots"));
-            shopitems.Add(new ShopItem("SilverIngots"));
-            shopitems.Add(new ShopItem("GoldIngots"));
-            shopitems.Add(new ShopItem("UraniumIngots"));
-            shopitems.Add(new ShopItem("MagnesiumPowder"));
-            shopitems.Add(new ShopItem("PlatinumIngots"));
+            shopitems.Add(new ShopItem("Iron"));
+            shopitems.Add(new ShopItem("Silicon"));
+            shopitems.Add(new ShopItem("Nickel"));
+            shopitems.Add(new ShopItem("Cobalt"));
+            shopitems.Add(new ShopItem("Silver"));
+            shopitems.Add(new ShopItem("Gold"));
+            shopitems.Add(new ShopItem("Uranium"));
+            shopitems.Add(new ShopItem("Magnesium"));
+            shopitems.Add(new ShopItem("Platinum"));
+            shopitems.Add(new ShopItem("UpgradedConstruction(WIP)"));
+            shopitems.Add(new ShopItem("AdvancedConstruction(WIP)"));
             return shopitems;
         }
     }
