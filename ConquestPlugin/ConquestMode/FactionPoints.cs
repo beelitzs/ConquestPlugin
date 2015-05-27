@@ -60,7 +60,6 @@ namespace ConquestPlugin.GameModes
 				Faction.Attributes.Append(CurrentPoints);
 				rootNode.AppendChild(Faction);
 				xmlDoc.Save(filename);
-				ChatUtil.SendPublicChat(string.Format("[DEBUG]: Faction#{0} now has {1} FactionPoints!", factionID, addPoints));
 				return;
 			}
 			XmlAttributeCollection attributeList = selectedFaction.Attributes;
@@ -69,7 +68,6 @@ namespace ConquestPlugin.GameModes
 			int newPoints = currentPoints + addPoints;
 			attributeCurrentPoints.Value = Convert.ToString(newPoints);
 			xmlDoc.Save(filename);
-			ChatUtil.SendPublicChat(string.Format("[DEBUG]: Faction#{0} now has {1} FactionPoints!", factionID, newPoints));
 
 		}
 
@@ -103,7 +101,7 @@ namespace ConquestPlugin.GameModes
 			catch (NullReferenceException)
 			{
 				// Faction has no entry.
-				return 0;
+				return -1;
 			}
 			XmlAttributeCollection attributeList = selectedFaction.Attributes;
 			XmlNode attributeCurrentPoints = attributeList.Item(1);

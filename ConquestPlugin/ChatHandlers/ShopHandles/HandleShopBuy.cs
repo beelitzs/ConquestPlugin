@@ -8,7 +8,7 @@ using Sandbox.ModAPI;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
 
-namespace ConquestPlugin.ChatHandlers.ShopHandles
+namespace ConquestPlugin.ChatHandlers
 {
     class HandleShopBuy : ChatHandlerBase
     {
@@ -36,18 +36,12 @@ namespace ConquestPlugin.ChatHandlers.ShopHandles
             {
                 if (currentmember.IsLeader == true)//currentmember.isleader(currentfaction)
                 {
-                    long amount = Convert.ToInt64(words[3]);
-                    if (Shop.buyItem(words[2], amount, userId))
+                    long amount = Convert.ToInt64(words[1]);
+                    if (Shop.buyItem(words[0], amount, userId))
                     {
                         ChatUtil.SendPrivateChat(userId, "your purchase has been successful");
                         break;
                     }
-                    else
-                    {
-                        ChatUtil.SendPrivateChat(userId, "you have insificent funds to by this material");
-                        break;
-                    }
-                    ChatUtil.SendPrivateChat(userId, "player: " + userId + " bought: " + words[2] + " amount: " + words[3]);
                    
                 }
             }

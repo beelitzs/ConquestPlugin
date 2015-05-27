@@ -97,14 +97,10 @@ namespace ConquestPlugin.Utility.Shop
         {
             if (capturedastroids == 0)
             {
-                ChatUtil.SendPublicChat("DEBEG: ITEM {0} SHOULD HAVE A VALUE OF 50");
-                //return 50;
                 return (long)((long)(relitivevalue));
             }
             else
             {  
-                ChatUtil.SendPublicChat("DEBEG: ITEM {0} SHOULD HAVE A VALUE OF 180");
-                //return 180;
                 return (long)(capturedastroids * ((long)(relitivevalue)));
             }
         }

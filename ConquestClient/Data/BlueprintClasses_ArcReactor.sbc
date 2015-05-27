@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BlueprintClasses>
+  </BlueprintClasses>
+  <BlueprintClassEntries>
+    <Entry Class="SmallBlocks" BlueprintSubtypeId="Reactor/SmallBlockLargeArcReactorx5power" />
+    <Entry Class="SmallBlocks" BlueprintSubtypeId="Reactor/SmallBlockLargeArcReactorx10power" />
+	<Entry Class="SmallBlocks" BlueprintSubtypeId="Reactor/SmallBlockLargeArcReactorx20power" />
+
+    <Entry Class="LargeBlocks" BlueprintSubtypeId="Reactor/LargeBlockLargeArcReactorx5power" />
+    <Entry Class="LargeBlocks" BlueprintSubtypeId="Reactor/LargeBlockLargeArcReactorx10power" />
+    <Entry Class="LargeBlocks" BlueprintSubtypeId="Reactor/LargeBlockLargeArcReactorx20power" />
+
+    <Entry Class="Components" BlueprintSubtypeId="ArcFuel" />
+  </BlueprintClassEntries>
+</Definitions>

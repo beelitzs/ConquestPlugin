@@ -33,13 +33,29 @@ namespace ConquestPlugin.ChatHandlers
         public override bool HandleCommand(ulong userId, string[] words)
         {
 			MyObjectBuilder_Faction currentfaction;
-            currentfaction = Faction.getFaction(Faction.getFactionID(userId));
+            try
+            {
+               currentfaction = Faction.getFaction(Faction.getFactionID(userId));
+            }
+            catch (NullReferenceException)
+            {
+                 ChatUtil.SendPrivateChat(userId, "Faction does not exist");
+                return false;
+            }
+           
             foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
             {
                 if (currentmember.IsLeader == true)
                 {
 					int currentFP = FactionPoints.getFP(Convert.ToUInt64( Faction.getFactionID(userId)));
-                    ChatUtil.SendPrivateChat(userId,"Faction Currently has "+currentFP+" FactionPoints.");
+                    if (currentFP != -1)
+                    {
+                        ChatUtil.SendPrivateChat(userId, "Faction Currently has " + currentFP + " FactionPoints.");
+                    }
+                    else
+                    {
+                        ChatUtil.SendPrivateChat(userId, "Faction does not exist");
+                    }
                 }
             }
             return true;
