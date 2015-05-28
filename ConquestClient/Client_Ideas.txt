@@ -1,0 +1,20 @@
+* T2 Upgraded Construction Component (Only Bought)
+* T3 Advanced Construction Component (Only Bought)
+# T4 Quantum Construction Component (Only Bought)
+# T2 Alloy Smelter
+# T3 Composition Infuser
+# T4 Singularity Concentrator
+# Dark Matter
+# T4 Dark Matter Reactor (60x Arc Reactor, Single Block)
+# T2 Light Armor (Integrity slightly higher than Heavy, Light Weight)
+# T3 Heavy Armor (High Integrity, Heavy Weight)
+# T4 Shielded Plate (Very High Integrity, Light Weight, Needs Power)
+
++ Tiered Thruster Packs: T1-T4
++ OKI's Weapon Pack: T1-4 = 23, 50, 122, 230.
++ Arc Reactor Pack: T1-T3 = x5, x10, x20.
+
+^ Alloys: Fernico     , 2 Electrum, Uranium Hydride.
+	  Fe5 Ni2 Co2 , Au10 Ag10 ,  U H6
+^ Comps: Ignition Capacitor, Universal Polariser, Superconductive Wiring, Upg & Adv Reactor Comps.
+^ Infuser: 10 Ice = 2 Hyd Tank & 1 Oxy Tank.
