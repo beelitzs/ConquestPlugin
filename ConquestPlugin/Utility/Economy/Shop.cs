@@ -60,49 +60,19 @@ namespace   ConquestPlugin.Utility.Shop
                ChatUtil.SendPrivateChat(userID,"You do not have sufficent points to complete your purchuse");
                return false;
             }
-       
-            //IMyInventoryOwner inventoryowner = MyAPIGateway.Session.Player.Controller.ControlledEntity as IMyInventoryOwner
-            //if(inventoryowner == null)
-            //{
-            //    ChatUtil.SendPrivateChat(userID, "inventoryowner = null");
-            //    return false;
-            //}
-            //var iventory = inventoryowner.GetInventory(0) as Sandbox.ModAPI.IMyInventory;
-            //MyObjectBuilder_Base content = null;
-          
-            //foreach(ShopItem item in ShopItems)
-            //{
-            
-            //    if (item != null)
-            //    {   
-            //        ChatUtil.SendPrivateChat(userID, Convert.ToString(item));
-            //        if (item.ItemName == itemname)
-            //        {
-            //            content = new MyObjectBuilder_Ingot() { SubtypeName = itemname };
-            //            ChatUtil.SendPrivateChat(userID, Convert.ToString(content.SubtypeId));
-            //            break;
-            //        }
-            //        else
-            //        {
-            //            ChatUtil.SendPrivateChat(userID, "please enter a valid item name");
-            //        }
-            //    }
-            //}
-          
-            //if (content != null)
-            //{
-            //    ChatUtil.SendPrivateChat(userID, Convert.ToString(content));
-            //    MyObjectBuilder_InventoryItem inventoryitem = new MyObjectBuilder_InventoryItem() { Amount =(VRage.MyFixedPoint)(float)amount, Content = content };
-                ChatUtil.InventoryAdd(userID, itemname , amount);
-                //inventoryitem.Amount = (VRage.MyFixedPoint)(float)(amount);
-              //iventory.AddItems(inventoryitem.Amount,(MyObjectBuilder_PhysicalObject)inventoryitem.Content,-1);
-              //  inventoryitem.Content = content;
-            //}
-            //else
-            //{
-            //    ChatUtil.SendPrivateChat(userID, "content = null");
-            //    return false;
-            //}
+            int itemID = -1;
+            foreach(ShopItem item in ShopItems)
+            {
+                itemID=getitemidfromitemname("", userID, item);
+            }
+            if (itemID != -1)
+            {
+                ChatUtil.InventoryAdd(userID, itemID, amount);
+            }
+            else
+            {
+                ChatUtil.SendPrivateChat(userID, "item Id not found");
+            }
           
             ChatUtil.SendPrivateChat(userID, "player: " + userID + " bought: " + itemname + " amount: " +  buyamount + " for: "+ amount);
             
@@ -117,6 +87,31 @@ namespace   ConquestPlugin.Utility.Shop
 
             return true;
         }
+
+        public static int getitemidfromitemname(string itemname,ulong userID, ShopItem item)
+        {
+            var temp = new MyObjectBuilder_PhysicalObject();
+
+                if (item != null)
+                {
+                    
+                    if (item.ItemName == itemname)
+                    {
+                        temp = new MyObjectBuilder_Ingot() { SubtypeName = itemname };
+                        ChatUtil.SendPrivateChat(userID, Convert.ToString(temp.GetHashCode()));
+                        return  temp.GetHashCode();
+                        
+                    }
+                    else
+                    {
+                        ChatUtil.SendPrivateChat(userID, "please enter a valid item name");
+                    }
+                }
+             
+            
+            return 0;
+        }
+
         private static List<ShopItem> getshoppinglist(List<ShopItem> shopitems)
         {
             
