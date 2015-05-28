@@ -29,7 +29,7 @@ namespace ConquestPlugin.ChatHandlers
 
 		public override bool HandleCommand(ulong userId, string[] words)
 		{
-			FactionPoints.AddFP(1234567890,3);
+            ChatUtil.InventoryAdd(userId, 5, 50);
 			return true;
 		}
 	}

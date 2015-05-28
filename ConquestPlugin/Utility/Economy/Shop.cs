@@ -63,7 +63,7 @@ namespace   ConquestPlugin.Utility.Shop
             int itemID = -1;
             foreach(ShopItem item in ShopItems)
             {
-                itemID=getitemidfromitemname("", userID, item);
+                itemID=getitemidfromitemname(itemname, userID, item);
             }
             if (itemID != -1)
             {
