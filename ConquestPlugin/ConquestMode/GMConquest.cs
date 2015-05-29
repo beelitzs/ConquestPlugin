@@ -186,15 +186,12 @@ namespace ConquestPlugin.GameModes
 				MyObjectBuilder_Beacon beacontest = (MyObjectBuilder_Beacon)cube;
 				bool enabled = block.IsWorking;
 				float radius = beacontest.BroadcastRadius;
-				ChatUtil.SendPublicChat(String.Format("[DEBUG]: Beacon Found. Enabled&Powered={0}. Radius={1}",enabled,radius));
 				if (radius > 4999 && enabled)
 				{
-					ChatUtil.SendPublicChat("[DEBUG]: Beacon is valid.");
 					return true;
 				}
 				else
 				{
-					ChatUtil.SendPublicChat("[DEBUG]: Beacon is NOT valid.");
 					return false;
 				}
 			}

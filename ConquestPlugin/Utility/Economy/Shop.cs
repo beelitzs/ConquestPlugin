@@ -16,7 +16,7 @@ using Sandbox.ModAPI.Interfaces;
 using VRage;
 using SEModAPIInternal.API.Common;
 
-namespace   ConquestPlugin.Utility.Shop
+namespace ConquestPlugin.Utility.Shop
 {
     class Shop
     {           
@@ -43,8 +43,8 @@ namespace   ConquestPlugin.Utility.Shop
             ShopItems = getshoppinglist(ShopItems);
             DynShopPrices.DynPrices(ShopItems);
             //need finishing 
-            ChatUtil.SendPrivateChat(userID, "buying item");
-            long amount = 0;
+            //ChatUtil.SendPrivateChat(userID, "Buying Item.");
+            long amount = -1;
             foreach (ShopItem item in ShopItems)
             {
                 if (item.ItemName == itemname)
@@ -52,28 +52,38 @@ namespace   ConquestPlugin.Utility.Shop
                     amount = item.ItemPrice * buyamount;
                 }
             }
-
+			if (amount == -1)
+				{
+					ChatUtil.SendPrivateChat(userID,"Item does not exist.");
+					return false;
+				}
 			long facID = Faction.getFactionID(userID);
 			int intAmount = Convert.ToInt32(amount);
             if(!FactionPoints.RemoveFP(Convert.ToUInt64(facID),intAmount))
             {
-               ChatUtil.SendPrivateChat(userID,"You do not have sufficent points to complete your purchuse");
+               ChatUtil.SendPrivateChat(userID,"You do not have sufficent points to complete your purchase.");
                return false;
             }
-            int itemID = -1;
-            foreach(ShopItem item in ShopItems)
-            {
-                itemID=getitemidfromitemname(itemname, userID, item);
-            }
-            if (itemID != -1)
-            {
-                ChatUtil.InventoryAdd(userID, itemID, amount);
-            }
-            else
-            {
-                ChatUtil.SendPrivateChat(userID, "item Id not found");
-            }
-          
+			Boolean component = false;
+			switch (itemname)
+			{
+				case ("UpgradedComponent"): case ("AdvancedComponent"): case ("QuantumComponent"):
+					{
+						component = true;
+						break;
+					}
+				default: 
+					break;
+			}
+
+			if (component)
+			{
+				ChatUtil.AddComp(userID, itemname, Convert.ToInt32(buyamount));
+			}
+			else
+			{
+				ChatUtil.AddIngot(userID, itemname, Convert.ToInt32(buyamount));
+			}
             return true;
         }
 
@@ -93,7 +103,7 @@ namespace   ConquestPlugin.Utility.Shop
                     }
                     else
                     {
-                        ChatUtil.SendPrivateChat(userID, "please enter a valid item name");
+                        ChatUtil.SendPrivateChat(userID, "Please enter a valid item name.");
                     }
                 }
              
@@ -103,8 +113,10 @@ namespace   ConquestPlugin.Utility.Shop
 
         private static List<ShopItem> getshoppinglist(List<ShopItem> shopitems)
         {
-            
-            shopitems.Add(new ShopItem("Gravel"));
+			shopitems.Add(new ShopItem("UpgradedConstruction"));
+			shopitems.Add(new ShopItem("AdvancedConstruction"));
+			shopitems.Add(new ShopItem("QuantumConstruction"));
+			shopitems.Add(new ShopItem("Stone"));
             shopitems.Add(new ShopItem("Iron"));
             shopitems.Add(new ShopItem("Silicon"));
             shopitems.Add(new ShopItem("Nickel"));
@@ -114,8 +126,6 @@ namespace   ConquestPlugin.Utility.Shop
             shopitems.Add(new ShopItem("Uranium"));
             shopitems.Add(new ShopItem("Magnesium"));
             shopitems.Add(new ShopItem("Platinum"));
-            shopitems.Add(new ShopItem("UpgradedConstruction(WIP)"));
-            shopitems.Add(new ShopItem("AdvancedConstruction(WIP)"));
             return shopitems;
         }
     }
