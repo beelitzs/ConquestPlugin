@@ -81,6 +81,7 @@
     <Compile Include="ChatHandlers\HandleAdminDebug.cs" />
     <Compile Include="ChatHandlers\HandleFPTransfer.cs" />
     <Compile Include="ChatHandlers\HandleGetFP.cs" />
+    <Compile Include="ChatHandlers\HandleHelp.cs" />
     <Compile Include="ChatHandlers\HandleLeaderboardConquest.cs" />
     <Compile Include="ChatHandlers\ShopHandles\HandleShop.cs" />
     <Compile Include="ChatHandlers\ShopHandles\HandleShopBuy.cs" />

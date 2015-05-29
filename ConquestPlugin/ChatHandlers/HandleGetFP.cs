@@ -39,14 +39,12 @@ namespace ConquestPlugin.ChatHandlers
             }
             catch (NullReferenceException)
             {
-                 ChatUtil.SendPrivateChat(userId, "Faction does not exist");
+                 ChatUtil.SendPrivateChat(userId, "Faction has 0 FactionPoints");
                 return false;
             }
            
-            foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
-            {
-                if (currentmember.IsLeader == true)
-                {
+              
+                
 					int currentFP = FactionPoints.getFP(Convert.ToUInt64( Faction.getFactionID(userId)));
                     if (currentFP != -1)
                     {
@@ -56,8 +54,8 @@ namespace ConquestPlugin.ChatHandlers
                     {
                         ChatUtil.SendPrivateChat(userId, "Faction does not exist");
                     }
-                }
-            }
+                
+            
             return true;
         }
     }

@@ -3,31 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConquestPlugin.GameModes;
+
 using ConquestPlugin.Utility;
+
 namespace ConquestPlugin.ChatHandlers
 {
-    class addfpdebugHandle : ChatHandlerBase
+    class HandleHelp : ChatHandlerBase
     {
         public override string GetHelp()
         {
-            return "";
+            return "/conquest help";
         }
         public override string GetCommandText()
         {
-            return "/addfp";
-        }
-        public override bool IsAdminCommand()
-        {
-            return true;
-        }
-        public override bool AllowedInConsole()
-        {
-            return false;
+            return "/conquest help";
         }
         public override bool HandleCommand(ulong userId, string[] words)
         {
-            FactionPoints.AddFP(Faction.getFactionID(userId),Convert.ToInt32(words[0]));
+            ChatUtil.SendPrivateChat(userId, "");
             return true;
         }
     }

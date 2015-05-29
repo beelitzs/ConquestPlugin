@@ -14,17 +14,23 @@ namespace ConquestPlugin.Utility.Economy
     {
         public static bool transferFP(ulong userID,string factiontag, int amount)
         {
-
-            if (FactionPoints.RemoveFP((ulong)Faction.getFactionID(userID), amount) == true)
+            if (Faction.getFactionIDfromTag(factiontag) != 0)
             {
-                FactionPoints.AddFP(Faction.getFactionIDfromTag(factiontag), amount);
-                return true;
+                if (FactionPoints.RemoveFP((ulong)Faction.getFactionID(userID), amount) == true)
+                {
+                    FactionPoints.AddFP(Faction.getFactionIDfromTag(factiontag), amount);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
+                ChatUtil.SendPrivateChat(userID, "Factionx tag does not exist");
                 return false;
             }
-            
         }
     }
 }

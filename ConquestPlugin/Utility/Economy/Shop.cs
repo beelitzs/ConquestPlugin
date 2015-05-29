@@ -45,6 +45,8 @@ namespace ConquestPlugin.Utility.Shop
             //need finishing 
             //ChatUtil.SendPrivateChat(userID, "Buying Item.");
             long amount = -1;
+            itemname.ToLower();
+            itemname.ToUpper().Substring(0, 1);
             foreach (ShopItem item in ShopItems)
             {
                 if (item.ItemName == itemname)
@@ -123,9 +125,9 @@ namespace ConquestPlugin.Utility.Shop
             shopitems.Add(new ShopItem("Uranium"));
             shopitems.Add(new ShopItem("Magnesium"));
             shopitems.Add(new ShopItem("Platinum"));
-			shopitems.Add(new ShopItem("UpgradedConstruction"));
-			shopitems.Add(new ShopItem("AdvancedConstruction"));
-			shopitems.Add(new ShopItem("QuantumConstruction"));
+			//shopitems.Add(new ShopItem("UpgradedConstruction"));
+			//shopitems.Add(new ShopItem("AdvancedConstruction"));
+			//shopitems.Add(new ShopItem("QuantumConstruction"));
             return shopitems;
         }
     }

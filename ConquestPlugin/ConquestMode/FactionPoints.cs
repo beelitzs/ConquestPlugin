@@ -47,7 +47,7 @@ namespace ConquestPlugin.GameModes
 			{
 				XmlAttributeCollection factioncheck = selectedFaction.Attributes;
 			}
-			catch (NullReferenceException)
+			catch (FileNotFoundException)
 			{
 				// Create new faction element.
 				XmlNode Faction = xmlDoc.CreateElement("Faction");
