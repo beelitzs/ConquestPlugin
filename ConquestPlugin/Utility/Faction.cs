@@ -38,6 +38,19 @@ namespace ConquestPlugin.Utility
             }
             return 0;
         }
+        
+        public static long getFactionIDfromTag(string factag)
+        {
+            MyObjectBuilder_FactionCollection factioncollection = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
+            foreach(MyObjectBuilder_Faction faction in factioncollection.Factions)
+            {
+                if (faction.Tag == factag)
+                {
+                    return faction.FactionId;
+                }
+            }
+            return 0;
+        }
 
         public static MyObjectBuilder_Faction getFaction(long factionID)
         {

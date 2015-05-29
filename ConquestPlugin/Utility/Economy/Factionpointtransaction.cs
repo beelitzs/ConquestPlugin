@@ -12,12 +12,12 @@ namespace ConquestPlugin.Utility.Economy
 {
     class Factionpointtransaction
     {
-        public static bool transferFP(ulong userID,string factionname, int amount)
+        public static bool transferFP(ulong userID,string factiontag, int amount)
         {
 
             if (FactionPoints.RemoveFP((ulong)Faction.getFactionID(userID), amount) == true)
             {
-                FactionPoints.AddFP(Faction.getFactionIDformName(factionname), amount);
+                FactionPoints.AddFP(Faction.getFactionIDfromTag(factiontag), amount);
                 return true;
             }
             else
