@@ -25,9 +25,9 @@ namespace ConquestPlugin.Utility.Shop
             Uranium = 12,
             Magnesium = 8,
             Platinum = 8,
-			UpgradedComponent = 100,
-			AdvancedComponent = 250,
-			QuantumComponent = 1000
+			UpgradedConstruction = 100,
+			AdvancedConstruction = 250,
+			QuantumConstruction = 1000
         }
         public static List<ShopItem> DynPrices(List<ShopItem> shopitems)
         {
@@ -89,19 +89,19 @@ namespace ConquestPlugin.Utility.Shop
                             item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Platinum);
                             break;
                         }
-					case ("UpgradedComponent"):
+					case ("UpgradedConstruction"):
 						{
-							item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.UpgradedComponent);
+							item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.UpgradedConstruction);
 							break;
 						}
-					case ("AdvancedComponent"):
+					case ("AdvancedConstruction"):
 						{
-							item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.AdvancedComponent);
+							item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.AdvancedConstruction);
 							break;
 						}
-					case ("QuantumComponent"):
+					case ("QuantumConstruction"):
 						{
-							item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.QuantumComponent);
+							item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.QuantumConstruction);
 							break;
 						}
                     default:

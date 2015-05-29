@@ -113,9 +113,6 @@ namespace ConquestPlugin.Utility.Shop
 
         private static List<ShopItem> getshoppinglist(List<ShopItem> shopitems)
         {
-			shopitems.Add(new ShopItem("UpgradedConstruction"));
-			shopitems.Add(new ShopItem("AdvancedConstruction"));
-			shopitems.Add(new ShopItem("QuantumConstruction"));
 			shopitems.Add(new ShopItem("Stone"));
             shopitems.Add(new ShopItem("Iron"));
             shopitems.Add(new ShopItem("Silicon"));
@@ -126,6 +123,9 @@ namespace ConquestPlugin.Utility.Shop
             shopitems.Add(new ShopItem("Uranium"));
             shopitems.Add(new ShopItem("Magnesium"));
             shopitems.Add(new ShopItem("Platinum"));
+			shopitems.Add(new ShopItem("UpgradedConstruction"));
+			shopitems.Add(new ShopItem("AdvancedConstruction"));
+			shopitems.Add(new ShopItem("QuantumConstruction"));
             return shopitems;
         }
     }
