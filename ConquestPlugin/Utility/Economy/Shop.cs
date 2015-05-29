@@ -74,17 +74,6 @@ namespace   ConquestPlugin.Utility.Shop
                 ChatUtil.SendPrivateChat(userID, "item Id not found");
             }
           
-            ChatUtil.SendPrivateChat(userID, "player: " + userID + " bought: " + itemname + " amount: " +  buyamount + " for: "+ amount);
-            
-            //MyObjectBuilder_FloatingObject floatingBuilder = new MyObjectBuilder_FloatingObject();
-            //floatingBuilder.Item = new MyObjectBuilder_InventoryItem() { Amount = (VRage.MyFixedPoint)(float)buyamount, Content = new MyObjectBuilder_Ingot() { SubtypeName = "itemname" } };
-            //floatingBuilder.PositionAndOrientation = new MyPositionAndOrientation()
-            //{
-
-            //};
-
-            //var floatingObject = MyAPIGateway.Entities.CreateFromObjectBuilderAndAdd(floatingBuilder);
-
             return true;
         }
 
