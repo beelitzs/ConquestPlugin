@@ -15,16 +15,19 @@ namespace ConquestPlugin.Utility.Shop
     {
         private enum itemvalues
         {
-            Gravel = 1,
-            IronIngots = 5,
-            SiliconWafers = 5,
-            NickelIngots = 7,
-            CobaltIngots = 8,
-            SilverIngots = 8,
-            GoldIngots = 9,
-            UraniumIngots = 12,
-            MagnesiumPowder = 8,
-            PlatinumIngots = 8
+            Stone = 1,
+            Iron = 5,
+            Silicon = 5,
+            Nickel = 7,
+            Cobalt = 8,
+            Silver = 8,
+            Gold = 9,
+            Uranium = 12,
+            Magnesium = 8,
+            Platinum = 8,
+			UpgradedComponent = 100,
+			AdvancedComponent = 250,
+			QuantumComponent = 1000
         }
         public static List<ShopItem> DynPrices(List<ShopItem> shopitems)
         {
@@ -36,56 +39,71 @@ namespace ConquestPlugin.Utility.Shop
             {
                 switch (item.ItemName)
                 {
-                    case ("Gravel"):
+                    case ("Stone"):
                         {
-                           item.ItemPrice =  GetValue(capturedastroids, (float)itemvalues.Gravel);
+                           item.ItemPrice =  GetValue(capturedastroids, (float)itemvalues.Stone);
                             break;
                         }
-                    case("IronIngots"):
+                    case("Iron"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.IronIngots);
+                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Iron);
                             break;
                         }
-                    case("SiliconWafers"):
+                    case("Silicon"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.SiliconWafers);
+                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Silicon);
                             break;
                         }
-                    case("NickelIngots"):
+                    case("Nickel"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.NickelIngots);
+                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Nickel);
                             break;
                         }
-                    case("CobaltIngots"):
+                    case("Cobalt"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.CobaltIngots);
+                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Cobalt);
                             break;
                         }
-                    case("SilverIngots"):
+                    case("Silver"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.SilverIngots);
+                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Silver);
                             break;
                         }
-                    case("GoldIngots"):
+                    case("Gold"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.GoldIngots);
+                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Gold);
                             break;
                         }
-                    case("UraniumIngots"):
+                    case("Uranium"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.UraniumIngots);
+                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Uranium);
                             break;
                         }
-                    case("MagnesiumPowder"):
+                    case("Magnesium"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.MagnesiumPowder);
+                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Magnesium);
                             break;
                         }
-                    case("PlatinumIngots"):
+                    case("Platinum"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.PlatinumIngots);
+                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Platinum);
                             break;
                         }
+					case ("UpgradedComponent"):
+						{
+							item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.UpgradedComponent);
+							break;
+						}
+					case ("AdvancedComponent"):
+						{
+							item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.AdvancedComponent);
+							break;
+						}
+					case ("QuantumComponent"):
+						{
+							item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.QuantumComponent);
+							break;
+						}
                     default:
                         break;
                 }

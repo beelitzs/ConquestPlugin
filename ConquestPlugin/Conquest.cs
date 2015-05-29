@@ -164,7 +164,8 @@ namespace ConquestPlugin
 				new HandleLeaderboardFaction(),
                 new HandleGetFP(),
                 new GUITestHandle(),
-                new addfpdebugHandle()
+                new addfpdebugHandle(),
+				new HandleFPTransfer()
 			};
 
 			_processThreads = new List<Thread>();

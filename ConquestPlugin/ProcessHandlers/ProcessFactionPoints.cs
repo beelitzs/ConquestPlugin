@@ -45,7 +45,6 @@ namespace ConquestPlugin.ProcessHandlers
 					}
 				}
 				// Add faction_score to factions current credits.
-				ChatUtil.SendPublicChat(string.Format("[DEBUG]: Adding {0} points to {1}.", faction_score, faction.FactionId));
 				FactionPoints.AddFP(faction.FactionId,faction_score);
 			}
 			// ----------------------

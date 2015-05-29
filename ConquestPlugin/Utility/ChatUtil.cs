@@ -40,10 +40,15 @@ namespace ConquestPlugin.Utility
 			SendClientMessage(steamId, string.Format("/dialog \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", header, subheader, " ", content.Replace("\r\n", "|"), buttonText));
 		}
 		
-        public static void InventoryAdd(ulong steamID, int itemname, long amount )
+        public static void AddIngot(ulong steamID, String subID, long amount )
         {
-            SendClientMessage(steamID, string.Format("/invadd \"{0}\" \"{1}\"", itemname, amount));
+			SendClientMessage(steamID, string.Format("/addingot \"{0}\" \"{1}\"", subID, amount));
         }
+
+		public static void AddComp(ulong steamID, String subID, long amount)
+		{
+			SendClientMessage(steamID, string.Format("/addcomp \"{0}\" \"{1}\"", subID, amount));
+		}
 
 		public static void SendClientMessage(ulong steamId, string message)
 		{

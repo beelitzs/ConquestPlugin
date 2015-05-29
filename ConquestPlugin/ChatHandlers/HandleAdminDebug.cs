@@ -29,7 +29,7 @@ namespace ConquestPlugin.ChatHandlers
 
 		public override bool HandleCommand(ulong userId, string[] words)
 		{
-            ChatUtil.InventoryAdd(userId, 5, 50);
+            ChatUtil.AddComp(userId,"QuantumComponent",1);
 			return true;
 		}
 	}
