@@ -63,7 +63,7 @@ namespace   ConquestPlugin.Utility.Shop
             int itemID = -1;
             foreach(ShopItem item in ShopItems)
             {
-                itemID=getitemidfromitemname("", userID, item);
+                itemID=getitemidfromitemname(itemname, userID, item);
             }
             if (itemID != -1)
             {
@@ -74,17 +74,6 @@ namespace   ConquestPlugin.Utility.Shop
                 ChatUtil.SendPrivateChat(userID, "item Id not found");
             }
           
-            ChatUtil.SendPrivateChat(userID, "player: " + userID + " bought: " + itemname + " amount: " +  buyamount + " for: "+ amount);
-            
-            //MyObjectBuilder_FloatingObject floatingBuilder = new MyObjectBuilder_FloatingObject();
-            //floatingBuilder.Item = new MyObjectBuilder_InventoryItem() { Amount = (VRage.MyFixedPoint)(float)buyamount, Content = new MyObjectBuilder_Ingot() { SubtypeName = "itemname" } };
-            //floatingBuilder.PositionAndOrientation = new MyPositionAndOrientation()
-            //{
-
-            //};
-
-            //var floatingObject = MyAPIGateway.Entities.CreateFromObjectBuilderAndAdd(floatingBuilder);
-
             return true;
         }
 
