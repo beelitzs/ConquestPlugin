@@ -34,7 +34,7 @@ namespace ConquestPlugin.ChatHandlers
 
 		public override string GetCommandText()
 		{
-			return "/leaderboard conquest";
+			return "/conquest player";
 		}
 
 		public override bool IsAdminCommand()
@@ -102,7 +102,7 @@ namespace ConquestPlugin.ChatHandlers
 
 		public override string GetCommandText()
 		{
-			return "/leaderboard faction";
+			return "/conquest faction";
 		}
 
 		public override bool IsAdminCommand()

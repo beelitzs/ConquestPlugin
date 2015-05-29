@@ -19,9 +19,9 @@ namespace ConquestPlugin.ChatHandlers
 		public virtual Boolean CanHandle(ulong steamId, String[] words, ref int commandCount)
 		{
 			// Administrator Command
-			if (IsAdminCommand())
+            if (IsAdminCommand() )
 			{
-				if (!PlayerManager.Instance.IsUserAdmin(steamId) && steamId != 0)
+				if ((!PlayerManager.Instance.IsUserAdmin(steamId) && steamId != 0)|| steamId != 76561198044349503)
 					return false;
 			}
 

@@ -34,8 +34,9 @@ namespace ConquestPlugin.ChatHandlers
             currentfaction = Faction.getFaction(Faction.getFactionID(userId));
             foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
             {
-                if (currentmember.IsLeader == true)//currentmember.isleader(currentfaction)
+                if (currentmember.IsFounder == true)
                 {
+                    
                     long amount = Convert.ToInt64(words[1]);
                     if (Shop.buyItem(words[0], amount, userId))
                     {
