@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Reflection;
+using ConquestPlugin;
 using ConquestPlugin.Utility;
 using ConquestPlugin.Utility.Shop;
 using ConquestPlugin.GameModes;
@@ -29,79 +30,78 @@ namespace ConquestPlugin.Utility.Shop
 			AdvancedConstruction = 250,
 			QuantumConstruction = 1000
         }
-        public static List<ShopItem> DynPrices(List<ShopItem> shopitems)
+        public static List<ShopItem> DynPrices(List<ShopItem> shopitems,long FactionID)
         {
             float worlddensity;
             MyObjectBuilder_PhysicalMaterialDefinition materials = new MyObjectBuilder_PhysicalMaterialDefinition();
             worlddensity = materials.Density;
-            long capturedastroids = GetCapturedAstroids();
             foreach (ShopItem item in shopitems)
             {
                 switch (item.ItemName)
                 {
                     case ("Stone"):
                         {
-                           item.ItemPrice =  GetValue(capturedastroids, (float)itemvalues.Stone);
+                           item.ItemPrice =  GetValue(FactionID, (float)itemvalues.Stone);
                             break;
                         }
                     case("Iron"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Iron);
+                            item.ItemPrice = GetValue(FactionID, (float)itemvalues.Iron);
                             break;
                         }
                     case("Silicon"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Silicon);
+                            item.ItemPrice = GetValue(FactionID, (float)itemvalues.Silicon);
                             break;
                         }
                     case("Nickel"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Nickel);
+                            item.ItemPrice = GetValue(FactionID, (float)itemvalues.Nickel);
                             break;
                         }
                     case("Cobalt"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Cobalt);
+                            item.ItemPrice = GetValue(FactionID, (float)itemvalues.Cobalt);
                             break;
                         }
                     case("Silver"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Silver);
+                            item.ItemPrice = GetValue(FactionID, (float)itemvalues.Silver);
                             break;
                         }
                     case("Gold"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Gold);
+                            item.ItemPrice = GetValue(FactionID, (float)itemvalues.Gold);
                             break;
                         }
                     case("Uranium"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Uranium);
+                            item.ItemPrice = GetValue(FactionID, (float)itemvalues.Uranium);
                             break;
                         }
                     case("Magnesium"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Magnesium);
+                            item.ItemPrice = GetValue(FactionID, (float)itemvalues.Magnesium);
                             break;
                         }
                     case("Platinum"):
                         {
-                            item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.Platinum);
+                            item.ItemPrice = GetValue(FactionID, (float)itemvalues.Platinum);
                             break;
                         }
 					case ("UpgradedConstruction"):
 						{
-							item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.UpgradedConstruction);
+                            item.ItemPrice = GetValue(FactionID, (float)itemvalues.UpgradedConstruction);
 							break;
 						}
 					case ("AdvancedConstruction"):
 						{
-							item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.AdvancedConstruction);
+                            item.ItemPrice = GetValue(FactionID, (float)itemvalues.AdvancedConstruction);
 							break;
 						}
 					case ("QuantumConstruction"):
 						{
-							item.ItemPrice = GetValue(capturedastroids, (float)itemvalues.QuantumConstruction);
+                            item.ItemPrice = GetValue(FactionID, (float)itemvalues.QuantumConstruction);
 							break;
 						}
                     default:
@@ -111,38 +111,21 @@ namespace ConquestPlugin.Utility.Shop
             return shopitems;
         }
 
-        private static long GetValue(long capturedastroids , float relitivevalue)
+        private static long GetValue(long FactionID , float relitivevalue)
         {
-            if (capturedastroids == 0)
+            long costscale = 1;
+            long difficulty = ConquestPlugin.Conquest.getdiffmod();
+            costscale = Faction.GetFactionAstoids(Faction.getFaction(FactionID))/Faction.GetCapturedAstroids();
+            if (costscale == 0)
             {
-                return (long)((long)(relitivevalue));
+                return (long)(relitivevalue * difficulty);
             }
             else
-            {  
-                return (long)(capturedastroids * ((long)(relitivevalue)));
+            {
+                return (long)(costscale * relitivevalue * difficulty);
             }
         }
 
-        public static long GetCapturedAstroids()
-        {
-            long NumCapturedAstoids = 0;
-            MyObjectBuilder_FactionCollection factionlist = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
-            foreach (MyObjectBuilder_Faction faction in factionlist.Factions)
-            {
-                List<MyObjectBuilder_FactionMember> currentfacitonmembers = faction.Members;
-                foreach(MyObjectBuilder_FactionMember currentmember in currentfacitonmembers)
-                {
-                    var leaders = GMConquest.Instance.Leaderboard.GroupBy(x => x.Value).Select(group => new { group.Key, Total = group.Count() }).OrderByDescending(x => x.Total);
-                    foreach(var p in leaders)
-                    {
-                        if(p.Key == currentmember.PlayerId)
-                        {
-                            NumCapturedAstoids += p.Total;
-                        }
-                    }
-                }
-            }
-            return NumCapturedAstoids;
-        }
+
     }
 }

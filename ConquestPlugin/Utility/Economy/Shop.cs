@@ -22,7 +22,7 @@ namespace ConquestPlugin.Utility.Shop
     {           
         public static List<ShopItem> ShopItems = new List<ShopItem>();
 
-        public static string getShopList()
+        public static string getShopList(ulong userID)
         {
             string output = "";
             if (output != "")
@@ -30,7 +30,7 @@ namespace ConquestPlugin.Utility.Shop
             ShopItems.Clear();
             ShopItems = getshoppinglist(ShopItems);
             // ChatUtil.SendPublicChat("Getting shop prices");
-            DynShopPrices.DynPrices(ShopItems);
+            DynShopPrices.DynPrices(ShopItems, Faction.getFactionID(userID));
             foreach(ShopItem item in ShopItems)
             {
                output += item.ToString() + "\r\n";
@@ -41,7 +41,7 @@ namespace ConquestPlugin.Utility.Shop
         public static bool buyItem(string itemname, long buyamount, ulong userID)
         {
             ShopItems = getshoppinglist(ShopItems);
-            DynShopPrices.DynPrices(ShopItems);
+            DynShopPrices.DynPrices(ShopItems,Faction.getFactionID(userID));
             //need finishing 
             //ChatUtil.SendPrivateChat(userID, "Buying Item.");
             long amount = -1;

@@ -34,6 +34,7 @@ namespace ConquestPlugin
 		private DateTime m_lastProcessUpdate;
 		private List<ProcessHandlerBase> _processHandlers;
 		private List<ChatHandlerBase> _chatHandlers;
+        private static int _DifficultyMod;
 
 		#region Properties
 
@@ -46,12 +47,18 @@ namespace ConquestPlugin
 		[Category("Options")]
 		[Description("Difficulty Modifier")]
 		[Browsable(true)]
-		[ReadOnly(true)]
+		[ReadOnly(false)]
+        [DefaultValue(1)]
 		public int DifficultyMod
 		{
-			get { return 1; }
-			set { /* Set Code */ }
+			get { return _DifficultyMod ; }
+            set { _DifficultyMod = value; }
 		}
+        
+        public static int getdiffmod()
+        {
+            return _DifficultyMod;
+        }
 
 		[Category("Options")]
 		[Description("Faction Point Income Rate")]
@@ -163,7 +170,6 @@ namespace ConquestPlugin
 				new HandleLeaderboardConquest(),
 				new HandleLeaderboardFaction(),
                 new HandleGetFP(),
-                new GUITestHandle(),
                 new addfpdebugHandle(),
 				new HandleFPTransfer()
 			};
