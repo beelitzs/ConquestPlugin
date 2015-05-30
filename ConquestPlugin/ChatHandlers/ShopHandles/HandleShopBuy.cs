@@ -34,12 +34,22 @@ namespace ConquestPlugin.ChatHandlers
         {
             MyObjectBuilder_Faction currentfaction;
             currentfaction =  Utility.Faction.getFaction(Utility.Faction.getFactionID(userId));
+            long amount;
+            try
+            {
+                amount = Convert.ToInt64(words[1]);
+            }
+            catch
+            {
+                ChatUtil.SendPrivateChat(userId, "Not a valid command");
+                return false;
+            }
             foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
             {
                 if (currentmember.IsLeader == true && currentmember.PlayerId == PlayerMap.Instance.GetPlayerIdsFromSteamId(userId).First())
                 {
                     
-                    long amount = Convert.ToInt64(words[1]);
+                    
                     if (Shop.buyItem(words[0], amount, userId))
                     {
                         ChatUtil.SendPrivateChat(userId, "Your purchase has been successful.");

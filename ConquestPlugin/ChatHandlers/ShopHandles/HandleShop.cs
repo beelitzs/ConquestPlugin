@@ -64,7 +64,7 @@ namespace ConquestPlugin.ChatHandlers
             }
             catch (NullReferenceException)
             {
-                log.Info(string.Format("Error getting shop list nullreferenceexception");
+                log.Info(string.Format("Error getting shop list nullreferenceexception"));
             }
             return true;
         }

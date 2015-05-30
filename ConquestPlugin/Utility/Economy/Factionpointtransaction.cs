@@ -14,6 +14,11 @@ namespace ConquestPlugin.Utility.Economy
     {
         public static bool transferFP(ulong userID,string factiontag, int amount)
         {
+            if (amount < 0)
+            {
+                ChatUtil.SendPrivateChat(userID,"Please enter a positive value");
+                return false;
+            }
             if (Faction.getFactionIDfromTag(factiontag) != 0)
             {
                 if (FactionPoints.RemoveFP((ulong)Faction.getFactionID(userID), amount) == true)
