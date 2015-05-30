@@ -9,7 +9,7 @@ using SEModAPIExtensions.API;
 using SEModAPIInternal.API.Common;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
-
+using NLog;
 namespace ConquestPlugin.ChatHandlers
 {
     class HandleShop : ChatHandlerBase
@@ -38,25 +38,33 @@ namespace ConquestPlugin.ChatHandlers
         {
             return true;
         }
-
+        private static readonly Logger log = LogManager.GetLogger("PluginLog");
         public override bool HandleCommand(ulong userId, string[] words)
         {
-            MyObjectBuilder_Faction currentfaction;
-            currentfaction = Utility.Faction.getFaction(Utility.Faction.getFactionID(userId));
-            foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
+            
+            try
             {
-                if (currentmember.IsLeader == true && currentmember.PlayerId == PlayerMap.Instance.GetPlayerIdsFromSteamId(userId).First())//currentmember.isleader(currentfaction)
+                MyObjectBuilder_Faction currentfaction;
+                currentfaction = Utility.Faction.getFaction(Utility.Faction.getFactionID(userId));
+                foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
                 {
-                    string output = "";
-                    output = Utility.Shop.Shop.getShopList(userId);
-                    ChatUtil.DisplayDialog(userId, "Faction Store", "Spend FP Here!", output);
-                    break;
-                }
-                else if (currentmember.PlayerId == PlayerMap.Instance.GetPlayerIdsFromSteamId(userId).First())
-                {
-                    ChatUtil.SendPrivateChat(userId,"You do not have Permission to use this command.");
+                    if (currentmember.IsLeader == true && currentmember.PlayerId == PlayerMap.Instance.GetPlayerIdsFromSteamId(userId).First())//currentmember.isleader(currentfaction)
+                    {
+                        string output = "";
+                        output = Utility.Shop.Shop.getShopList(userId);
+                        ChatUtil.DisplayDialog(userId, "Faction Store", "Spend FP Here!", output);
+                        break;
+                    }
+                    else if (currentmember.PlayerId == PlayerMap.Instance.GetPlayerIdsFromSteamId(userId).First())
+                    {
+                        ChatUtil.SendPrivateChat(userId,"You do not have Permission to use this command.");
                    
+                    }
                 }
+            }
+            catch (NullReferenceException)
+            {
+                log.Info(string.Format("Error getting shop list nullreferenceexception");
             }
             return true;
         }
