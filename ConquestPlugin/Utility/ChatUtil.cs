@@ -76,5 +76,19 @@ namespace ConquestPlugin.Utility
 			SectorObjectManager.Instance.AddEntity(entity);
 			
 		}
+
+		public static bool CheckPlayerIsInWorld(ulong steamID)
+		{
+			IMyPlayerCollection allPlayers = MyAPIGateway.Players;
+			List<IMyPlayer> listPlayers = (List<IMyPlayer>)allPlayers;
+			foreach (IMyPlayer currentPlayer in listPlayers)
+			{
+				if (currentPlayer.SteamUserId == steamID)
+				{
+					ChatUtil.SendPublicChat(String.Format("Player {0} is {1}.",currentPlayer.DisplayName,currentPlayer.Controller.ControlledEntity.ToString()));
+				}
+			}
+			return false;
+		}
 	}
 }
