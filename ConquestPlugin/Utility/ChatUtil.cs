@@ -42,12 +42,12 @@ namespace ConquestPlugin.Utility
 		
         public static void AddIngot(ulong steamID, String subID, long amount )
         {
-			SendClientMessage(steamID, string.Format("/addingot \"{0}\" \"{1}\"", subID, amount));
+				SendClientMessage(steamID, string.Format("/addingot \"{0}\" \"{1}\"", subID, amount));
         }
 
 		public static void AddComp(ulong steamID, String subID, long amount)
 		{
-			SendClientMessage(steamID, string.Format("/addcomp \"{0}\" \"{1}\"", subID, amount));
+				SendClientMessage(steamID, string.Format("/addcomp \"{0}\" \"{1}\"", subID, amount));
 		}
 
 		public static void SendClientMessage(ulong steamId, string message)
@@ -80,12 +80,22 @@ namespace ConquestPlugin.Utility
 		public static bool CheckPlayerIsInWorld(ulong steamID)
 		{
 			IMyPlayerCollection allPlayers = MyAPIGateway.Players;
-			List<IMyPlayer> listPlayers = (List<IMyPlayer>)allPlayers;
+			List<IMyPlayer> listPlayers = new List<IMyPlayer>();
+			allPlayers.GetPlayers(listPlayers);
 			foreach (IMyPlayer currentPlayer in listPlayers)
 			{
 				if (currentPlayer.SteamUserId == steamID)
 				{
-					ChatUtil.SendPublicChat(String.Format("Player {0} is {1}.",currentPlayer.DisplayName,currentPlayer.Controller.ControlledEntity.ToString()));
+					String ControlledEntity = currentPlayer.Controller.ControlledEntity.ToString();
+					if (ControlledEntity.Contains("Astronau"))
+					{
+						return true;
+					}
+					else
+					{
+						ChatUtil.SendPrivateChat(steamID, "Please exit cockpit and try again.");
+						return false;
+					}
 				}
 			}
 			return false;

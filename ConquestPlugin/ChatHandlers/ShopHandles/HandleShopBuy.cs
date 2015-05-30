@@ -40,7 +40,7 @@ namespace ConquestPlugin.ChatHandlers
                     long amount = Convert.ToInt64(words[1]);
                     if (Shop.buyItem(words[0], amount, userId))
                     {
-                        ChatUtil.SendPrivateChat(userId, "your purchase has been successful");
+                        ChatUtil.SendPrivateChat(userId, "Your purchase has been successful.");
                         break;
                     }
                    

@@ -12,7 +12,7 @@ namespace ConquestPlugin.GameModes
 {
 	public class FactionPoints
 	{
-		private static String filename = "Faction-Points.xml";
+		private static String filename = (Conquest.PluginPath + "Faction-Points.xml");
 		
 		public static void CheckFP() // Create Faction Points File if not found.
 		{
@@ -47,7 +47,7 @@ namespace ConquestPlugin.GameModes
 			{
 				XmlAttributeCollection factioncheck = selectedFaction.Attributes;
 			}
-			catch (FileNotFoundException)
+			catch (Exception)
 			{
 				// Create new faction element.
 				XmlNode Faction = xmlDoc.CreateElement("Faction");

@@ -30,7 +30,6 @@ namespace ConquestPlugin.ChatHandlers
 		public override bool HandleCommand(ulong userId, string[] words)
 		{
             ChatUtil.AddComp(userId,"QuantumComponent",1);
-			bool test = ChatUtil.CheckPlayerIsInWorld(userId);
 			return true;
 		}
 	}
