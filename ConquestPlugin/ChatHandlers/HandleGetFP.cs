@@ -12,11 +12,11 @@ namespace ConquestPlugin.ChatHandlers
     {
         public override string GetHelp()
         {
-            return "Usage /getfp";
+            return "Usage /bal";
         }
         public override string GetCommandText()
         {
-            return "/getfp";
+            return "/bal";
         }
         public override bool IsAdminCommand()
         {

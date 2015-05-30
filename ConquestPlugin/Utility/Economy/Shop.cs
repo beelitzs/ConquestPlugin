@@ -47,6 +47,11 @@ namespace ConquestPlugin.Utility.Shop
             long amount = -1;
             itemname.ToLower();
             itemname.ToUpper().Substring(0, 1);
+            if(buyamount < 0)
+            {
+                ChatUtil.SendPrivateChat(userID, "Please enter a positive value");
+                return false;
+            }
             foreach (ShopItem item in ShopItems)
             {
                 if (item.ItemName == itemname)
