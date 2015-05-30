@@ -61,11 +61,18 @@ namespace ConquestPlugin.Utility.Shop
 				}
 			long facID = Faction.getFactionID(userID);
 			int intAmount = Convert.ToInt32(amount);
-            if(!FactionPoints.RemoveFP(Convert.ToUInt64(facID),intAmount))
-            {
-               ChatUtil.SendPrivateChat(userID,"You do not have sufficent points to complete your purchase.");
-               return false;
-            }
+			if (ChatUtil.CheckPlayerIsInWorld(userID))
+			{
+				if(!FactionPoints.RemoveFP(Convert.ToUInt64(facID),intAmount))
+				{
+				ChatUtil.SendPrivateChat(userID,"You do not have sufficent points to complete your purchase.");
+				return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
 			Boolean component = false;
 			switch (itemname)
 			{

@@ -52,7 +52,7 @@ namespace ConquestPlugin.ChatHandlers
                     }
                     else
                     {
-                        ChatUtil.SendPrivateChat(userId, "Faction does not exist");
+						ChatUtil.SendPrivateChat(userId, "Faction does not exist.");
                     }
                 
             
