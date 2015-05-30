@@ -21,7 +21,7 @@ namespace ConquestPlugin.ChatHandlers
 			// Administrator Command
             if (IsAdminCommand() )
 			{
-				if ((!PlayerManager.Instance.IsUserAdmin(steamId) && steamId != 0)|| steamId != 76561198044349503)
+				if ((!PlayerManager.Instance.IsUserAdmin(steamId) && steamId != 0))
 					return false;
 			}
 

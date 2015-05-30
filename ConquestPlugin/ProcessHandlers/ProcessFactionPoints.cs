@@ -26,7 +26,8 @@ namespace ConquestPlugin.ProcessHandlers
 			// ----------------------
 
 			MyObjectBuilder_FactionCollection factionlist = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
-			int num_factions = 50; //get number of factions
+            
+			int num_factions = factionlist.Factions.Count; //get number of factions
 			ulong[,] fcleaderboard = new ulong[num_factions, 2];
 			foreach (MyObjectBuilder_Faction faction in factionlist.Factions)
 			{
