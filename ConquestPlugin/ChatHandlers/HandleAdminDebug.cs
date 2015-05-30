@@ -29,7 +29,7 @@ namespace ConquestPlugin.ChatHandlers
 
 		public override bool HandleCommand(ulong userId, string[] words)
 		{
-            ChatUtil.AddComp(userId,"QuantumComponent",1);
+            ChatUtil.AddComp(userId,"QuantumConstruction",1);
 			return true;
 		}
 	}
