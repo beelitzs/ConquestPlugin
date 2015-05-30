@@ -76,7 +76,7 @@ namespace ConquestPlugin.Utility.Shop
 			Boolean component = false;
 			switch (itemname)
 			{
-				case ("UpgradedComponent"): case ("AdvancedComponent"): case ("QuantumComponent"):
+				case ("UpgradedConstruction"): case ("AdvancedConstruction"): case ("QuantumConstruction"):
 					{
 						component = true;
 						break;
