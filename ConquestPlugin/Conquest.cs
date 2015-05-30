@@ -34,6 +34,7 @@ namespace ConquestPlugin
 		private DateTime m_lastProcessUpdate;
 		private List<ProcessHandlerBase> _processHandlers;
 		private List<ChatHandlerBase> _chatHandlers;
+        private static int _DifficultyMod = 1;
 
 		#region Properties
 
@@ -47,11 +48,17 @@ namespace ConquestPlugin
 		[Description("Difficulty Modifier")]
 		[Browsable(true)]
 		[ReadOnly(true)]
+        [DefaultValue(1)]
 		public int DifficultyMod
 		{
-			get { return 1; }
-			set { /* Set Code */ }
+			get { return _DifficultyMod ; }
+            set { _DifficultyMod = value; }
 		}
+        
+        public static int getdiffmod()
+        {
+            return _DifficultyMod;
+        }
 
 		[Category("Options")]
 		[Description("Faction Point Income Rate")]
@@ -163,7 +170,6 @@ namespace ConquestPlugin
 				new HandleLeaderboardConquest(),
 				new HandleLeaderboardFaction(),
                 new HandleGetFP(),
-                //new GUITestHandle(),
                 new addfpdebugHandle(),
 				new HandleFPTransfer()
 			};
@@ -241,11 +247,9 @@ namespace ConquestPlugin
 			List<string> commandParts = CommandParser.GetCommandParts(message);
 
 			// User wants some help
-			if (commandParts[0].ToLower() == "/conquesthelp")
+			if (commandParts[0].ToLower() == "/help")
 			{
-				String content2 = "Commands:\r\n/conquest player: Player Leaderboard\r\n/conquest faction: Faction Leaderboard\r\n/shop list: Show Shop\r\n/shop buy [item] [amount]:Buys Items";
-				content2 += "\r\n/getfp: Current FP Balance\r\n/givefp [factiontag] [amount]: Gives a faction some of your FP";
-				ChatUtil.DisplayDialog(steamId,"ConquestPlugin","Command Help",content2,"THANKS!");
+				HandleHelpCommand(remoteUserId, commandParts);
 				return;
 			}
 

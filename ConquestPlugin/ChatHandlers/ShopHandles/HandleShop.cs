@@ -46,7 +46,7 @@ namespace ConquestPlugin.ChatHandlers
                 if (currentmember.IsLeader == true)//currentmember.isleader(currentfaction)
                 {
                     string output = "";
-                    output = Utility.Shop.Shop.getShopList();
+                    output = Utility.Shop.Shop.getShopList(userId);
                     ChatUtil.DisplayDialog(userId, "Faction Store", "Spend FP Here!", output);
                     break;
                 }
