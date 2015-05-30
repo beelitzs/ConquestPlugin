@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using ConquestPlugin.Utility;
 using ConquestPlugin.Utility.Shop;
-using Sandbox.Common;
 using Sandbox.ModAPI;
+using SEModAPIExtensions.API;
+using SEModAPIInternal.API.Common;
+using Sandbox.Common;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
 
@@ -31,10 +33,10 @@ namespace ConquestPlugin.ChatHandlers
         public override bool HandleCommand(ulong userId, string[] words)
         {
             MyObjectBuilder_Faction currentfaction;
-            currentfaction = Faction.getFaction(Faction.getFactionID(userId));
+            currentfaction =  Utility.Faction.getFaction(Utility.Faction.getFactionID(userId));
             foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
             {
-                if (currentmember.IsFounder == true)
+                if (currentmember.IsLeader == true && currentmember.PlayerId == PlayerMap.Instance.GetPlayerIdsFromSteamId(userId).First())
                 {
                     
                     long amount = Convert.ToInt64(words[1]);
@@ -44,6 +46,11 @@ namespace ConquestPlugin.ChatHandlers
                         break;
                     }
                    
+                }
+                else if (currentmember.PlayerId == PlayerMap.Instance.GetPlayerIdsFromSteamId(userId).First())
+                {
+                    ChatUtil.SendPrivateChat(userId, "You do not have Permission to use this command.");
+
                 }
             }
             return true;
