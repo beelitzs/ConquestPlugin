@@ -34,7 +34,7 @@ namespace ConquestPlugin
 		private DateTime m_lastProcessUpdate;
 		private List<ProcessHandlerBase> _processHandlers;
 		private List<ChatHandlerBase> _chatHandlers;
-        private static int _DifficultyMod;
+        private static int _DifficultyMod = 1;
 
 		#region Properties
 
@@ -47,7 +47,7 @@ namespace ConquestPlugin
 		[Category("Options")]
 		[Description("Difficulty Modifier")]
 		[Browsable(true)]
-		[ReadOnly(false)]
+		[ReadOnly(true)]
         [DefaultValue(1)]
 		public int DifficultyMod
 		{

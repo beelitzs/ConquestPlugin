@@ -115,7 +115,14 @@ namespace ConquestPlugin.Utility.Shop
         {
             long costscale = 1;
             long difficulty = ConquestPlugin.Conquest.getdiffmod();
-            costscale = Faction.GetFactionAstoids(Faction.getFaction(FactionID))/Faction.GetCapturedAstroids();
+            try
+            {
+                costscale = Faction.GetFactionAstoids(Faction.getFaction(FactionID)) / Faction.GetCapturedAstroids();
+            }
+            catch (DivideByZeroException)
+            {
+                costscale = 1;
+            }
             if (costscale == 0)
             {
                 return (long)(relitivevalue * difficulty);
