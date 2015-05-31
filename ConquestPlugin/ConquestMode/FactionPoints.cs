@@ -74,6 +74,7 @@ namespace ConquestPlugin.GameModes
 		public static Boolean RemoveFP(ulong factionID, int amount) // Remove Faction Points. Return False if balance is lower than amount to remove.
 		{
 			CheckFP();
+			if (getFP(factionID) < amount || amount < 0) { return false; }
 			
 			XmlDocument xmlDoc = new XmlDocument();
 			xmlDoc.Load(filename);
