@@ -247,9 +247,11 @@ namespace ConquestPlugin
 			List<string> commandParts = CommandParser.GetCommandParts(message);
 
 			// User wants some help
-			if (commandParts[0].ToLower() == "/help")
+			if (commandParts[0].ToLower() == "/conquesthelp")
 			{
-				HandleHelpCommand(remoteUserId, commandParts);
+				String content2 = "Commands:\r\n/conquest player: Player Leaderboard\r\n/conquest faction: Faction Leaderboard\r\n/shop list: Show Shop\r\n/shop buy [item] [amount]:Buys Items";
+				content2 += "\r\n/getfp: Current FP Balance\r\n/givefp [factiontag] [amount]: Gives a faction some of your FP";
+				ChatUtil.DisplayDialog(steamId,"Conquest Gamemode","Command Help",content2,"THANKS!");
 				return;
 			}
 
@@ -317,7 +319,7 @@ namespace ConquestPlugin
 				}
 
 				string commandList = string.Join(", ", commands);
-				string info = string.Format("Dedicated Server Essentials v{0}.  Available Commands: {1}", Version, commandList);
+				string info = string.Format("Conquest Plugin v{0}.  Available Commands: {1}", Version, commandList);
 				ChatUtil.SendPrivateChat(remoteUserId, info);
 			}
 			else
