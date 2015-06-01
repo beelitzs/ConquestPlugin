@@ -36,7 +36,7 @@ namespace ConquestPlugin.GameModes
 			
 		}
 
-		public static void AddFP(long factionID, int addPoints) // Add Faction Points
+		public static void AddFP(long factionID, float addPoints) // Add Faction Points
 		{
 			CheckFP();
 			XmlDocument xmlDoc = new XmlDocument();
@@ -64,14 +64,14 @@ namespace ConquestPlugin.GameModes
 			}
 			XmlAttributeCollection attributeList = selectedFaction.Attributes;
 			XmlNode attributeCurrentPoints = attributeList.Item(1);
-			int currentPoints = Convert.ToInt32(attributeCurrentPoints.Value);
-			int newPoints = currentPoints + addPoints;
+			float currentPoints = Convert.ToInt32(attributeCurrentPoints.Value);
+			float newPoints = currentPoints + addPoints;
 			attributeCurrentPoints.Value = Convert.ToString(newPoints);
 			xmlDoc.Save(filename);
 
 		}
 
-		public static Boolean RemoveFP(ulong factionID, int amount) // Remove Faction Points. Return False if balance is lower than amount to remove.
+		public static Boolean RemoveFP(ulong factionID, float amount) // Remove Faction Points. Return False if balance is lower than amount to remove.
 		{
 			CheckFP();
 			if (getFP(factionID) < amount || amount < 0) { return false; }
@@ -81,16 +81,16 @@ namespace ConquestPlugin.GameModes
 			XmlNode selectedFaction = xmlDoc.SelectSingleNode("//Faction[@FactionID='" + factionID + "']");
 			XmlAttributeCollection attributeList = selectedFaction.Attributes;
 			XmlNode attributeCurrentPoints = attributeList.Item(1);
-			int currentPoints = Convert.ToInt32(attributeCurrentPoints.Value);
-			int newPoints = currentPoints - amount;
+			float currentPoints = Convert.ToInt32(attributeCurrentPoints.Value);
+			float newPoints = currentPoints - amount;
 			attributeCurrentPoints.Value = Convert.ToString(newPoints);
 			xmlDoc.Save(filename);
 			return true;
 		}
 
-		public static int getFP(ulong factionID) // Return the amount of FactionPoints the user's faction has.
+		public static float getFP(ulong factionID) // Return the amount of FactionPoints the user's faction has.
 		{
-			int currentFP;
+			float currentFP;
 			XmlDocument xmlDoc = new XmlDocument();
 			xmlDoc.Load(filename);
 			XmlNode selectedFaction = xmlDoc.SelectSingleNode("//Faction[@FactionID='" + factionID + "']");

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ConquestPlugin.Utility;
-using ConquestPlugin.Utility.Shop;
+using ConquestPlugin.Utility.Economy;
 using Sandbox.ModAPI;
 using SEModAPIExtensions.API;
 using SEModAPIInternal.API.Common;

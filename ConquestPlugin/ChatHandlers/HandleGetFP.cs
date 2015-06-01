@@ -45,10 +45,10 @@ namespace ConquestPlugin.ChatHandlers
            
               
                 
-					int currentFP = FactionPoints.getFP(Convert.ToUInt64( Faction.getFactionID(userId)));
+					float currentFP = FactionPoints.getFP(Convert.ToUInt64( Faction.getFactionID(userId)));
                     if (currentFP != -1)
                     {
-                        ChatUtil.SendPrivateChat(userId, "Faction Currently has " + currentFP + " FactionPoints.");
+                        ChatUtil.SendPrivateChat(userId, "Faction Currently has " + currentFP.ToString("C2") + " FactionPoints.");
                     }
                     else
                     {

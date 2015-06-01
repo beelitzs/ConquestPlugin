@@ -16,7 +16,7 @@ using Sandbox.ModAPI.Interfaces;
 using VRage;
 using SEModAPIInternal.API.Common;
 
-namespace ConquestPlugin.Utility.Shop
+namespace ConquestPlugin.Utility.Economy
 {
     class Shop
     {           
@@ -38,13 +38,13 @@ namespace ConquestPlugin.Utility.Shop
             return output;
         }
 
-        public static bool buyItem(string itemname, long buyamount, ulong userID)
+        public static bool buyItem(string itemname, float buyamount, ulong userID)
         {
             ShopItems = getshoppinglist(ShopItems);
             DynShopPrices.DynPrices(ShopItems,Faction.getFactionID(userID));
             //need finishing 
             //ChatUtil.SendPrivateChat(userID, "Buying Item.");
-            long amount = -1;
+            float amount = -1;
             itemname.ToLower();
             itemname.ToUpper().Substring(0, 1);
             if(buyamount < 0)
