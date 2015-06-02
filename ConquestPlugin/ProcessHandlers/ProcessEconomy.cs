@@ -66,9 +66,21 @@ namespace ConquestPlugin.ProcessHandlers
             XmlDocument xmldoc = new XmlDocument();
             xmldoc.Load(SEModAPI.API.GameInstallationInfo.GamePath + "Content\\Data\\Blueprints.sbc");
             
-            foreach(XmlNode compnode in xmldoc.ChildNodes)
+            foreach(XmlNode compsnode in xmldoc.ChildNodes)
             {
-
+                foreach(XmlNode compnode in xmldoc.ChildNodes)
+                {
+                    string subtypeID = compnode.Attributes.Item(0).Attributes.Item(1).Value;
+                    if (subtypeID.Substring(subtypeID.Length - 5) != "Ingot" || subtypeID.Substring(subtypeID.Length - 6) != "Refill" || subtypeID.Substring(subtypeID.Length - 6) == "Oxygen")
+                    {
+                        XmlNode prerecNode = compnode.Attributes.Item(3);
+                        List<componetprerec> prerecs = new List<componetprerec>();
+                        foreach(XmlNode item in prerecNode.ChildNodes)
+                        {
+                            
+                        }
+                    }
+                }
             }
             return componets;
         }
