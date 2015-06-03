@@ -37,12 +37,12 @@ namespace ConquestPlugin.ChatHandlers
                 {
                     if (Factionpointtransaction.transferFP(userId, words[0], Convert.ToInt32(words[1])) == true)
                     {
-                        ChatUtil.SendPrivateChat(userId, "transfer was sucsessful");
+                        ChatUtil.SendPrivateChat(userId, "Transfer was Sucessful.");
                         return true;
                     }
                     else
                     {
-                        ChatUtil.SendPrivateChat(userId, "transfer was unsucsessful");
+                        ChatUtil.SendPrivateChat(userId, "Transfer was Unsucessful.");
                         return false;
                     }
                 }

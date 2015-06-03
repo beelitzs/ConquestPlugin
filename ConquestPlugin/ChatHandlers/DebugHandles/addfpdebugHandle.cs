@@ -27,7 +27,7 @@ namespace ConquestPlugin.ChatHandlers
         }
         public override bool HandleCommand(ulong userId, string[] words)
         {
-            FactionPoints.AddFP(Faction.getFactionID(userId),Convert.ToInt32(words[0]));
+            //FactionPoints.AddFP(Faction.getFactionID(userId),Convert.ToInt32(words[0]));
             return true;
         }
     }

@@ -41,15 +41,14 @@ namespace ConquestPlugin.Utility.Shop
         public static bool buyItem(string itemname, long buyamount, ulong userID)
         {
             ShopItems = getshoppinglist(ShopItems);
-            DynShopPrices.DynPrices(ShopItems,Faction.getFactionID(userID));
-            //need finishing 
+            DynShopPrices.DynPrices(ShopItems,Faction.getFactionID(userID)); 
             //ChatUtil.SendPrivateChat(userID, "Buying Item.");
             long amount = -1;
             itemname.ToLower();
             itemname.ToUpper().Substring(0, 1);
             if(buyamount < 0)
             {
-                ChatUtil.SendPrivateChat(userID, "Please enter a positive value");
+                ChatUtil.SendPrivateChat(userID, "Please enter a positive value.");
                 return false;
             }
             foreach (ShopItem item in ShopItems)
@@ -70,7 +69,7 @@ namespace ConquestPlugin.Utility.Shop
 			{
 				if(!FactionPoints.RemoveFP(Convert.ToUInt64(facID),intAmount))
 				{
-				ChatUtil.SendPrivateChat(userID,"You do not have sufficent points to complete your purchase.");
+				ChatUtil.SendPrivateChat(userID,"You do not have sufficient points to complete your purchase.");
 				return false;
 				}
 			}

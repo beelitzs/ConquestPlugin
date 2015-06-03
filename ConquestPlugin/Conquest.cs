@@ -66,7 +66,7 @@ namespace ConquestPlugin
 		[ReadOnly(true)]
 		public string FPIncomeRate
 		{
-			get { return "1 Hour"; }
+			get { return "5 Minutes"; }
 			set { /* Set Code */ }
 		}
 
@@ -164,7 +164,7 @@ namespace ConquestPlugin
 
 			_chatHandlers = new List<ChatHandlerBase>
 			{
-				new HandleAdminDebug(),
+				//new HandleAdminDebug(),
 				new HandleShop(),
                 new HandleShopBuy(),
 				new HandleLeaderboardConquest(),
@@ -250,7 +250,7 @@ namespace ConquestPlugin
 			if (commandParts[0].ToLower() == "/conquesthelp")
 			{
 				String content2 = "Commands:\r\n/conquest player: Player Leaderboard\r\n/conquest faction: Faction Leaderboard\r\n/shop list: Show Shop\r\n/shop buy [item] [amount]:Buys Items";
-				content2 += "\r\n/getfp: Current FP Balance\r\n/givefp [factiontag] [amount]: Gives a faction some of your FP";
+				content2 += "\r\n/bal: Current FP Balance\r\n/givefp [factiontag] [amount]: Gives a faction some of your FP";
 				ChatUtil.DisplayDialog(steamId,"Conquest Gamemode","Command Help",content2,"THANKS!");
 				return;
 			}

@@ -41,7 +41,7 @@ namespace ConquestPlugin.ChatHandlers
             }
             catch
             {
-                ChatUtil.SendPrivateChat(userId, "Not a valid command");
+                ChatUtil.SendPrivateChat(userId, "Not a valid command.");
                 return false;
             }
             foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
