@@ -100,7 +100,11 @@ namespace ConquestPlugin.Utility.Economy
 			}
             return true;
         }
+        public static bool SellItem(string itemname, float buyamount, ulong userID)
+        {
 
+            return true;
+        }
         public static int getitemidfromitemname(string itemname,ulong userID, ShopItem item)
         {
             var temp = new MyObjectBuilder_PhysicalObject();

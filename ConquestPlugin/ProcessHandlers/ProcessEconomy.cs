@@ -22,7 +22,7 @@ namespace ConquestPlugin.ProcessHandlers
     {
         public override int GetUpdateResolution()
         {
-            return 360000;
+            return 360000*24;
         }
 
         public override void Handle()

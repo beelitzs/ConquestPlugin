@@ -114,10 +114,10 @@ namespace ConquestPlugin.Utility.Economy
         private static long GetValue(long FactionID , float relitivevalue)
         {
             long costscale = 1;
-            long difficulty = ConquestPlugin.Conquest.getdiffmod();
+            long difficulty = PluginSettings.Instance.Difficutlymod;
             try
             {
-                costscale = Faction.GetFactionAstoids(Faction.getFaction(FactionID)) / Faction.GetCapturedAstroids();
+                costscale = (Faction.GetFactionAstoids(Faction.getFaction(FactionID)) / World.GetCapturedAstroids()) * 100 ;
             }
             catch (DivideByZeroException)
             {
