@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sandbox.ModAPI;
 using ConquestPlugin.Utility;
+using ConquestPlugin;
 using NLog;
 namespace ConquestPlugin.ProcessHandlers
 {
@@ -41,6 +42,7 @@ namespace ConquestPlugin.ProcessHandlers
             {
                 Log.Info("Error Removing Relays");
             }
+            Conquest.Diolog = true;
 		}
 	}
 }

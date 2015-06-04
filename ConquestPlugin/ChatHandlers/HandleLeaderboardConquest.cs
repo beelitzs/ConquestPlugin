@@ -49,6 +49,10 @@ namespace ConquestPlugin.ChatHandlers
 
 		public override bool HandleCommand(ulong userId, string[] words)
 		{
+            if (Conquest.Diolog = false)
+            {
+                return false;
+            }
 			var board = GMConquest.Instance.Leaderboard;
 
 			string leaderResult = "";
@@ -85,7 +89,7 @@ namespace ConquestPlugin.ChatHandlers
 
 			// ChatUtil.SendPrivateChat(userId, leaderResult);
 			ChatUtil.DisplayDialog(userId, "Conquest Leaderboard", "Current Leaders", leaderResult);
-
+            Conquest.Diolog = false;
 			return true;
 		}
 	}
@@ -117,6 +121,10 @@ namespace ConquestPlugin.ChatHandlers
 
 		public override bool HandleCommand(ulong userId, string[] words)
 		{
+            if (Conquest.Diolog = false)
+            {
+                return false;
+            }
 			// Display Faction Leaderboard
             string flstring = "";
       
@@ -147,6 +155,7 @@ namespace ConquestPlugin.ChatHandlers
                 position++;
             }
             ChatUtil.DisplayDialog(userId, "Faction Leaderbored", "Current Leader", flstring);
+            Conquest.Diolog = false;
 			return true;
 		}
 

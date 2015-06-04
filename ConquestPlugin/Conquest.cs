@@ -35,7 +35,7 @@ namespace ConquestPlugin
 		private List<ProcessHandlerBase> _processHandlers;
 		private List<ChatHandlerBase> _chatHandlers;
         private static int _DifficultyMod = 1;
-
+        public static bool Diolog = false;
 		#region Properties
 
 		public static string PluginPath
