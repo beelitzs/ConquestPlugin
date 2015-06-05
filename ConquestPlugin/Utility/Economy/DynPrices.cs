@@ -4,13 +4,13 @@ using System.Linq;
 using System.Reflection;
 using ConquestPlugin;
 using ConquestPlugin.Utility;
-using ConquestPlugin.Utility.Shop;
+using ConquestPlugin.Utility.Economy;
 using ConquestPlugin.GameModes;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
 using Sandbox.ModAPI;
 
-namespace ConquestPlugin.Utility.Shop
+namespace ConquestPlugin.Utility.Economy
 {
     class DynShopPrices
     {
@@ -114,10 +114,10 @@ namespace ConquestPlugin.Utility.Shop
         private static long GetValue(long FactionID , float relitivevalue)
         {
             long costscale = 1;
-            long difficulty = ConquestPlugin.Conquest.getdiffmod();
+            long difficulty = PluginSettings.Instance.Difficutlymod;
             try
             {
-                costscale = Faction.GetFactionAstoids(Faction.getFaction(FactionID)) / Faction.GetCapturedAstroids();
+                costscale = (Faction.GetFactionAstoids(Faction.getFaction(FactionID)) / World.GetCapturedAstroids()) * 10 ;
             }
             catch (DivideByZeroException)
             {

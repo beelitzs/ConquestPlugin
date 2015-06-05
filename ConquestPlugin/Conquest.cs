@@ -35,7 +35,7 @@ namespace ConquestPlugin
 		private List<ProcessHandlerBase> _processHandlers;
 		private List<ChatHandlerBase> _chatHandlers;
         private static int _DifficultyMod = 1;
-
+        public static bool Diolog = false;
 		#region Properties
 
 		public static string PluginPath
@@ -47,12 +47,12 @@ namespace ConquestPlugin
 		[Category("Options")]
 		[Description("Difficulty Modifier")]
 		[Browsable(true)]
-		[ReadOnly(true)]
+		[ReadOnly(false)]
         [DefaultValue(1)]
 		public int DifficultyMod
 		{
-			get { return _DifficultyMod ; }
-            set { _DifficultyMod = value; }
+            get { return PluginSettings.Instance.Difficutlymod ; }
+            set { PluginSettings.Instance.Difficutlymod = value ; }
 		}
         
         public static int getdiffmod()
@@ -73,11 +73,11 @@ namespace ConquestPlugin
 		[Category("Options")]
 		[Description("Required Beacon Distance")]
 		[Browsable(true)]
-		[ReadOnly(true)]
+		[ReadOnly(false)]
 		public float ReqBroadcastDistance
 		{
-			get { return 5000.0f; }
-			set { /* Set Code */ }
+            get { return PluginSettings.Instance.ReqBroadcastDistance; }
+            set { PluginSettings.Instance.ReqBroadcastDistance = (float)value; }
 		}
 
 		[Category("Options")]

@@ -16,7 +16,7 @@ using Sandbox.ModAPI.Interfaces;
 using VRage;
 using SEModAPIInternal.API.Common;
 
-namespace ConquestPlugin.Utility.Shop
+namespace ConquestPlugin.Utility.Economy
 {
     class Shop
     {           
@@ -38,12 +38,12 @@ namespace ConquestPlugin.Utility.Shop
             return output;
         }
 
-        public static bool buyItem(string itemname, long buyamount, ulong userID)
+        public static bool buyItem(string itemname, float buyamount, ulong userID)
         {
             ShopItems = getshoppinglist(ShopItems);
             DynShopPrices.DynPrices(ShopItems,Faction.getFactionID(userID)); 
             //ChatUtil.SendPrivateChat(userID, "Buying Item.");
-            long amount = -1;
+            float amount = -1;
             itemname.ToLower();
             itemname.ToUpper().Substring(0, 1);
             if(buyamount < 0)
@@ -99,7 +99,64 @@ namespace ConquestPlugin.Utility.Shop
 			}
             return true;
         }
+        public static bool SellItem(string itemname, float sellamount, ulong userID)
+        {
+            ShopItems = getshoppinglist(ShopItems);
+            DynShopPrices.DynPrices(ShopItems, Faction.getFactionID(userID));
+            float amount = -1;
+            itemname.ToLower();
+            itemname.ToUpper().Substring(0, 1);
+            if (sellamount < 0)
+            {
+                ChatUtil.SendPrivateChat(userID, "Please enter a positive value.");
+                return false;
+            }
+            foreach (ShopItem item in ShopItems)
+            {
+                if(item.ItemName == itemname)
+                {
+                    amount = item.ItemPrice * sellamount;
+                }
+            }
+            if (amount == -1)
+            {
+                ChatUtil.SendPrivateChat(userID, "Item does not exist.");
+                return false;
+            }
+            long facID = Faction.getFactionID(userID);
+            int intAmount = Convert.ToInt32(amount);
+            if (ChatUtil.CheckPlayerIsInWorld(userID))
+            {
+                FactionPoints.AddFP(Convert.ToInt64(facID), intAmount);
+            }
+            else
+            {
+                return false;
+            }
+            Boolean component = false;
+            switch (itemname)
+            {
+                case ("UpgradedConstruction"):
+                case ("AdvancedConstruction"):
+                case ("QuantumConstruction"):
+                    {
+                        component = true;
+                        break;
+                    }
+                default:
+                    break;
+            }
 
+            if (component)
+            {
+                ChatUtil.RemoveComp(userID, itemname, Convert.ToInt32(sellamount));
+            }
+            else
+            {
+                ChatUtil.RemoveIngot(userID, itemname, Convert.ToInt32(sellamount));
+            }
+            return true;
+        }
         public static int getitemidfromitemname(string itemname,ulong userID, ShopItem item)
         {
             var temp = new MyObjectBuilder_PhysicalObject();

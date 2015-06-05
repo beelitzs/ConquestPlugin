@@ -42,6 +42,10 @@
     <Reference Include="Sandbox.Game">
       <HintPath>..\libraries\Sandbox.Game.dll</HintPath>
     </Reference>
+    <Reference Include="Sandbox.Graphics, Version=0.1.5626.30281, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libraries\Sandbox.Graphics.dll</HintPath>
+    </Reference>
     <Reference Include="SEComm">
       <HintPath>..\libraries\SEComm.dll</HintPath>
     </Reference>
@@ -88,6 +92,7 @@
     <Compile Include="ConquestMode\FactionPoints.cs" />
     <Compile Include="ProcessHandlers\ProcessConquest.cs" />
     <Compile Include="ProcessHandlers\ProcessDestroyRelays.cs" />
+    <Compile Include="ProcessHandlers\ProcessEconomy.cs" />
     <Compile Include="ProcessHandlers\ProcessFactionPoints.cs" />
     <Compile Include="ProcessHandlers\ProcessHandlerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,8 +101,10 @@
     <Compile Include="Utility\Economy\Factionpointtransaction.cs" />
     <Compile Include="Utility\Faction.cs" />
     <Compile Include="Utility\Economy\Shop.cs" />
+    <Compile Include="Utility\PluginSettings.cs" />
     <Compile Include="Utility\SerializableDictionary.cs" />
     <Compile Include="Utility\VRageMath.cs" />
+    <Compile Include="Utility\World.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

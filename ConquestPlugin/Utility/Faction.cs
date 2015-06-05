@@ -30,7 +30,7 @@ namespace ConquestPlugin.Utility
 					}
 				}
 			}
-			return 0;
+			return -1;
 		}
         public static long getFactionIDformName(string factname)
         {
@@ -42,7 +42,7 @@ namespace ConquestPlugin.Utility
                     return faction.FactionId;
                 }
             }
-            return 0;
+            return -1;
         }
         
         public static long getFactionIDfromTag(string factag)
@@ -55,9 +55,22 @@ namespace ConquestPlugin.Utility
                     return faction.FactionId;
                 }
             }
-            return 0;
+            return -1;
         }
         
+        public static long getFactionIDfromName(string facname)
+        {
+            MyObjectBuilder_FactionCollection factioncollection = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
+            foreach(MyObjectBuilder_Faction faction in factioncollection.Factions)
+            {
+                if(faction.Name == facname)
+                {
+                    return faction.FactionId;
+                }
+            }
+            return -1;
+        }
+
         public static MyObjectBuilder_Faction getFaction(long factionID)
         {
             MyObjectBuilder_FactionCollection factionlist = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
@@ -70,27 +83,7 @@ namespace ConquestPlugin.Utility
             }
             return null;
         }
-        public static long GetCapturedAstroids()
-        {
-            long NumCapturedAstoids = 0;
-            MyObjectBuilder_FactionCollection factionlist = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
-            foreach (MyObjectBuilder_Faction faction in factionlist.Factions)
-            {
-                List<MyObjectBuilder_FactionMember> currentfacitonmembers = faction.Members;
-                foreach (MyObjectBuilder_FactionMember currentmember in currentfacitonmembers)
-                {
-                    var leaders = GMConquest.Instance.Leaderboard.GroupBy(x => x.Value).Select(group => new { group.Key, Total = group.Count() }).OrderByDescending(x => x.Total);
-                    foreach (var p in leaders)
-                    {
-                        if (p.Key == currentmember.PlayerId)
-                        {
-                            NumCapturedAstoids += p.Total;
-                        }
-                    }
-                }
-            }
-            return NumCapturedAstoids;
-        }
+   
 
         public static long GetFactionAstoids(MyObjectBuilder_Faction faction)
         {

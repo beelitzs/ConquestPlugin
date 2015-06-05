@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ConquestPlugin.Utility;
-using ConquestPlugin.Utility.Shop;
+using ConquestPlugin.Utility.Economy;
 using Sandbox.Common;
 using Sandbox.ModAPI;
 using SEModAPIExtensions.API;
@@ -41,7 +41,10 @@ namespace ConquestPlugin.ChatHandlers
         private static readonly Logger log = LogManager.GetLogger("PluginLog");
         public override bool HandleCommand(ulong userId, string[] words)
         {
-            
+            if(Conquest.Diolog = false)
+            {
+                return false;
+            }
             try
             {
                 MyObjectBuilder_Faction currentfaction;
@@ -51,7 +54,7 @@ namespace ConquestPlugin.ChatHandlers
                     if (currentmember.IsLeader == true && currentmember.PlayerId == PlayerMap.Instance.GetPlayerIdsFromSteamId(userId).First())//currentmember.isleader(currentfaction)
                     {
                         string output = "";
-                        output = Utility.Shop.Shop.getShopList(userId);
+                        output = Utility.Economy.Shop.getShopList(userId);
                         ChatUtil.DisplayDialog(userId, "Faction Store", "Spend FP Here!", output);
                         break;
                     }
@@ -66,6 +69,7 @@ namespace ConquestPlugin.ChatHandlers
             {
                 log.Info(string.Format("Error getting shop list nullreferenceexception"));
             }
+            Conquest.Diolog = false;
             return true;
         }
 
