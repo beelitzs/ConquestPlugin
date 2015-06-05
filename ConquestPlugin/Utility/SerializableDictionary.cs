@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Xml;
+using System.Xml.Schema;
 using System.Xml.Serialization;
 
 namespace ConquestPlugin.Utility
@@ -124,7 +125,8 @@ namespace ConquestPlugin.Utility
 			reader.ReadEndElement(); // Read End Element to close Read of containing node
 		}
 
-		System.Xml.Schema.XmlSchema IXmlSerializable.GetSchema()
+		//System.Xml.Schema.XmlSchema IXmlSerializable.GetSchema()
+		XmlSchema IXmlSerializable.GetSchema()
 		{
 			return null;
 		}

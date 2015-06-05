@@ -1,8 +1,8 @@
 ﻿namespace ConquestPlugin.ProcessHandlers
 {
 	using System;
-	using Sandbox.ModAPI;
 	using SEModAPIInternal.API.Entity.Sector.SectorObject;
+	using VRage.ModAPI;
 
 	public abstract class ProcessHandlerBase
 	{
