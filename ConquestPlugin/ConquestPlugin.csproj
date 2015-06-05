@@ -42,6 +42,9 @@
     <Reference Include="Sandbox.Game">
       <HintPath>..\libraries\Sandbox.Game.dll</HintPath>
     </Reference>
+    <Reference Include="Sandbox.Graphics">
+      <HintPath>..\libraries\Sandbox.Graphics.dll</HintPath>
+    </Reference>
     <Reference Include="SEComm">
       <HintPath>..\libraries\SEComm.dll</HintPath>
     </Reference>
@@ -67,11 +70,29 @@
     <Reference Include="VRage">
       <HintPath>..\libraries\VRage.dll</HintPath>
     </Reference>
+    <Reference Include="VRage.Audio">
+      <HintPath>..\libraries\VRage.Audio.dll</HintPath>
+    </Reference>
+    <Reference Include="VRage.Game">
+      <HintPath>..\libraries\VRage.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="VRage.Game.XmlSerializers">
+      <HintPath>..\libraries\VRage.Game.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="VRage.Input">
+      <HintPath>..\libraries\VRage.Input.dll</HintPath>
+    </Reference>
     <Reference Include="VRage.Library">
       <HintPath>..\libraries\VRage.Library.dll</HintPath>
     </Reference>
     <Reference Include="VRage.Math">
       <HintPath>..\libraries\VRage.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="VRage.Native">
+      <HintPath>..\libraries\VRage.Native.dll</HintPath>
+    </Reference>
+    <Reference Include="VRage.Render">
+      <HintPath>..\libraries\VRage.Render.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
