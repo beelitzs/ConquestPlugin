@@ -49,7 +49,14 @@ namespace ConquestPlugin.Utility
 		{
 				SendClientMessage(steamID, string.Format("/addcomp \"{0}\" \"{1}\"", subID, amount));
 		}
-
+        public static void RemoveIngot(ulong steamID, String subID, long amount)
+        {
+            SendClientMessage(steamID, string.Format("removeingot \"{0}\" \"{1}\"", subID, amount));
+        }
+        public static void RemoveComp(ulong steamID, String subID, long amount)
+        {
+            SendClientMessage(steamID, string.Format("removecomp \"{0}\" \"{1}\"", subID, amount));
+        }
 		public static void SendClientMessage(ulong steamId, string message)
 		{
 			if (PlayerMap.Instance.GetPlayerIdsFromSteamId(steamId).Count < 1)

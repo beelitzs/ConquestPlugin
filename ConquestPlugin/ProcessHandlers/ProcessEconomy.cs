@@ -42,49 +42,7 @@ namespace ConquestPlugin.ProcessHandlers
             
             return currentpoints;
         }
-        public List<ShopItem> getingots()
-        {
-            XmlDocument phyitemdoc = new XmlDocument();
-            phyitemdoc.Load(SEModAPI.API.GameInstallationInfo.GamePath + "Content\\Data\\PhysicalItem.sbc");
-            List<ShopItem> Ingots = new List<ShopItem>();
-            foreach(XmlNode phyitemsnode in phyitemdoc.ChildNodes)
-            {
-                foreach(XmlNode phyinemnode in phyitemsnode.ChildNodes)
-                {
-                    if(phyitemdoc.Attributes.Item(0).Attributes.Item(0).Value == "Ingot")
-                    {
-                        Ingots.Add(new ShopItem(phyitemdoc.Attributes.Item(0).Attributes.Item(1).Value));
-                    }
-                }
-            }
-            return Ingots;
-        }
-        
-        public List<Componets> getcomponates()
-        {
-            List<Componets> componets = new List<Componets>();
-            XmlDocument xmldoc = new XmlDocument();
-            xmldoc.Load(SEModAPI.API.GameInstallationInfo.GamePath + "Content\\Data\\Blueprints.sbc");
-            
-            foreach(XmlNode compsnode in xmldoc.ChildNodes)
-            {
-                foreach(XmlNode compnode in xmldoc.ChildNodes)
-                {
-                    string subtypeID = compnode.Attributes.Item(0).Attributes.Item(1).Value;
-                    if (subtypeID.Substring(subtypeID.Length - 5) != "Ingot" || subtypeID.Substring(subtypeID.Length - 6) != "Refill" || subtypeID.Substring(subtypeID.Length - 6) == "Oxygen")
-                    {
-                        XmlNode prerecNode = compnode.Attributes.Item(3);
-                        List<componetprerec> prerecs = new List<componetprerec>();
-                        foreach(XmlNode item in prerecNode.ChildNodes)
-                        {
-                            
-                        }
-                    }
-                }
-            }
-            return componets;
-        }
-
+     
         public void chechFile(string _filename)
         {
             if (!File.Exists(_filename))

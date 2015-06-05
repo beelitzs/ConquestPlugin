@@ -117,7 +117,7 @@ namespace ConquestPlugin.Utility.Economy
             long difficulty = PluginSettings.Instance.Difficutlymod;
             try
             {
-                costscale = (Faction.GetFactionAstoids(Faction.getFaction(FactionID)) / World.GetCapturedAstroids()) * 100 ;
+                costscale = (Faction.GetFactionAstoids(Faction.getFaction(FactionID)) / World.GetCapturedAstroids()) * 10 ;
             }
             catch (DivideByZeroException)
             {
