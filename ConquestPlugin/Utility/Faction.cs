@@ -73,7 +73,9 @@ namespace ConquestPlugin.Utility
         public static long GetCapturedAstroids()
         {
             long NumCapturedAstoids = 0;
-            MyObjectBuilder_FactionCollection factionlist = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
+			try // Fix for NullRefException in Shop Buy
+			{
+				MyObjectBuilder_FactionCollection factionlist = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
             foreach (MyObjectBuilder_Faction faction in factionlist.Factions)
             {
                 List<MyObjectBuilder_FactionMember> currentfacitonmembers = faction.Members;
@@ -90,6 +92,11 @@ namespace ConquestPlugin.Utility
                 }
             }
             return NumCapturedAstoids;
+			}
+			catch (NullReferenceException)
+			{
+				return 0;
+			}
         }
 
         public static long GetFactionAstoids(MyObjectBuilder_Faction faction)

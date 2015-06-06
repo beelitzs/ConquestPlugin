@@ -32,7 +32,16 @@ namespace ConquestPlugin.ChatHandlers
         }
         public override bool HandleCommand(ulong userId, string[] words)
         {
-            MyObjectBuilder_Faction currentfaction;
+            if (Conquest.processingShop == true)
+			{
+				ChatUtil.SendPrivateChat(userId, "A buy request is currently processing. Please try again soon.");
+				return false;
+			}
+			else
+			{
+				Conquest.processingShop = true;
+			}
+			MyObjectBuilder_Faction currentfaction;
             currentfaction =  Utility.Faction.getFaction(Utility.Faction.getFactionID(userId));
             long amount;
             try
@@ -42,6 +51,7 @@ namespace ConquestPlugin.ChatHandlers
             catch
             {
                 ChatUtil.SendPrivateChat(userId, "Not a valid command.");
+				Conquest.processingShop = false;
                 return false;
             }
             foreach (MyObjectBuilder_FactionMember currentmember in currentfaction.Members)
@@ -60,9 +70,9 @@ namespace ConquestPlugin.ChatHandlers
                 else if (currentmember.PlayerId == PlayerMap.Instance.GetPlayerIdsFromSteamId(userId).First())
                 {
                     ChatUtil.SendPrivateChat(userId, "You do not have Permission to use this command.");
-
                 }
             }
+			Conquest.processingShop = false;
             return true;
         } 
 
