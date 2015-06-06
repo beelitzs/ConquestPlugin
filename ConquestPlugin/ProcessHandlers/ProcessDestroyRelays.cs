@@ -37,7 +37,10 @@ namespace ConquestPlugin.ProcessHandlers
                     if (oneEntity.DisplayName.Contains("ommRelayOutpu"))
                     {
                         //oneEntity.Close();
-						Conquest.CommRelayCleanup.Add(oneEntity);
+						if (!Conquest.CommRelayCleanup.Contains(oneEntity))
+						{
+							Conquest.CommRelayCleanup.Add(oneEntity);
+						}
                     }
                 }
             }
@@ -45,12 +48,19 @@ namespace ConquestPlugin.ProcessHandlers
             {
                 Log.Info("Error Removing Relays");
             }
-			if (Conquest.CommRelayCleanup.Count > 1)
+			try
 			{
-				// Delete the oldest entity in the list.
-				IMyEntity closeMe = Conquest.CommRelayCleanup[0];
-				Conquest.CommRelayCleanup.Remove(closeMe);
-				closeMe.Close();
+				if (Conquest.CommRelayCleanup.Count > 1)
+				{
+					// Delete the oldest entity in the list.
+					IMyEntity closeMe = Conquest.CommRelayCleanup[0];
+					Conquest.CommRelayCleanup.Remove(closeMe);
+					closeMe.Close();
+				}
+			}
+			catch (NullReferenceException)
+			{
+				// List is empty. Continue on.
 			}
 			base.Handle();
 		}
