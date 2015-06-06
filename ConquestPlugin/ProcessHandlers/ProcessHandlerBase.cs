@@ -3,9 +3,11 @@
 	using System;
 	using SEModAPIInternal.API.Entity.Sector.SectorObject;
 	using VRage.ModAPI;
+	using NLog;
 
 	public abstract class ProcessHandlerBase
 	{
+		protected static readonly Logger Log = LogManager.GetLogger("ProcessLog");
 		protected DateTime m_lastUpdate;
 		public DateTime LastUpdate
 		{

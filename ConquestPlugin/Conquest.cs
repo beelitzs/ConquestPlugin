@@ -16,6 +16,7 @@ using SEModAPIExtensions.API.Plugin;
 using SEModAPIExtensions.API.Plugin.Events;
 using SEModAPIInternal.Support;
 using SEModAPIInternal.API.Common;
+using VRage.ModAPI;
 
 using ConquestPlugin.ProcessHandlers;
 using ConquestPlugin.ChatHandlers;
@@ -35,6 +36,7 @@ namespace ConquestPlugin
 		private List<ProcessHandlerBase> _processHandlers;
 		private List<ChatHandlerBase> _chatHandlers;
         private static int _DifficultyMod = 1;
+		public static List<IMyEntity> CommRelayCleanup;
 
 		#region Properties
 
