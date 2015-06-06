@@ -18,7 +18,6 @@ namespace ConquestPlugin.ProcessHandlers
 		{
 			return 7000; // Update in ms.
 		}
-        public static readonly Logger Log = LogManager.GetLogger("PluginLog");
 		public override void Handle()
 		{
             try
