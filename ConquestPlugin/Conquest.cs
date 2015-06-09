@@ -161,8 +161,8 @@ namespace ConquestPlugin
 			_processHandlers = new List<ProcessHandlerBase>
 			{
 				new ProcessFactionPoints(),
-				new ProcessConquest()//,
-				//new ProcessDestroyRelays()
+				new ProcessConquest(),
+				new ProcessDestroyRelays()
 			};
 
 			_chatHandlers = new List<ChatHandlerBase>
