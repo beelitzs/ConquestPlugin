@@ -43,9 +43,9 @@ namespace ConquestPlugin.ProcessHandlers
                     }
                 }
             }
-            catch(InvalidOperationException)
+            catch(Exception)
             {
-                Log.Info("Error Removing Relays");
+				// Continue on.
             }
 			try
 			{
