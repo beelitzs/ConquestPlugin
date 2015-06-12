@@ -186,6 +186,18 @@
 			return false;
 		}
 
+		private static long BeaconValue(IMyCubeBlock block) //Returns the points value of specified beacon.
+		{
+			MyObjectBuilder_CubeBlock cube = block.GetObjectBuilderCubeBlock();
+			if (cube is MyObjectBuilder_Beacon)
+			{
+				MyObjectBuilder_Beacon beaconval = (MyObjectBuilder_Beacon)cube;
+				float radius = beaconval.BroadcastRadius;
+				return Convert.ToInt64(Math.Floor(Convert.ToDouble(radius / 5000)));
+			}
+			return 0;
+		}
+
 		private static void Load()
 		{
 			try

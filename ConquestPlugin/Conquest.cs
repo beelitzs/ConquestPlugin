@@ -16,6 +16,7 @@ using SEModAPIExtensions.API.Plugin;
 using SEModAPIExtensions.API.Plugin.Events;
 using SEModAPIInternal.Support;
 using SEModAPIInternal.API.Common;
+using VRage.ModAPI;
 
 using ConquestPlugin.ProcessHandlers;
 using ConquestPlugin.ChatHandlers;
@@ -35,6 +36,8 @@ namespace ConquestPlugin
 		private List<ProcessHandlerBase> _processHandlers;
 		private List<ChatHandlerBase> _chatHandlers;
         private static int _DifficultyMod = 1;
+		public static List<IMyEntity> CommRelayCleanup;
+		public static bool processingShop = false;
 
 		#region Properties
 
@@ -250,7 +253,7 @@ namespace ConquestPlugin
 			if (commandParts[0].ToLower() == "/conquesthelp")
 			{
 				String content2 = "Commands:\r\n/conquest player: Player Leaderboard\r\n/conquest faction: Faction Leaderboard\r\n/shop list: Show Shop\r\n/shop buy [item] [amount]:Buys Items";
-				content2 += "\r\n/bal: Current FP Balance\r\n/givefp [factiontag] [amount]: Gives a faction some of your FP";
+				content2 += "\r\n/bal: Current FP Balance\r\n/givefp [factiontag] [amount]: Gives a faction some of your FP\r\n\r\nTo Capture:\r\nBuild a Station with a powered beacon within 500m of an asteroid and broadcast at least 5km.";
 				ChatUtil.DisplayDialog(steamId,"Conquest Gamemode","Command Help",content2,"THANKS!");
 				return;
 			}

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sandbox.ModAPI;
 using Sandbox.ModAPI.Ingame;
+using ConquestPlugin;
 using ConquestPlugin.Utility;
 using NLog;
 using VRage.ModAPI;
@@ -15,9 +16,8 @@ namespace ConquestPlugin.ProcessHandlers
 	{
 		public override int GetUpdateResolution()
 		{
-			return 20000; // Update in ms.
+			return 7000; // Update in ms.
 		}
-        public static readonly Logger Log = LogManager.GetLogger("PluginLog");
 		public override void Handle()
 		{
             try
@@ -35,15 +35,33 @@ namespace ConquestPlugin.ProcessHandlers
 
                     if (oneEntity.DisplayName.Contains("ommRelayOutpu"))
                     {
-                        oneEntity.Close();
+                        //oneEntity.Close();
+						if (!Conquest.CommRelayCleanup.Contains(oneEntity))
+						{
+							Conquest.CommRelayCleanup.Add(oneEntity);
+						}
                     }
                 }
-                base.Handle();
             }
-            catch(InvalidOperationException)
+            catch(Exception)
             {
-                Log.Info("Error Removing Relays");
+				// Continue on.
             }
+			try
+			{
+				if (Conquest.CommRelayCleanup.Count > 1)
+				{
+					// Delete the oldest entity in the list.
+					IMyEntity closeMe = Conquest.CommRelayCleanup[0];
+					Conquest.CommRelayCleanup.Remove(closeMe);
+					closeMe.Close();
+				}
+			}
+			catch (NullReferenceException)
+			{
+				// List is empty. Continue on.
+			}
+			base.Handle();
 		}
 	}
 }
