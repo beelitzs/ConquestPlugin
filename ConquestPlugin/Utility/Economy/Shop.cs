@@ -44,8 +44,9 @@ namespace ConquestPlugin.Utility.Shop
             DynShopPrices.DynPrices(ShopItems,Faction.getFactionID(userID)); 
             //ChatUtil.SendPrivateChat(userID, "Buying Item.");
             long amount = -1;
-            itemname.ToLower();
-            itemname.ToUpper().Substring(0, 1);
+            string itemnamelowerend = itemname.ToLower().Substring(1);
+			string itemnamecapital = itemname.ToUpper().Substring(0, 1);
+			itemname = itemnamecapital + itemnamelowerend;
             if(buyamount < 0)
             {
                 ChatUtil.SendPrivateChat(userID, "Please enter a positive value.");
@@ -92,12 +93,13 @@ namespace ConquestPlugin.Utility.Shop
 			if (component)
 			{
 				ChatUtil.AddComp(userID, itemname, Convert.ToInt32(buyamount));
+				return true;
 			}
 			else
 			{
 				ChatUtil.AddIngot(userID, itemname, Convert.ToInt32(buyamount));
+				return true;
 			}
-            return true;
         }
 
         public static int getitemidfromitemname(string itemname,ulong userID, ShopItem item)
