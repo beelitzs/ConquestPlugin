@@ -94,6 +94,9 @@
     <Reference Include="VRage.Render">
       <HintPath>..\libraries\VRage.Render.dll</HintPath>
     </Reference>
+    <Reference Include="VRage.Render11">
+      <HintPath>..\libraries\VRage.Render11.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatHandlers\ChatHandlerBase.cs" />
