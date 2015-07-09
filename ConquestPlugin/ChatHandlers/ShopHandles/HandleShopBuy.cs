@@ -48,7 +48,7 @@ namespace ConquestPlugin.ChatHandlers
             {
                 amount = Convert.ToInt64(words[1]);
             }
-            catch
+            catch (Exception)
             {
                 ChatUtil.SendPrivateChat(userId, "Not a valid command.");
 				Conquest.processingShop = false;
@@ -63,6 +63,7 @@ namespace ConquestPlugin.ChatHandlers
                     if (Shop.buyItem(words[0], amount, userId))
                     {
                         ChatUtil.SendPrivateChat(userId, "Your purchase has been successful.");
+						Conquest.processingShop = false;
                         break;
                     }
                    

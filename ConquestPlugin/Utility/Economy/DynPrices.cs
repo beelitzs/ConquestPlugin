@@ -119,9 +119,10 @@ namespace ConquestPlugin.Utility.Shop
             {
                 costscale = Faction.GetFactionAstoids(Faction.getFaction(FactionID)) / Faction.GetCapturedAstroids();
             }
-            catch (DivideByZeroException)
+            catch (Exception ex)
             {
-                costscale = 1;
+				if (ex is DivideByZeroException) { costscale = 1; }
+				if (ex is InvalidOperationException) { Conquest.processingShop = false; }
             }
             if (costscale == 0)
             {

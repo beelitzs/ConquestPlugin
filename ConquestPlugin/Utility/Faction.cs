@@ -60,7 +60,7 @@ namespace ConquestPlugin.Utility
         
         public static MyObjectBuilder_Faction getFaction(long factionID)
         {
-            MyObjectBuilder_FactionCollection factionlist = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
+			MyObjectBuilder_FactionCollection factionlist = MyAPIGateway.Session.GetWorld().Checkpoint.Factions;
             foreach(MyObjectBuilder_Faction faction in factionlist.Factions)
             {
                 if(faction.FactionId == factionID)
