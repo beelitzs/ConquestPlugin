@@ -49,7 +49,7 @@ namespace ConquestPlugin.ProcessHandlers
             }
 			try
 			{
-				if (Conquest.CommRelayCleanup.Count > 1)
+				if (Conquest.CommRelayCleanup.Count >= 5)
 				{
 					// Delete the oldest entity in the list.
 					IMyEntity closeMe = Conquest.CommRelayCleanup[0];
