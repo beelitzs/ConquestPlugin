@@ -138,7 +138,10 @@ namespace ConquestPlugin.ChatHandlers
                         }
                     }
                 }
-                factionleaderboard.Add(new FactionScores(faction.Name, faction_score));
+				if (faction_score > 0)
+				{
+					factionleaderboard.Add(new FactionScores(faction.Name, faction_score));
+				}
             }
 			factionleaderboard = factionleaderboard.OrderByDescending(x => x.FactionScore).ToList();
             foreach(FactionScores score in factionleaderboard)
