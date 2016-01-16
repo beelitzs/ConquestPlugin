@@ -109,7 +109,9 @@ namespace ConquestPlugin
 		public void Init()
 		{
 			Log.Info("Plugin '{0}' initialized. (Version: {1}  ID: {2})", Name, Version, Id);
-			DoInit(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\");
+            string path = System.IO.Path.Combine( AppDomain.CurrentDomain.BaseDirectory, "SpaceEngineers.ObjectBuilders.DLL" );
+            VRage.Plugins.MyPlugins.RegisterGameObjectBuildersAssemblyFile( path );
+            DoInit(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\");
 		}
 
 		public void Shutdown()

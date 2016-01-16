@@ -60,6 +60,12 @@
     <Reference Include="SpaceEngineers.Game">
       <HintPath>..\libraries\SpaceEngineers.Game.dll</HintPath>
     </Reference>
+    <Reference Include="SpaceEngineers.ObjectBuilders">
+      <HintPath>..\libraries\SpaceEngineers.ObjectBuilders.dll</HintPath>
+    </Reference>
+    <Reference Include="SpaceEngineers.ObjectBuilders.XmlSerializers">
+      <HintPath>..\libraries\SpaceEngineers.ObjectBuilders.XmlSerializers.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
