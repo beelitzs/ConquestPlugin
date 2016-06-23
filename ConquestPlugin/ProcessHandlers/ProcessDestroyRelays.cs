@@ -10,6 +10,8 @@ using ConquestPlugin.Utility;
 using NLog;
 using VRage.ModAPI;
 using VRageMath;
+using VRage.Game.ModAPI;
+
 namespace ConquestPlugin.ProcessHandlers
 {
 	class ProcessDestroyRelays : ProcessHandlerBase

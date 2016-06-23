@@ -13,7 +13,7 @@ using Sandbox.ModAPI;
 using Sandbox.ModAPI.Interfaces;
 using Sandbox.Common;
 using Sandbox.Common.ObjectBuilders;
-using Sandbox.Common.ObjectBuilders.Voxels;
+using VRage.Voxels;
 using Sandbox.Common.ObjectBuilders.Definitions;
 
 using VRageMath;
@@ -22,6 +22,7 @@ using SEModAPIInternal.API.Entity;
 using SEModAPIInternal.API.Entity.Sector.SectorObject;
 using SEModAPIInternal.API.Entity.Sector.SectorObject.CubeGrid.CubeBlock;
 using SEModAPIInternal.API.Common;
+using VRage.Game;
 
 namespace ConquestPlugin.ChatHandlers
 {
@@ -171,6 +172,11 @@ namespace ConquestPlugin.ChatHandlers
 
             FactionName = _FactionName;
             FactionScore = _FactionScore;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
 
         public override bool Equals(object obj)

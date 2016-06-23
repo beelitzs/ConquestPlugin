@@ -9,6 +9,7 @@ using ConquestPlugin.GameModes;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
 using Sandbox.ModAPI;
+using VRage.Game;
 
 namespace ConquestPlugin.Utility.Shop
 {

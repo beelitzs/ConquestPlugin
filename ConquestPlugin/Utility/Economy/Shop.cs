@@ -5,7 +5,7 @@ using ConquestPlugin.GameModes;
 using ConquestPlugin.Utility;
 
 using Sandbox.Common;
-using Sandbox.Common.Components;
+//using Sandbox.Common.Components;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
 using Sandbox.Definitions;
@@ -15,6 +15,7 @@ using Sandbox.ModAPI.Ingame;
 using Sandbox.ModAPI.Interfaces;
 using VRage;
 using SEModAPIInternal.API.Common;
+using VRage.Game;
 
 namespace ConquestPlugin.Utility.Shop
 {

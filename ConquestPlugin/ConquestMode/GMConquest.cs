@@ -1,19 +1,20 @@
 ﻿namespace ConquestPlugin.GameModes
 {
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Linq;
-	using System.Xml.Serialization;
-	using ConquestPlugin.Utility;
- 	using NLog;
-	using Sandbox.Common.ObjectBuilders;
-	using Sandbox.ModAPI;
-	using SEModAPIInternal.API.Common;
-	using VRage.ModAPI;
-	using VRageMath;
-
-	public class GMConquest
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Xml.Serialization;
+    using ConquestPlugin.Utility;
+    using NLog;
+    using Sandbox.Common.ObjectBuilders;
+    using Sandbox.ModAPI;
+    using SEModAPIInternal.API.Common;
+    using VRage.ModAPI;
+    using VRageMath;
+    using VRage.Game.ModAPI;
+    using VRage.Game;
+    public class GMConquest
 	{
 		private static readonly Logger Log = LogManager.GetLogger( "PluginLog" );
 		private static SerializableDictionary<long, long> m_ownershipCache = new SerializableDictionary<long, long>( );

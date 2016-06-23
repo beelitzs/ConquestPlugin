@@ -7,6 +7,8 @@ using ConquestPlugin.Utility.Economy;
 using ConquestPlugin.Utility;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
+using VRage.Game;
+
 namespace ConquestPlugin.ChatHandlers
 {
     class HandleFPTransfer : ChatHandlerBase

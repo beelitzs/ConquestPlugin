@@ -15,6 +15,8 @@ using SEModAPIInternal.API.Server;
 using VRage;
 using VRageMath;
 using VRage.ObjectBuilders;
+using VRage.Game;
+using VRage.Game.ModAPI;
 
 namespace ConquestPlugin.Utility
 {

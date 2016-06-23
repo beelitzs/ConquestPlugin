@@ -2,7 +2,7 @@
 using Sandbox.ModAPI.Interfaces;
 using Sandbox.Common;
 using Sandbox.Common.ObjectBuilders;
-using Sandbox.Common.ObjectBuilders.Voxels;
+using VRage.Voxels;
 using Sandbox.Common.ObjectBuilders.Definitions;
 using System.Collections.Generic;
 using System;
@@ -11,10 +11,10 @@ using System.Linq;
 
 namespace ConquestPlugin.ProcessHandlers
 {
-	using ConquestPlugin.GameModes;
-	using ConquestPlugin.Utility;
-
-	class ProcessFactionPoints : ProcessHandlerBase
+    using ConquestPlugin.GameModes;
+    using ConquestPlugin.Utility;
+    using VRage.Game;
+    class ProcessFactionPoints : ProcessHandlerBase
 	{
 		public override int GetUpdateResolution()
 		{

@@ -9,6 +9,7 @@ using SEModAPIInternal.API.Common;
 using Sandbox.Common;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
+using VRage.Game;
 
 namespace ConquestPlugin.ChatHandlers
 {

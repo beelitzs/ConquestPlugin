@@ -9,7 +9,7 @@ using Sandbox.Common.ObjectBuilders.Definitions;
 
 using ConquestPlugin.GameModes;
 using SEModAPIInternal.API.Common;
-
+using VRage.Game;
 
 namespace ConquestPlugin.Utility
 {

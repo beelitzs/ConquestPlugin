@@ -5,6 +5,7 @@ using System.Linq;
 using ConquestPlugin.GameModes;
 using ConquestPlugin.Utility;
 using Sandbox.Common.ObjectBuilders.Definitions;
+using VRage.Game;
 
 namespace ConquestPlugin.ChatHandlers
 {

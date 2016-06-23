@@ -10,6 +10,8 @@ using SEModAPIInternal.API.Common;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
 using NLog;
+using VRage.Game;
+
 namespace ConquestPlugin.ChatHandlers
 {
     class HandleShop : ChatHandlerBase
